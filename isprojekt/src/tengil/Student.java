@@ -1,4 +1,4 @@
-package tengil;
+package isprojekt.src.tengil;
 
 public class Student {
     private String civic;
