@@ -1,29 +1,17 @@
 package isprojekt.src.tengil;
 
-import java.sql.*;
+import java.sql.SQLException;
 
 public class Main {
     
-    public static void main (String [] args) throws SQLException {
-            
-            DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
-            Connection connection1 = DriverManager.getConnection("JDBC:ODBC:isprojekt1");
-            
-            Statement testStatement = connection1.createStatement();
-       
+    public Main() throws SQLException {
+        Controller con = new Controller();
+    }
     
-            ResultSet a = testStatement.executeQuery("Select name from student");
-            
-            while(a.next()){ 
-                System.out.println(a.getString(1));
-            }
-            
-     
-       //    int newStudent = testStatement.executeUpdate("insert into student values('444', 'BBBName')");
-            
-       //     System.out.println(newStudent);
-
-
+    public static void main (String []args) throws SQLException {
+        
+        new Main();
+        
 
     }
 }

@@ -7,13 +7,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConnectBot {
+    private Statement testStatement;
 
     public void connect() throws SQLException {
         DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
         Connection connection1 = DriverManager.getConnection("JDBC:ODBC:isprojekt1");
+        
+        testStatement = connection1.createStatement();
 
-        Statement testStatement = connection1.createStatement();
     }
 
+
+    public ResultSet query(String request) throws SQLException {
+         return testStatement.executeQuery(request);
+
+    }
 
 }
