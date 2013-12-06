@@ -14,7 +14,7 @@ public class Main {
     
             ResultSet a = testStatement.executeQuery("Select name from student");
             
-            while(a.next()){
+            while(a.next()){ 
                 System.out.println(a.getString(1));
             }
             
