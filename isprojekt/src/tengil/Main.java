@@ -11,19 +11,14 @@ public class Main {
             
             Statement testStatement = connection1.createStatement();
        
-       /*   Vår testmetod
-        * 
-        * testedit:
-        * 
-            ResultSet a = hej.executeQuery("Select pname from Patient");
+    
+            ResultSet a = testStatement.executeQuery("Select name from student");
             
             while(a.next()){
                 System.out.println(a.getString(1));
             }
             
-        *
-        */    
-            
+     
        //    int newStudent = testStatement.executeUpdate("insert into student values('444', 'BBBName')");
             
        //     System.out.println(newStudent);
