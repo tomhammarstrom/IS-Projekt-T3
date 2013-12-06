@@ -24,9 +24,9 @@ public class Main {
         *
         */    
             
-            int newStudent = testStatement.executeUpdate("insert into student values('444', 'BBBName')");
+       //    int newStudent = testStatement.executeUpdate("insert into student values('444', 'BBBName')");
             
-            System.out.println(newStudent);
+       //     System.out.println(newStudent);
 
 
 
