@@ -9,7 +9,7 @@ public class Registry {
         students = new ArrayList<Student>();
     }
     
-    public void addStudent(){
+    public void addStudent(String civic, String name){
         
     }
     
