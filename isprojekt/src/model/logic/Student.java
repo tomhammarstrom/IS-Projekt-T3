@@ -1,8 +1,23 @@
 package isprojekt.src.model.logic;
 
+import java.util.ArrayList;
+
 public class Student {
     private String civic;
     private String name;
+    
+    private ArrayList<Course> activeCourses;
+
+    public void setActiveCourses(ArrayList<Course> activeCourses) {
+        this.activeCourses = activeCourses;
+    }
+
+    public ArrayList<Course> getActiveCourses() {
+        return activeCourses;
+    }
+    public void addActiveCouse(Course c){
+        activeCourses.add(c);
+    }
 
 
     public Student(String civic) {
