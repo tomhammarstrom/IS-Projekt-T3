@@ -62,6 +62,58 @@ public class Registry {
 
     }
     
+    
+    /**
+     * Kursfunktioner nedan
+  
+    
+    
+    
+    public void addCourse(String id, String name) throws SQLException {
+        String sqlString = "insert into course values('" + civic + "','" + name + "')";
+        System.out.println(con.update(sqlString));
+    }
+    
+    public void changeStudent(String someNewStuff){
+        
+    }
+
+    public void removeStudent(Student student) throws SQLException {
+        String civic = student.getCivic();
+        String sqlString = "delete from student where civic = '" + civic + "'";
+        System.out.println(con.update(sqlString));
+        
+    }
+
+    public List<List<String>> getStudents() throws SQLException {
+        ResultSet a = con.query("select * from student");
+
+        while (a.next()) {
+            ArrayList<String> aStudent = new ArrayList<String>();
+            aStudent.add(a.getString(1));
+            aStudent.add(a.getString(2));
+            students.add(aStudent);
+        }
+        return students;
+    }
+    
+    public Student getStudent(String request) throws SQLException {
+        String sqlString = "select * from student where civic = '" + request + "'";
+        ResultSet foundStudent = con.query(sqlString);
+        Student object = null;
+        
+        if(foundStudent.next()){
+            object = new Student(foundStudent.getString(1));
+            object.setName(foundStudent.getString(2));
+        }
+        
+        return object;
+
+    }
+
+    *
+    */
+    
 }
 
 
