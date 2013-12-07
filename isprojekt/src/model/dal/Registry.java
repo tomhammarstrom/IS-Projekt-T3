@@ -23,6 +23,10 @@ public class Registry {
     public void addStudent(String civic, String name) {
 
     }
+    
+    public void changeStudent(String someNewStuff){
+        
+    }
 
     public void removeStudent() {
 
