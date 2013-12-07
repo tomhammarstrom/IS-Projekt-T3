@@ -23,7 +23,9 @@ public class CourseManager {
     }
     
     public void endCourse(Course c, Student s){
-        
+        /**
+         * Orkar verkligen inte ta tag i denna just nu
+         */
     }
 
 }
