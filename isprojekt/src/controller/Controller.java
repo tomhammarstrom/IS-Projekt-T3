@@ -30,13 +30,14 @@ public class Controller {
          * 
         Student die = reg.getStudent("444");
         reg.removeStudent(die);
-        printStudents();
+        
         Student a = reg.getStudent("444");
         System.out.println(a.getCivic() + " " + a.getName());
         reg.addStudent("444", "jonas");
         *
         *
         */
+        printStudents();
     }
     
     
@@ -48,6 +49,12 @@ public class Controller {
         return cb.update(request);
     }
     
+
+
+    /**
+     * Testfunktioner
+     *
+     */
 
     private void printStudents() throws SQLException {
         List<List<String>> students = reg.getStudents();
