@@ -2,6 +2,7 @@ package isprojekt.src.controller;
 
 import isprojekt.src.model.dal.ConnectBot;
 
+import isprojekt.src.model.dal.CourseManager;
 import isprojekt.src.model.dal.Registry;
 
 import isprojekt.src.model.logic.Student;
@@ -15,10 +16,12 @@ import java.util.List;
 public class Controller {
     private ConnectBot cb;
     private Registry reg;
+    private CourseManager cm;
     
     public Controller() throws SQLException {
         cb = new ConnectBot();
         reg = new Registry(this);
+        cm = new CourseManager(this);
         
         cb.connect();
       
