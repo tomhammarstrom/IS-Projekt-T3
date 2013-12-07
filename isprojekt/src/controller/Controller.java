@@ -24,19 +24,19 @@ public class Controller {
         cm = new CourseManager(this);
         
         cb.connect();
-      
-        //getStudents();
+
         /**
-         * Testfunktioner körs härifrån
          * 
-         */
+         * 
         Student die = reg.getStudent("444");
         reg.removeStudent(die);
         printStudents();
-        
-      //  Student a = reg.getStudent("444");
-     //  System.out.println(a.getCivic() + " " + a.getName());
-    //    reg.addStudent("444", "jonas");
+        Student a = reg.getStudent("444");
+        System.out.println(a.getCivic() + " " + a.getName());
+        reg.addStudent("444", "jonas");
+        *
+        *
+        */
     }
     
     
