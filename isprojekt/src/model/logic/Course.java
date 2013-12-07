@@ -1,4 +1,4 @@
-package isprojekt.src.model;
+package isprojekt.src.model.logic;
 
 public class Course {
     private String id;

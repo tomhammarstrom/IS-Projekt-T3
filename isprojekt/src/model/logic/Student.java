@@ -1,4 +1,4 @@
-package isprojekt.src.model;
+package isprojekt.src.model.logic;
 
 public class Student {
     private String civic;

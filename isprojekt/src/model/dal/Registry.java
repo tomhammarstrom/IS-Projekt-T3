@@ -1,4 +1,6 @@
-package isprojekt.src.tengil;
+package isprojekt.src.model.dal;
+
+import isprojekt.src.controller.Controller;
 
 import java.sql.ResultSet;
 

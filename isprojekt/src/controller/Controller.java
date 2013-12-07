@@ -1,4 +1,8 @@
-package isprojekt.src.tengil;
+package isprojekt.src.controller;
+
+import isprojekt.src.model.dal.ConnectBot;
+
+import isprojekt.src.model.dal.Registry;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

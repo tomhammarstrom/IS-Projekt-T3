@@ -1,4 +1,4 @@
-package isprojekt.src.tengil;
+package isprojekt.src.model.dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
