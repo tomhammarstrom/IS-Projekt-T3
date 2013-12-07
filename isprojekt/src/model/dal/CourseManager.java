@@ -4,6 +4,7 @@ import isprojekt.src.controller.Controller;
 import isprojekt.src.model.logic.Course;
 import isprojekt.src.model.logic.Student;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class CourseManager {
@@ -13,12 +14,12 @@ public class CourseManager {
         this.con = con;
     }
     
-    public void startCourse(Student s, Course c) throws SQLException {
-        String civic = s.getCivic();
-        String id = c.getId();
-        String sqlString = "insert into studies_active values('" + civic + "','" + id +"')";
+    public void startCourse(Student student, Course course) throws SQLException {
+        PreparedStatement s = con.buildStatement("insert into studies_active values('?','?'");
+        s.setString(1,student.getCivic());
+        s.setString(2,course.getId());
         
-        con.update(sqlString);
+        con.update(s);
         
     }
     
