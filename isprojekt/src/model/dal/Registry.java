@@ -20,8 +20,9 @@ public class Registry {
         students = new ArrayList<List<String>>();
     }
 
-    public void addStudent(String civic, String name) {
-            
+    public void addStudent(String civic, String name) throws SQLException {
+        String sqlString = "insert values into student('" + civic + "','" + name + "')";
+        con.update(sqlString);
     }
     
     public void changeStudent(String someNewStuff){
@@ -45,8 +46,8 @@ public class Registry {
     }
     
     public Student getStudent(String request) throws SQLException {
-        String get = "select * from student where civic = '" + request + "'";
-        ResultSet foundStudent = con.query(get);
+        String sqlString = "select * from student where civic = '" + request + "'";
+        ResultSet foundStudent = con.query(sqlString);
         Student object = null;
         
         if(foundStudent.next()){

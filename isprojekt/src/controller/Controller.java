@@ -35,6 +35,10 @@ public class Controller {
        return cb.query(request);
     }
     
+    public int update(String request) throws SQLException{
+        return cb.update(request);
+    }
+    
     public void getStudents() throws SQLException {
         List<List<String>> students = reg.getStudents();
         
