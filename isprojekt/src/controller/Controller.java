@@ -27,8 +27,12 @@ public class Controller {
          * Testfunktioner körs härifrån
          * 
          */
-        Student a = reg.getStudent("444");
-       System.out.println(a.getCivic() + " " + a.getName());
+        Student die = reg.getStudent("444");
+        reg.removeStudent(die);
+        printStudents();
+        
+      //  Student a = reg.getStudent("444");
+     //  System.out.println(a.getCivic() + " " + a.getName());
     //    reg.addStudent("444", "jonas");
     }
     
@@ -41,11 +45,8 @@ public class Controller {
         return cb.update(request);
     }
     
-    
-    /**
-     * vad fan gör denna funktionen här?
 
-    public void getStudents() throws SQLException {
+    private void printStudents() throws SQLException {
         List<List<String>> students = reg.getStudents();
         
         for(int i=0;i<students.size();i++){
@@ -53,7 +54,5 @@ public class Controller {
         }
     }
 
-    *
-    *
-    */
+
 }

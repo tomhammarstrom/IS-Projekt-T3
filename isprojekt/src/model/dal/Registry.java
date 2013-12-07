@@ -22,16 +22,18 @@ public class Registry {
 
     public void addStudent(String civic, String name) throws SQLException {
         String sqlString = "insert into student values('" + civic + "','" + name + "')";
-      
-        con.update(sqlString);
+        System.out.println(con.update(sqlString));
     }
     
     public void changeStudent(String someNewStuff){
         
     }
 
-    public void removeStudent() {
-
+    public void removeStudent(Student student) throws SQLException {
+        String civic = student.getCivic();
+        String sqlString = "delete from student where civic = '" + civic + "'";
+        System.out.println(con.update(sqlString));
+        
     }
 
     public List<List<String>> getStudents() throws SQLException {
