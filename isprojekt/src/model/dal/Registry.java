@@ -2,6 +2,8 @@ package isprojekt.src.model.dal;
 
 import isprojekt.src.controller.Controller;
 
+import isprojekt.src.model.logic.Student;
+
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
@@ -36,6 +38,20 @@ public class Registry {
             students.add(aStudent);
         }
         return students;
+    }
+    
+    public Student getStudent(String request) throws SQLException {
+        String get = "select * from student where civic = '" + request + "'";
+        ResultSet foundStudent = con.query(get);
+        Student object = null;
+        
+        if(foundStudent.next()){
+            object = new Student(foundStudent.getString(1));
+            object.setName(foundStudent.getString(2));
+        }
+        
+        return object;
+
     }
     
 }

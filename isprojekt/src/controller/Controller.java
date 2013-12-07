@@ -4,6 +4,8 @@ import isprojekt.src.model.dal.ConnectBot;
 
 import isprojekt.src.model.dal.Registry;
 
+import isprojekt.src.model.logic.Student;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -18,9 +20,11 @@ public class Controller {
         cb = new ConnectBot();
         reg = new Registry(this);
         
-            cb.connect();
+        cb.connect();
       
-        getStudents();
+        //getStudents();
+        Student a = reg.getStudent("111");
+        System.out.println(a.getCivic() + " " + a.getName());
     }
     
     public ResultSet query(String request) throws SQLException {
