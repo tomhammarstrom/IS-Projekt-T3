@@ -21,7 +21,8 @@ public class Registry {
     }
 
     public void addStudent(String civic, String name) throws SQLException {
-        String sqlString = "insert values into student('" + civic + "','" + name + "')";
+        String sqlString = "insert into student values('" + civic + "','" + name + "')";
+      
         con.update(sqlString);
     }
     

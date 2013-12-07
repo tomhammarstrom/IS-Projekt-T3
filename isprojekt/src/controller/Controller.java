@@ -27,9 +27,11 @@ public class Controller {
          * Testfunktioner körs härifrån
          * 
          */
-        Student a = reg.getStudent("111");
-        System.out.println(a.getCivic() + " " + a.getName());
+        Student a = reg.getStudent("444");
+       System.out.println(a.getCivic() + " " + a.getName());
+    //    reg.addStudent("444", "jonas");
     }
+    
     
     public ResultSet query(String request) throws SQLException {
        return cb.query(request);
@@ -38,6 +40,8 @@ public class Controller {
     public int update(String request) throws SQLException{
         return cb.update(request);
     }
+    
+    
     /**
      * vad fan gör denna funktionen här?
 
