@@ -4,6 +4,7 @@ import isprojekt.src.controller.Controller;
 
 import isprojekt.src.model.logic.Student;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
@@ -20,37 +21,40 @@ public class Registry {
         students = new ArrayList<List<String>>();
     }
 
-    public void addStudent(String civic, String name) throws SQLException {
-        String sqlString = "insert into student values('" + civic + "','" + name + "')";
-        System.out.println(con.update(sqlString));
+    public int addStudent(String civic, String name) throws SQLException {
+        PreparedStatement s = con.buildStatement("insert into student values('?','?')");
+        s.setString(1,civic);
+        s.setString(2,name);
+        return con.update(s);
     }
     
     public void changeStudent(String someNewStuff){
         
     }
 
-    public void removeStudent(Student student) throws SQLException {
-        String civic = student.getCivic();
-        String sqlString = "delete from student where civic = '" + civic + "'";
-        System.out.println(con.update(sqlString));
-        
+    public int removeStudent(Student student) throws SQLException {
+        PreparedStatement s = con.buildStatement("delete from student where civic = '?'");
+        s.setString(1,student.getCivic());
+        return con.update(s);
     }
 
     public List<List<String>> getStudents() throws SQLException {
-        ResultSet a = con.query("select * from student");
+        PreparedStatement s = con.buildStatement("select * from student");
+        ResultSet results = con.query(s);
 
-        while (a.next()) {
+        while (results.next()) {
             ArrayList<String> aStudent = new ArrayList<String>();
-            aStudent.add(a.getString(1));
-            aStudent.add(a.getString(2));
+            aStudent.add(results.getString(1));
+            aStudent.add(results.getString(2));
             students.add(aStudent);
         }
         return students;
     }
     
     public Student getStudent(String request) throws SQLException {
-        String sqlString = "select * from student where civic = '" + request + "'";
-        ResultSet foundStudent = con.query(sqlString);
+        PreparedStatement s = con.buildStatement("select * from student where civic = '?'");
+        s.setString(1,request);
+        ResultSet foundStudent = con.query(s);
         Student object = null;
         
         if(foundStudent.next()){

@@ -2,29 +2,32 @@ package isprojekt.src.model.dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConnectBot {
-    private Statement mainStatement;
+    private Connection connection1;
+
 
     public void connect() throws SQLException {
         DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
-        Connection connection1 = DriverManager.getConnection("JDBC:ODBC:isprojekt_new");
-        
-        mainStatement = connection1.createStatement();
-
+        connection1 = DriverManager.getConnection("JDBC:ODBC:isprojekt_new");
+    }
+    
+    public PreparedStatement buildStatement(String request) throws SQLException {
+        return connection1.prepareStatement(request);
     }
 
 
-    public ResultSet query(String request) throws SQLException {
-         return mainStatement.executeQuery(request);
+    public ResultSet query(PreparedStatement request) throws SQLException {
+        return request.executeQuery();
 
     }
     
-    public int update(String request) throws SQLException {
-        return mainStatement.executeUpdate(request);
+    public int update(PreparedStatement request) throws SQLException {
+        return request.executeUpdate();
                                                       
     }
 

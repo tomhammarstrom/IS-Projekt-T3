@@ -7,6 +7,7 @@ import isprojekt.src.model.dal.Registry;
 
 import isprojekt.src.model.logic.Student;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -40,12 +41,16 @@ public class Controller {
         printStudents();
     }
     
+    public PreparedStatement buildStatement(String request) throws SQLException {
+        return cb.buildStatement(request);
+    }
     
-    public ResultSet query(String request) throws SQLException {
+    
+    public ResultSet query(PreparedStatement request) throws SQLException {
        return cb.query(request);
     }
     
-    public int update(String request) throws SQLException{
+    public int update(PreparedStatement request) throws SQLException{
         return cb.update(request);
     }
     
