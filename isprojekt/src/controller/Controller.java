@@ -38,7 +38,9 @@ public class Controller {
     public int update(String request) throws SQLException{
         return cb.update(request);
     }
-    
+    /**
+     * vad fan gör denna funktionen här?
+
     public void getStudents() throws SQLException {
         List<List<String>> students = reg.getStudents();
         
@@ -46,4 +48,8 @@ public class Controller {
             System.out.println(students.get(i).get(0) +" "+ students.get(i).get(1));
         }
     }
+
+    *
+    *
+    */
 }
