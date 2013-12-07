@@ -23,6 +23,10 @@ public class Controller {
         cb.connect();
       
         //getStudents();
+        /**
+         * Testfunktioner körs härifrån
+         * 
+         */
         Student a = reg.getStudent("111");
         System.out.println(a.getCivic() + " " + a.getName());
     }
