@@ -18,6 +18,10 @@ public class Student {
     public void addActiveCouse(Course c){
         activeCourses.add(c);
     }
+    
+    public void removeActiveCourse(Course c){
+        
+    }
 
 
     public Student(String civic) {
