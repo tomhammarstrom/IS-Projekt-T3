@@ -11,7 +11,7 @@ public class ConnectBot {
 
     public void connect() throws SQLException {
         DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
-        Connection connection1 = DriverManager.getConnection("JDBC:ODBC:isprojekt1");
+        Connection connection1 = DriverManager.getConnection("JDBC:ODBC:isprojekt_new");
         
         testStatement = connection1.createStatement();
 
