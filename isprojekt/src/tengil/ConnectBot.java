@@ -162,7 +162,7 @@ public class ConnectBot{
         return temp;
     }
     
-    public void endCourse(){
+    public void endCourse(String civic, String id, char grade){
         
     }
 
