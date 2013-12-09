@@ -3,33 +3,49 @@ package isprojekt.src.tengil;
 import java.sql.*;
 
 public class Controller {
-    private Connection connection1;
     
     public Controller() throws SQLException {
-        connect();
+        connectToDatabase();
         
-    //    addStudent("777","olof");
+        addStudent("999","olof");
         getStudents();
     }
     
 
-    public void connect() throws SQLException {
+    public void connectToDatabase() throws SQLException {
         DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
-        connection1 = DriverManager.getConnection("JDBC:ODBC:isprojekt_new");
+    }
+    
+    public Connection connect() throws SQLException {
+        return DriverManager.getConnection("JDBC:ODBC:isprojekt_new");
     }
     
   
     
     public void addStudent(String civic, String name) throws SQLException {
-        PreparedStatement s = connection1.prepareStatement("insert into student values(?,?)");
+        Connection con = connect();
+        PreparedStatement s = con.prepareStatement("select * from student where civic = ?");
         s.setString(1,civic);
-        s.setString(2,name);
-        s.executeUpdate();
-    
+
+        
+        if(s.executeQuery().next()){
+            System.out.println("finns redan");
+        }
+        else{
+            s = con.prepareStatement("insert into student values(?,?)");
+            s.setString(1,civic);
+            s.setString(2,name);
+            s.executeUpdate();
+        }
+        
+        con.close();
+        
+        
     }
     
     public void getStudents() throws SQLException {
-        Statement s = connection1.createStatement();
+        Connection con = connect();
+        Statement s = con.createStatement();
         ResultSet rs = s.executeQuery("select * from student");
         
         while (rs.next()){
