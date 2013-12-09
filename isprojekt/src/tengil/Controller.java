@@ -9,8 +9,21 @@ public class Controller {
     public Controller() throws SQLException {
         cb = new ConnectBot();
         
-       cb.getStudent();
+        showAllStudents();
     }
     
+    
+    /**
+     * Testfunktioner
+     * 
+     */
+    
+    private void showAllStudents() throws SQLException {
+        ResultSet test = cb.getStudents();
+        
+        while(test.next()){
+            System.out.println(test.getString(1) + " " + test.getString(2));
+        }
+    }
 
 }
