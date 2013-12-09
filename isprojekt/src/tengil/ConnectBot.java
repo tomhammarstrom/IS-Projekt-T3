@@ -228,8 +228,12 @@ public class ConnectBot{
         return s.executeQuery();
     }
     
-    public ResultSet courseResults(){
+    public ResultSet courseResults(String id) throws SQLException {
+        Connection con = connect();
+        PreparedStatement s = con.prepareStatement("select civic, grade from studies_inactive where courseId =?");
+        s.setString(1, id);
         
+        return s.executeQuery();
     }
     
     public ResultSet studentsNotDone(){
