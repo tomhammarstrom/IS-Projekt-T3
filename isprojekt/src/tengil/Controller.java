@@ -8,24 +8,22 @@ public class Controller {
     
     public Controller() throws SQLException {
         cb = new ConnectBot();
-        
-        cb.addStudent("1", "sven");
-        showAllStudents();
-        cb.removeStudent("666");
     }
     
+    public int addStudent(String civic, String name) throws SQLException {
+        return cb.addStudent(civic, name);
+    }
     
-    /**
-     * Testfunktioner
-     * 
-     */
+    public int removeStudent(String civic) throws SQLException {
+        return cb.removeStudent(civic);
+    }
     
-    private void showAllStudents() throws SQLException {
-        ResultSet test = cb.getStudents();
-        
-        while(test.next()){
-            System.out.println(test.getString(1) + " " + test.getString(2));
-        }
+    public ResultSet getStudent(String civic) throws SQLException {
+        return cb.getStudent(civic);
+    }
+    
+    public ResultSet getStudents() throws SQLException {
+        return cb.getStudents();
     }
 
 }
