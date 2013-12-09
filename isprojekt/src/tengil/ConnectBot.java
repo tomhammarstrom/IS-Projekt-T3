@@ -172,7 +172,13 @@ public class ConnectBot{
         return temp;
     }
     
-    public int endCourse(String civic, String id, char grade){
+    public int endCourse(String civic, String id, char grade) throws SQLException {
+        Connection con = connect();
+        PreparedStatement s = con.prepareStatement("");
+        int temp = 0;
+        
+        
+        return temp;
         
     }
 
