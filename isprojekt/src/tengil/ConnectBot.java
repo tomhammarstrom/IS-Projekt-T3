@@ -244,8 +244,25 @@ public class ConnectBot{
         return s.executeQuery();
     }
     
-    public ResultSet numberOfA(){
+    public float numberOfA(String id) throws SQLException {
+        Connection con = connect();
+        PreparedStatement s = con.prepareStatement("select grade from studies_inactive where courseId = ?");
+        s.setString(1, id);
         
+        ResultSet calc =  s.executeQuery();
+        int a = 0;
+        int theRest = 0;
+        
+        while(calc.next()){
+            if (calc.getString(1).equals("A")){
+                a++;
+            }
+            else{
+                theRest++;
+            }
+        }
+        
+        return  a/(a + theRest);
     }
     
     public ResultSet highestFlow(){
