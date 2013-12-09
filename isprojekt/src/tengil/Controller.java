@@ -74,5 +74,25 @@ public class Controller {
      * 
      */
     
+    public ResultSet studentResults(String civic, String id) throws SQLException { 
+        return cb.studentResults(civic, id);
+    }
+    
+    public ResultSet courseResults(String id) throws SQLException {
+        return cb.courseResults(id);
+    }
+    
+    public ResultSet studentsNotDone(String id) throws SQLException {
+        return cb.studentsNotDone(id);
+    }
+    
+    public float numberOfA(String id) throws SQLException {
+       return cb.numberOfA(id);
+    }
+    
+    public String highestFlow() throws SQLException {
+       return cb.highestFlow();
+    }
+    
 
 }
