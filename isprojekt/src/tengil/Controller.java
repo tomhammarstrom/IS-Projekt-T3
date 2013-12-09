@@ -27,7 +27,14 @@ public class Controller {
         return DriverManager.getConnection("JDBC:ODBC:isprojekt_new");
     }
     
-  
+    public ResultSet getStudent(String civic) throws SQLException {
+        Connection con = connect();
+        PreparedStatement s = con.prepareStatement("select * from student where civic = ?");
+        s.setString(1,civic);
+        ResultSet found = s.executeQuery();
+        con.close();
+        return found;
+    }
     
     public int addStudent(String civic, String name) throws SQLException {
         Connection con = connect();
