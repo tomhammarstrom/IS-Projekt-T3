@@ -27,11 +27,21 @@ public class Controller {
         return DriverManager.getConnection("JDBC:ODBC:isprojekt_new");
     }
     
-    public ResultSet getStudent(String civic) throws SQLException {
+    public ResultSet getStudent(boolean multi, String civic) throws SQLException {
         Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select * from student where civic = ?");
-        s.setString(1,civic);
-        ResultSet found = s.executeQuery();
+        ResultSet found;
+        PreparedStatement stmnt;
+    
+        if(multi){
+            stmnt = con.prepareStatement("select * from student");
+        }
+        
+        else{ 
+            stmnt = con.prepareStatement("select * from student where civic = ?");
+            stmnt.setString(1,civic); 
+        }
+        
+        found = stmnt.executeQuery();
         con.close();
         return found;
     }
@@ -69,19 +79,6 @@ public class Controller {
         return temp;
     }
     
-    public void getStudents() throws SQLException {
-        Connection con = connect();
-        Statement s = con.createStatement();
-        ResultSet rs = s.executeQuery("select * from student");
-        
-        while (rs.next()){
-            System.out.println(rs.getString("civic") + " " + rs.getString("name"));
-        }
-        con.close();
-        
-    }
-    
-
 
 
 
