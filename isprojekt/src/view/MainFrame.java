@@ -1,4 +1,4 @@
-package classes.isprojekt.src.view;
+package isprojekt.src.view;
 
 import isprojekt.src.tengil.Controller;
 
