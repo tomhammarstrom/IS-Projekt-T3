@@ -61,7 +61,7 @@ public class Controller {
         return cb.startCourse(civic, id);
     }
     
-    public int endCourse(String civic, String id, char grade) throws SQLException{
+    public int endCourse(String civic, String id, String grade) throws SQLException{
         return cb.endCourse(civic, id, grade);
     }
     

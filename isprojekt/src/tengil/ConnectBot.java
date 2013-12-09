@@ -172,13 +172,19 @@ public class ConnectBot{
         return temp;
     }
     
-    public int endCourse(String civic, String id, char grade) throws SQLException {
+    public int endCourse(String civic, String id, String grade) throws SQLException {
         Connection con = connect();
-        PreparedStatement s = con.prepareStatement("");
-        int temp = 0;
+        PreparedStatement s = con.prepareStatement("delete from studies_active where civic = ? and id = ?");
+        s.setString(1, civic);
+        s.setString(2, id);
+        s.executeUpdate();
         
+        s = con.prepareStatement("insert into studies_inactive values(?,?,?)");
+        s.setString(1, civic);
+        s.setString(2, id);
+        s.setString(3,grade);
         
-        return temp;
+        return s.executeUpdate();
         
     }
 
