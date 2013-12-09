@@ -24,32 +24,37 @@ public class Controller {
     
   
     
-    public void addStudent(String civic, String name) throws SQLException {
+    public int addStudent(String civic, String name) throws SQLException {
         Connection con = connect();
         PreparedStatement s = con.prepareStatement("select * from student where civic = ?");
         s.setString(1,civic);
+        int temp;
 
         
         if(s.executeQuery().next()){
             System.out.println("finns redan");
+            temp = 0;
         }
         else{
             s = con.prepareStatement("insert into student values(?,?)");
             s.setString(1,civic);
             s.setString(2,name);
-            s.executeUpdate();
+            temp =  s.executeUpdate();
         }
         
         con.close();
+        return temp;
         
     }
     
-    public void removeStudent(String civic) throws SQLException {
+    public int removeStudent(String civic) throws SQLException {
         Connection con = connect();
         PreparedStatement s = con.prepareStatement("delete from student where civic = ?");
         s.setString(1,civic);
-        s.executeUpdate();
+        int temp = s.executeUpdate();
         con.close();
+        
+        return temp;
     }
     
     public void getStudents() throws SQLException {
