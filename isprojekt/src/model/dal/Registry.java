@@ -22,16 +22,24 @@ public class Registry {
     }
 
     public int addStudent(String civic, String name) throws SQLException {
-        PreparedStatement s = con.buildStatement("insert into student values('?','?')");
+        PreparedStatement s = con.buildStatement("select * from student where civic = '?'");
         s.setString(1,civic);
-        s.setString(2,name);
-        return con.update(s);
+        ResultSet exists = s.executeQuery();
+        
+        if(!exists.next()){
+            s = con.buildStatement("insert into student values('?','?')");
+            s.setString(1,civic);
+            s.setString(2,name);
+            return con.update(s);
+        }
+        else{
+            s = con.buildStatement("update student set civic = '?', name ='?'");
+            s.setString(1,civic);
+            s.setString(1,name);
+        }
+       
     }
     
-    public void changeStudent(String someNewStuff){
-        
-    }
-
     public int removeStudent(Student student) throws SQLException {
         PreparedStatement s = con.buildStatement("delete from student where civic = '?'");
         s.setString(1,student.getCivic());
