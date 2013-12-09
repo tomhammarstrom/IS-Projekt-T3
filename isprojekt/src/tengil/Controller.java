@@ -4,10 +4,12 @@ import java.sql.*;
 
 public class Controller {
     
+    
     public Controller() throws SQLException {
         connectToDatabase();
         
-        addStudent("999","olof");
+        //addStudent("999","olof");
+        removeStudent("777");
         getStudents();
     }
     
@@ -40,7 +42,14 @@ public class Controller {
         
         con.close();
         
-        
+    }
+    
+    public void removeStudent(String civic) throws SQLException {
+        Connection con = connect();
+        PreparedStatement s = con.prepareStatement("delete from student where civic = ?");
+        s.setString(1,civic);
+        s.executeUpdate();
+        con.close();
     }
     
     public void getStudents() throws SQLException {
@@ -51,6 +60,7 @@ public class Controller {
         while (rs.next()){
             System.out.println(rs.getString("civic") + " " + rs.getString("name"));
         }
+        con.close();
         
     }
     
