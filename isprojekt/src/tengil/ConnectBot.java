@@ -212,5 +212,36 @@ public class ConnectBot{
         s.setString(2, id);
         return s.executeUpdate();
     }
+    
+    
+    /**
+     * Statistik osv
+     * 
+     */
+    
+    public ResultSet studentResults(String civic, String id) throws SQLException {
+        Connection con = connect();
+        PreparedStatement s = con.prepareStatement(" select s.civic, c.grade from student s join studies_inactive c on s.civic = c.civic where s.civic = (select civic from studies_inactive where civic = ? and courseId = ?)");
+        s.setString(1, civic);
+        s.setString(2, id);
+        
+        return s.executeQuery();
+    }
+    
+    public ResultSet courseResults(){
+        
+    }
+    
+    public ResultSet studentsNotDone(){
+        
+    }
+    
+    public ResultSet numberOfA(){
+        
+    }
+    
+    public ResultSet highestFlow(){
+        
+    }
 
 }

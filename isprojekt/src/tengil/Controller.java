@@ -69,5 +69,10 @@ public class Controller {
         return cb.cancelCourse(civic, id);
     }
     
+    /**
+     * Statistik osv
+     * 
+     */
+    
 
 }
