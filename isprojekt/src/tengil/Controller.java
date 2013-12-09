@@ -1,51 +1,43 @@
 package isprojekt.src.tengil;
 
-
-import java.rmi.registry.Registry;
-
 import java.sql.*;
 
 public class Controller {
-    private ConnectBot cb;
+    private Connection connection1;
     
     public Controller() throws SQLException {
-        cb = new ConnectBot();
-        cb.connect();
+        connect();
         
-        printStudents();
-    }
-    
-    public PreparedStatement buildStatement(String request) throws SQLException {
-        System.out.println( cb.buildStatement(request));
-        
-        return cb.buildStatement(request);
-    }
-    
-    
-    public ResultSet query(PreparedStatement request) throws SQLException {
-       return cb.query(request);
-    }
-    
-    public int update(PreparedStatement request) throws SQLException{
-        return cb.update(request);
+        addStudent("444","olof");
+        getStudents();
     }
     
 
-
-    /**
-     * Testfunktioner
-     *
-     */
-
-    private void printStudents() throws SQLException {
-        PreparedStatement s = cb.buildStatement("select * from student");
-        ResultSet rs = cb.query(s);
+    public void connect() throws SQLException {
+        DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
+        connection1 = DriverManager.getConnection("JDBC:ODBC:isprojekt_new");
+    }
+    
+  
+    
+    public void addStudent(String civic, String name) throws SQLException {
+       Statement s = connection1.createStatement();
+       s.executeUpdate("insert into student values('" +civic+"','"+name+"')");
+    
+    }
+    
+    public void getStudents() throws SQLException {
+        Statement s = connection1.createStatement();
+        ResultSet rs = s.executeQuery("select * from student");
         
-        while(rs.next()){
+        while (rs.next()){
             System.out.println(rs.getString("civic") + " " + rs.getString("name"));
         }
-
+        
     }
+    
+
+
 
 
 }
