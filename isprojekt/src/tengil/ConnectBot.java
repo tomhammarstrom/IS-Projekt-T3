@@ -182,7 +182,7 @@ public class ConnectBot{
         s = con.prepareStatement("insert into studies_inactive values(?,?,?)");
         s.setString(1, civic);
         s.setString(2, id);
-        s.setString(3,grade);
+        s.setString(3, grade);
         
         return s.executeUpdate();
         
