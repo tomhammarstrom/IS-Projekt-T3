@@ -133,6 +133,19 @@ public class ConnectBot{
         
         return temp;
     }
+    
+    /**
+     * Funktioner för att starta/avsluta kurser
+     * 
+     */
+    
+    public void startCourse(){
+        
+    }
+    
+    public void endCourse(){
+        
+    }
 
 
 }
