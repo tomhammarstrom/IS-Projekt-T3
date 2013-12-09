@@ -1,8 +1,6 @@
-package isprojekt.src.model.dal;
+package isprojekt.src.model;
 
 import isprojekt.src.controller.Controller;
-
-import isprojekt.src.model.logic.Student;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,34 +28,30 @@ public class Registry {
             s = con.buildStatement("insert into student values('?','?')");
             s.setString(1,civic);
             s.setString(2,name);
-            return con.update(s);
+            
         }
         else{
             s = con.buildStatement("update student set civic = '?', name ='?'");
             s.setString(1,civic);
             s.setString(1,name);
         }
+        
+        return con.update(s);
        
     }
-    
+    /*
     public int removeStudent(Student student) throws SQLException {
         PreparedStatement s = con.buildStatement("delete from student where civic = '?'");
         s.setString(1,student.getCivic());
         return con.update(s);
     }
-
-    public List<List<String>> getStudents() throws SQLException {
+*/
+    public ResultSet getStudents() throws SQLException {
         PreparedStatement s = con.buildStatement("select * from student");
-        ResultSet results = con.query(s);
-
-        while (results.next()) {
-            ArrayList<String> aStudent = new ArrayList<String>();
-            aStudent.add(results.getString(1));
-            aStudent.add(results.getString(2));
-            students.add(aStudent);
-        }
-        return students;
+        return con.query(s);
     }
+    
+   /*
     
     public Student getStudent(String request) throws SQLException {
         PreparedStatement s = con.buildStatement("select * from student where civic = '?'");
@@ -71,9 +65,8 @@ public class Registry {
         }
         
         return object;
-
     }
-    
+    */
     
     /**
      * Kursfunktioner nedan

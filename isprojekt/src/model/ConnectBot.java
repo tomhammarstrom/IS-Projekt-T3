@@ -1,4 +1,4 @@
-package isprojekt.src.model.dal;
+package isprojekt.src.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

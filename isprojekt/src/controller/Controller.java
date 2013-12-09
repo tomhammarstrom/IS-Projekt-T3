@@ -1,17 +1,14 @@
 package isprojekt.src.controller;
 
-import isprojekt.src.model.dal.ConnectBot;
+import isprojekt.src.model.ConnectBot;
 
-import isprojekt.src.model.dal.CourseManager;
-import isprojekt.src.model.dal.Registry;
-
-import isprojekt.src.model.logic.Student;
+import isprojekt.src.model.CourseManager;
+import isprojekt.src.model.Registry;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -62,10 +59,10 @@ public class Controller {
      */
 
     private void printStudents() throws SQLException {
-        List<List<String>> students = reg.getStudents();
+       ResultSet students = reg.getStudents();
         
-        for(int i=0;i<students.size();i++){
-            System.out.println(students.get(i).get(0) +" "+ students.get(i).get(1));
+        while(students.next()){
+            System.out.println(students.getString("civic") +" "+ students.getString("name"));
         }
     }
 
