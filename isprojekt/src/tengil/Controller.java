@@ -65,5 +65,9 @@ public class Controller {
         return cb.endCourse(civic, id, grade);
     }
     
+    public int cancelCourse(String civic, String id) throws SQLException{
+        return cb.cancelCourse(civic, id);
+    }
+    
 
 }

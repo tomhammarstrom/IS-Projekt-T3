@@ -203,8 +203,14 @@ public class ConnectBot{
         s.setString(3, grade);
         
         return s.executeUpdate();
-        
     }
 
+    public int cancelCourse(String civic, String id) throws SQLException {
+        Connection con = connect();
+        PreparedStatement s = con.prepareStatement("delete from studies_active where civic = ? and courseId = ?");
+        s.setString(1, civic);
+        s.setString(2, id);
+        return s.executeUpdate();
+    }
 
 }
