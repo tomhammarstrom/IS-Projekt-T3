@@ -52,5 +52,14 @@ public class Controller {
         return cb.getCourses();
     }
     
+    /**
+     * Kurshantering
+     * 
+     */
+    
+    public int startCourse(String civic, String id) throws SQLException {
+        return cb.startCourse(civic, id);
+    }
+    
 
 }
