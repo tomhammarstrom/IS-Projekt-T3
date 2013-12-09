@@ -1,4 +1,4 @@
-package isprojekt.src.model;
+package isprojekt.src.tengil;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,6 +17,7 @@ public class ConnectBot {
     }
     
     public PreparedStatement buildStatement(String request) throws SQLException {
+        System.out.println(request);
         return connection1.prepareStatement(request);
     }
 

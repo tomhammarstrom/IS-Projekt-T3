@@ -1,6 +1,5 @@
 package isprojekt.src.tengil;
 
-import isprojekt.src.controller.Controller;
 
 import java.sql.SQLException;
 
