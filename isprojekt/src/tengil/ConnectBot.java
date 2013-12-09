@@ -54,7 +54,7 @@ public class ConnectBot{
 
         
         if(s.executeQuery().next()){
-            System.out.println("finns redan");
+            System.out.println("student finns redan");
             temp = 0;
         }
         else{
@@ -109,7 +109,7 @@ public class ConnectBot{
 
         
         if(s.executeQuery().next()){
-            System.out.println("finns redan");
+            System.out.println("kurs finns redan");
             temp = 0;
         }
         else{
@@ -139,8 +139,27 @@ public class ConnectBot{
      * 
      */
     
-    public void startCourse(){
+    public int startCourse(String civic, String id) throws SQLException {
+        Connection con = connect();
+        PreparedStatement s = con.prepareStatement("select * from studies_active where id = ? and civic = ?");
+        s.setString(1,civic);
+        s.setString(2, id);
+        int temp;
+
         
+        if(s.executeQuery().next()){
+            System.out.println("student har redan påbörjat kurs");
+            temp = 0;
+        }
+        else{
+            s = con.prepareStatement("insert into studies_active values(?,?)");
+            s.setString(1,civic);
+            s.setString(2,id);
+
+            temp =  s.executeUpdate();
+        }
+        
+        return temp;
     }
     
     public void endCourse(){
