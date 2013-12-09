@@ -8,7 +8,7 @@ public class Controller {
     public Controller() throws SQLException {
         connect();
         
-        addStudent("444","olof");
+    //    addStudent("777","olof");
         getStudents();
     }
     
@@ -21,8 +21,10 @@ public class Controller {
   
     
     public void addStudent(String civic, String name) throws SQLException {
-       Statement s = connection1.createStatement();
-       s.executeUpdate("insert into student values('" +civic+"','"+name+"')");
+        PreparedStatement s = connection1.prepareStatement("insert into student values(?,?)");
+        s.setString(1,civic);
+        s.setString(2,name);
+        s.executeUpdate();
     
     }
     
