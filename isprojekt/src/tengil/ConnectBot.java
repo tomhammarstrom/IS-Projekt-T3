@@ -141,22 +141,32 @@ public class ConnectBot{
     
     public int startCourse(String civic, String id) throws SQLException {
         Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select * from studies_active where id = ? and civic = ?");
+        PreparedStatement s = con.prepareStatement("select * from studies_inactive where id = ? and civic = ?");
         s.setString(1,civic);
         s.setString(2, id);
         int temp;
-
         
         if(s.executeQuery().next()){
-            System.out.println("student har redan påbörjat kurs");
+            System.out.println("kurs är redan avslutat");
             temp = 0;
         }
+        
         else{
-            s = con.prepareStatement("insert into studies_active values(?,?)");
+            s = con.prepareStatement("select * from studies_active where id = ? and civic = ?");
             s.setString(1,civic);
-            s.setString(2,id);
+            s.setString(2, id);
+            
+            if(s.executeQuery().next()){
+                System.out.println("student har redan påbörjat kurs");
+                temp = 0;
+            }
+            else{
+                s = con.prepareStatement("insert into studies_active values(?,?)");
+                s.setString(1,civic);
+                s.setString(2,id);
 
-            temp =  s.executeUpdate();
+                temp =  s.executeUpdate();
+            }
         }
         
         return temp;
