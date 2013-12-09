@@ -8,9 +8,14 @@ public class Controller {
     public Controller() throws SQLException {
         connectToDatabase();
         
-        //addStudent("999","olof");
+        /**
+         * 
+        addStudent("999","olof");
         removeStudent("777");
         getStudents();
+        *
+        *
+        */
     }
     
 
