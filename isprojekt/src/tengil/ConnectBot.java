@@ -265,8 +265,21 @@ public class ConnectBot{
         return  a/(a + theRest);
     }
     
-    public ResultSet highestFlow(){
+    public String highestFlow() throws SQLException {
+        Connection con = connect();
+        PreparedStatement s = con.prepareStatement("select courseId, count(*) as passes from studies_inactive where grade != 'U' group by courseId");
+        ResultSet calc = s.executeQuery();
         
+        String best = null;
+        int value = 0;
+        
+        while(calc.next()){
+            if (calc.getInt(2) > value){
+                best = calc.getString(1);
+            }
+        }
+        
+        return best;
     }
 
 }
