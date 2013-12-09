@@ -1,7 +1,10 @@
 package isprojekt.src.tengil;
 
 
+import classes.isprojekt.src.view.MainFrame;
+
 import java.sql.SQLException;
+
 
 public class Main {
 
@@ -9,7 +12,7 @@ public class Main {
         
         Controller con = new Controller();
 
-        //new MainWindow(con);
+        new MainFrame(con).setVisible(true);
     }
     
 }
