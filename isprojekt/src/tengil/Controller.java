@@ -9,7 +9,7 @@ public class Controller {
     public Controller() throws SQLException {
         cb = new ConnectBot();
         
-       cb.getStudent(1);
+       cb.getStudent();
     }
     
 
