@@ -141,7 +141,7 @@ public class ConnectBot{
     
     public int startCourse(String civic, String id) throws SQLException {
         Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select * from studies_inactive where id = ? and civic = ?");
+        PreparedStatement s = con.prepareStatement("select * from studies_inactive where courseId = ? and civic = ?");
         s.setString(1,civic);
         s.setString(2, id);
         int temp;
@@ -152,7 +152,7 @@ public class ConnectBot{
         }
         
         else{
-            s = con.prepareStatement("select * from studies_active where id = ? and civic = ?");
+            s = con.prepareStatement("select * from studies_active where courseId = ? and civic = ?");
             s.setString(1,civic);
             s.setString(2, id);
             
@@ -174,7 +174,7 @@ public class ConnectBot{
     
     public int endCourse(String civic, String id, String grade) throws SQLException {
         Connection con = connect();
-        PreparedStatement s = con.prepareStatement("delete from studies_active where civic = ? and id = ?");
+        PreparedStatement s = con.prepareStatement("delete from studies_active where civic = ? and courseId = ?");
         s.setString(1, civic);
         s.setString(2, id);
         s.executeUpdate();
