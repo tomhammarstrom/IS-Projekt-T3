@@ -12,6 +12,8 @@ public class MainFrame extends JFrame {
 	
 
 	private JPanel contentPane;
+	private JPanel panel;
+	private JPanel panel_1;
 
 	public MainFrame(Controller con) {
 		this.con = con;
@@ -29,5 +31,11 @@ public class MainFrame extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(12, 13, 343, 516);
 		contentPane.add(tabbedPane);
+		
+		panel = new JPanel();
+		tabbedPane.addTab("New tab", null, panel, null);
+		
+		panel_1 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_1, null);
 	}
 }
