@@ -1,4 +1,4 @@
-package isprojekt.src.tengil;
+package tengil;
 
 import java.sql.*;
     
