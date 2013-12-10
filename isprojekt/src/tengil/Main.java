@@ -9,10 +9,8 @@ import java.sql.SQLException;
 public class Main {
 
     public static void main (String []args) throws SQLException {
-        
-        Controller con = new Controller();
 
-        new MainFrame(con).setVisible(true);
+        new MainFrame(new Controller()).setVisible(true);
     }
     
 }
