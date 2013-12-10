@@ -43,7 +43,7 @@ public class MainFrame extends JFrame {
 		contentPane.add(tabbedPane);
 		
 		
-		tabbedPane.addTab("New tab", null, panel, null);
+		tabbedPane.addTab("Studenter", null, panel, null);
 		panel.setLayout(null);
 		
 		
@@ -51,7 +51,7 @@ public class MainFrame extends JFrame {
 		panel.add(list);
 		
 		
-		tabbedPane.addTab("New tab", null, panel_1, null);
+		tabbedPane.addTab("Kurser", null, panel_1, null);
 		panel_1.setLayout(null);
 		
 		
