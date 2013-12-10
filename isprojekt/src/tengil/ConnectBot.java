@@ -18,7 +18,7 @@ public class ConnectBot{
     }
     
     public Connection connect() throws SQLException {
-        return DriverManager.getConnection("JDBC:ODBC:isprojekt_new");
+        return DriverManager.getConnection("JDBC:ODBC:isprojekt_cool");
     }
     
     
