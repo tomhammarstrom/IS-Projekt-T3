@@ -1,6 +1,5 @@
 package isprojekt.src.tengil;
 
-
 import classes.isprojekt.src.view.MainFrame;
 
 import java.sql.SQLException;
