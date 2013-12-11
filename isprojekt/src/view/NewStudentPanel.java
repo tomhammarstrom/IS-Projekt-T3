@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import tengil.Controller;
+import javax.swing.JButton;
 
 public class NewStudentPanel extends JPanel{
 	private Controller con;
@@ -15,9 +16,10 @@ public class NewStudentPanel extends JPanel{
 	private JTextField civicField = new JTextField();
 	private JTextField nameField = new JTextField();
 	private JTextField addressField = new JTextField();
-	private JLabel lblPersonnummer = new JLabel("Personnummer");
-	private JLabel lblNamn = new JLabel("Namn");
-	private JLabel lblAdress = new JLabel("Adress");
+	private JLabel civicLbl = new JLabel("Personnummer");
+	private JLabel nameLbl = new JLabel("Namn");
+	private JLabel addressLbl = new JLabel("Adress");
+	private final JButton saveBtn = new JButton("Spara");
 	
 	
 	public NewStudentPanel(Controller con, String civic) {
@@ -61,9 +63,9 @@ public class NewStudentPanel extends JPanel{
 		nameField.setColumns(10);
 		civicField.setBounds(176, 33, 201, 22);
 		civicField.setColumns(10);
-		lblPersonnummer.setBounds(12, 36, 152, 16);
-		lblNamn.setBounds(12, 96, 152, 16);
-		lblAdress.setBounds(12, 163, 152, 16);
+		civicLbl.setBounds(12, 36, 152, 16);
+		nameLbl.setBounds(12, 96, 152, 16);
+		addressLbl.setBounds(12, 163, 152, 16);
 		
 		setBounds(397, 13, 389, 516);
 		setLayout(null);
@@ -71,8 +73,11 @@ public class NewStudentPanel extends JPanel{
 		add(civicField);
 		add(nameField);
 		add(addressField);
-		add(lblPersonnummer);
-		add(lblNamn);
-		add(lblAdress);
+		add(civicLbl);
+		add(nameLbl);
+		add(addressLbl);
+		saveBtn.setBounds(124, 430, 97, 25);
+		
+		add(saveBtn);
 	}
 }
