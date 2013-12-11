@@ -81,11 +81,9 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void addStudent(){
-		JPanel j = new NewStudentPanel();
-		validate();
+		JPanel studentPanel = new NewStudentPanel();
 		repaint();
-		j.setVisible(true);
 		contentPane.remove(panel);
-		contentPane.add(j);
+		contentPane.add(studentPanel);
 	}
 }
