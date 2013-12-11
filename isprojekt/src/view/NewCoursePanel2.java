@@ -10,6 +10,9 @@ import javax.swing.JButton;
 
 import tengil.Controller;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class NewCoursePanel2 extends JPanel {
 	private Controller con;
 	private String currentCourse; 
@@ -79,7 +82,30 @@ public class NewCoursePanel2 extends JPanel {
 		add(pointsLbl);
 		descrLbl.setBounds(49, 204, 76, 14);		
 		add(descrLbl);
+		saveBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				addCourse();
+			}
+		});
 		saveBtn.setBounds(49, 361, 89, 23);		
 		add(saveBtn);
 	}
+	private void addCourse(){
+		try {
+			con.addCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			mainFrame.populateList();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }

@@ -147,6 +147,9 @@ public class MainFrame extends JFrame {
 	 private void addStudent(){
 		 openStudent(null);
 	 }
+	 private void addCourse(){
+		 openCourse(null);
+	 }
 
 	 private JPanel studentPanel;
 	 private JPanel coursePanel;
