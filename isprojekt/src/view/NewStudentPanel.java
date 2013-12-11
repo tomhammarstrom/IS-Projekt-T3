@@ -68,6 +68,7 @@ public class NewStudentPanel extends JPanel{
 				addressField.setText(r.getString("adr"));
 				
 			}
+			
 		}
 	}
 	
