@@ -60,7 +60,7 @@ public class ConnectBot{
     
     public int addStudent(String civic, String name, String address) throws SQLException {
         Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select * from student where civic = ?");
+        PreparedStatement s = con.prepareStatement("select * from student where pnr = ?");
         s.setString(1,civic);
         int temp;
 
