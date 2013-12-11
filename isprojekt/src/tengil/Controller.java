@@ -65,6 +65,10 @@ public class Controller {
     	return cb.getCoursesForStudent(civic);
     }
     
+    public ResultSet getFinishedCoursesForStudent(String civic) throws SQLException{
+    	return cb.getFinishedCoursesForStudent(civic);
+    }
+    
     /**
      * Kurshantering
      * 

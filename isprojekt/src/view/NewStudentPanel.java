@@ -3,6 +3,7 @@ package view;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -15,6 +16,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JList;
 
 public class NewStudentPanel extends JPanel{
@@ -31,11 +33,15 @@ public class NewStudentPanel extends JPanel{
 	private final JButton saveBtn = new JButton("Spara");
 	private MainFrame mainFrame;
 	private JButton deleteBtn = new JButton("Ta bort");
-	private final JLabel lblAllaKurserHuru = new JLabel("Alla kurser huru elefen studerar");
-	private final JList activeCoursesList = new JList();
-	private final JLabel lblAfslutatKurz = new JLabel("Afslutat kurz");
-	private final JList inactiveCoursesList = new JList();
-	private final JButton btnBetygPls = new JButton("betyg pls");
+	
+	
+	private JLabel lblAllaKurserHuru = new JLabel("Alla kurser huru elefen studerar");
+	private DefaultListModel activeCoursesModel = new DefaultListModel();
+	private DefaultListModel inactiveCoursesModel = new DefaultListModel();
+	private JList activeCoursesList = new JList(activeCoursesModel);
+	private JLabel lblAfslutatKurz = new JLabel("Afslutat kurz");
+	private JList inactiveCoursesList = new JList(inactiveCoursesModel);
+	private JButton btnBetygPls = new JButton("betyg pls");
 	
 	
 	public NewStudentPanel(Controller con, String civic, MainFrame mainFrame) {
@@ -66,9 +72,26 @@ public class NewStudentPanel extends JPanel{
 				civicField.setText(r.getString("pnr"));
 				nameField.setText(r.getString("name"));
 				addressField.setText(r.getString("adr"));
+			}
+			r.close();
+			
+			r = con.getCoursesForStudent(currentStudent);
+			
+			activeCoursesModel.clear();
+			
+			r = con.getCoursesForStudent(currentStudent);
+			
+			while(r.next()){
+				activeCoursesModel.addElement(r.getString(2));
 				
 			}
 			
+			inactiveCoursesModel.clear();
+			r = con.getFinishedCoursesForStudent(currentStudent);
+			while(r.next()){
+				inactiveCoursesModel.addElement(r.getString(2));
+				
+			}
 		}
 	}
 	

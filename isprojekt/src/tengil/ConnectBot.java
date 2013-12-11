@@ -171,6 +171,14 @@ public class ConnectBot{
         return found;
     }
     
+    public ResultSet getFinishedCoursesForStudent(String civic) throws SQLException{
+    	 PreparedStatement stmnt = connect().prepareStatement("select * from studied where pnr = ?");
+         stmnt.setString(1, civic);
+         ResultSet found = stmnt.executeQuery();
+         
+         return found;
+    }
+    
     /**
      * Funktioner för att starta/avsluta kurser
      * 
