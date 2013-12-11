@@ -15,9 +15,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class NewStudentPanel extends JFrame {
+public class NewStudentPanel extends JPanel {
 
-	private JPanel fetchPanel;
+	private JPanel switchPanel;
 
 	private JButton saveItemBtn = new JButton("Spara");
 	private JButton removeItemBtn = new JButton("Ta bort");
@@ -37,20 +37,20 @@ public class NewStudentPanel extends JFrame {
 
 	
 	private void jbInit() {
-		setBounds(10, 35, 328, 415);
+		switchPanel.setBounds(397, 13, 389, 516);
 		
 		 /**
 		  * 
 		  */
-		 fetchPanel = new JPanel(); 
-		 setContentPane(fetchPanel); 
+		// switchPanel = new JPanel(); 
+		// setContentPane(switchPanel); 
 		 /**
 		  * 
 		  */
 		
 
-		fetchPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		fetchPanel.setLayout(null);
+		switchPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		switchPanel.setLayout(null);
 		saveItemBtn.setBounds(10, 381, 89, 23);
 		removeItemBtn.setBounds(226, 381, 89, 23);
 		nameError.setBounds(132, 45, 183, 14);
@@ -58,11 +58,11 @@ public class NewStudentPanel extends JFrame {
 		detailsError.setBounds(132, 351, 170, 14);
 
 		
-		fetchPanel.add(saveItemBtn);
-		fetchPanel.add(removeItemBtn);
-		fetchPanel.add(nameError);
-		fetchPanel.add(priceError);
-		fetchPanel.add(detailsError);
+		switchPanel.add(saveItemBtn);
+		switchPanel.add(removeItemBtn);
+		switchPanel.add(nameError);
+		switchPanel.add(priceError);
+		switchPanel.add(detailsError);
 
 	}
 
