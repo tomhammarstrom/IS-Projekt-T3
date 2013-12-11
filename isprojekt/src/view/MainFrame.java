@@ -117,7 +117,7 @@ public class MainFrame extends JFrame {
 		btnLggTillKurs.setBounds(98, 448, 124, 25);
 		
 		courseTabPanel.add(btnLggTillKurs);
-		panel.setBounds(410, 13, 352, 483);
+		panel.setBounds(409, 33, 352, 483);
 		contentPane.add(panel);
 		
 		studentList.addListSelectionListener(new ListSelectionListener() {
@@ -157,11 +157,9 @@ public class MainFrame extends JFrame {
 	 }
 
 	 private JPanel studentPanel;
-	 private JPanel coursePanel;
 	 private void openStudent(String civic){
 		 try{
 				contentPane.remove(studentPanel);
-				contentPane.remove(coursePanel);
 			}
 			catch(NullPointerException e){
 				
@@ -174,14 +172,15 @@ public class MainFrame extends JFrame {
 	 private void openCourse(String id){
 		 try{
 				contentPane.remove(studentPanel);
-				contentPane.remove(coursePanel);
 			}
 			catch(NullPointerException e){
 				
 			}
-		coursePanel = new NewCoursePanel2(con, id, this);
+		 studentPanel = new NewCoursePanel2(con, id, this);
 		repaint();
 		contentPane.remove(panel);
-		contentPane.add(coursePanel);
+		contentPane.add(studentPanel);
 	}
+	 
+	 
 }
