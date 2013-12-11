@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import java.awt.CardLayout;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
@@ -29,8 +30,7 @@ public class MainFrame extends JFrame {
 	private JList list_1 = new JList();
 	private JButton btnLggTillStudent = new JButton("L\u00E4gg till student");
 	private JButton btnLggTillKurs = new JButton("L\u00E4gg till kurs");
-	private JPanel switchPanel = new JPanel();
-	private JLabel lblNewLabel = new JLabel("New label");
+	private JPanel panel = new JPanel();
 	
 
 	public MainFrame(Controller con) {
@@ -75,18 +75,17 @@ public class MainFrame extends JFrame {
 		btnLggTillKurs.setBounds(98, 448, 124, 25);
 		
 		courseTabPanel.add(btnLggTillKurs);
-		switchPanel.setBounds(397, 13, 389, 516);
+		panel.setBounds(410, 13, 352, 483);
+		contentPane.add(panel);
 		
-		
-		contentPane.add(switchPanel);
-		switchPanel.setLayout(null);
-		lblNewLabel.setBounds(162, 229, 56, 16);
-		
-		switchPanel.add(lblNewLabel);
 	}
 	
 	private void addStudent(){
-		System.out.println("button");
-		new NewStudentPanel(switchPanel);
+		JPanel j = new NewStudentPanel();
+		validate();
+		repaint();
+		j.setVisible(true);
+		contentPane.remove(panel);
+		contentPane.add(j);
 	}
 }

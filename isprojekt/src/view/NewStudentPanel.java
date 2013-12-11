@@ -1,74 +1,45 @@
 package view;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-@SuppressWarnings("serial")
-public class NewStudentPanel extends JPanel {
-
-	private JPanel switchPanel;
-
-	private JButton saveItemBtn = new JButton("Spara");
-	private JButton removeItemBtn = new JButton("Ta bort");
-	private JLabel nameError = new JLabel("");
-	private JLabel priceError = new JLabel("");
-	private JLabel detailsError = new JLabel("");
+public class NewStudentPanel extends JPanel{
+	private JTextField textField = new JTextField();
+	private JTextField textField_1 = new JTextField();
+	private JTextField textField_2 = new JTextField();
+	private JLabel lblPersonnummer = new JLabel("Personnummer");
+	private JLabel lblNamn = new JLabel("Namn");
+	private JLabel lblAdress = new JLabel("Adress");
 	
-
-	public NewStudentPanel(JPanel fetchPanel) {
-
-		//this.fetchPanel = fetchPanel;
-
-
-		//fetchPanel.removeAll();
-		jbInit();
+	
+	public NewStudentPanel(){
+		initComponents();
+		setVisible(true);
 	}
-
 	
-	private void jbInit() {
-		switchPanel.setBounds(397, 13, 389, 516);
+	
+	
+	private void initComponents(){
+		textField_2.setBounds(176, 160, 201, 22);
+		textField_2.setColumns(10);
+		textField_1.setBounds(176, 93, 201, 22);
+		textField_1.setColumns(10);
+		textField.setBounds(176, 33, 201, 22);
+		textField.setColumns(10);
+		lblPersonnummer.setBounds(12, 36, 152, 16);
+		lblNamn.setBounds(12, 96, 152, 16);
+		lblAdress.setBounds(12, 163, 152, 16);
 		
-		 /**
-		  * 
-		  */
-		// switchPanel = new JPanel(); 
-		// setContentPane(switchPanel); 
-		 /**
-		  * 
-		  */
+		setBounds(397, 13, 389, 516);
+		setLayout(null);
 		
-
-		switchPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		switchPanel.setLayout(null);
-		saveItemBtn.setBounds(10, 381, 89, 23);
-		removeItemBtn.setBounds(226, 381, 89, 23);
-		nameError.setBounds(132, 45, 183, 14);
-		priceError.setBounds(132, 84, 183, 14);
-		detailsError.setBounds(132, 351, 170, 14);
-
-		
-		switchPanel.add(saveItemBtn);
-		switchPanel.add(removeItemBtn);
-		switchPanel.add(nameError);
-		switchPanel.add(priceError);
-		switchPanel.add(detailsError);
-
+		add(textField);
+		add(textField_1);
+		add(textField_2);
+		add(lblPersonnummer);
+		add(lblNamn);
+		add(lblAdress);
 	}
-
-	
-
-
-	
-
 }
