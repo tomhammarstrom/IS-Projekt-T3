@@ -37,14 +37,27 @@ public class ConnectBot{
         return found;
     }
     
-    public ResultSet getStudents() throws SQLException {
-        Connection con = connect();
+    public ResultSet getStudents (String pnr) throws SQLException{
+        //tar emot pnr från gränssnitt
         
-        PreparedStatement stmnt = con.prepareStatement("select * from student");
-        ResultSet found = stmnt.executeQuery();
-        
-        return found;
-    }
+            Connection c = connect();
+            //vilken databas vi pratar med 
+            
+            PreparedStatement ps = c.prepareStatement("select * from student");
+            //skapar PreparedStatement ps som gör saker via denna connection c eller kopplingen
+            //PreparedStatement ps med ? som vi sedan kan byta ut. where pnr = 'P01', where pnr = ?
+            
+            //ps.setString(1, pnr);
+            //1: vilket frågetecken den använder, ? är primarykey, 
+            
+            
+            ResultSet r = ps.executeQuery();
+            //måste spara ResultSetet 
+            
+            return r;
+        }
+
+    
     
     public int addStudent(String civic, String name) throws SQLException {
         Connection con = connect();
