@@ -18,16 +18,13 @@ public class Controller {
      */
     
     public int addStudent(String civic, String name, String address) throws SQLException {
-        return cb.addStudent(false, civic, name,address);
+        return cb.addStudent(civic, name,address);
     }
     
     public int removeStudent(String civic) throws SQLException {
         return cb.removeStudent(civic);
     }
     
-    public int changeStudent(String civic, String name, String address) throws SQLException{
-    	return cb.addStudent(true, civic, name,address);
-    }
     
     public ResultSet getStudent(String civic) throws SQLException {
         return cb.getStudent(civic);
