@@ -10,6 +10,9 @@ import tengil.Controller;
 
 import javax.swing.JList;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
@@ -24,9 +27,10 @@ public class MainFrame extends JFrame {
 	
 	private JList list = new JList(studentListModel);
 	private JList list_1 = new JList();
-	private final JButton btnLggTillStudent = new JButton("L\u00E4gg till student");
-	private final JButton btnLggTillKurs = new JButton("L\u00E4gg till kurs");
-	private final JPanel panel = new JPanel();
+	private JButton btnLggTillStudent = new JButton("L\u00E4gg till student");
+	private JButton btnLggTillKurs = new JButton("L\u00E4gg till kurs");
+	private JPanel switchPanel = new JPanel();
+	private JLabel lblNewLabel = new JLabel("New label");
 	
 
 	public MainFrame(Controller con) {
@@ -59,6 +63,11 @@ public class MainFrame extends JFrame {
 		list_1.setBounds(12, 13, 314, 421);
 		
 		studentTabPanel.add(list);
+		btnLggTillStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				addStudent();
+			}
+		});
 		btnLggTillStudent.setBounds(87, 448, 152, 25);
 		
 		studentTabPanel.add(btnLggTillStudent);
@@ -66,9 +75,18 @@ public class MainFrame extends JFrame {
 		btnLggTillKurs.setBounds(98, 448, 124, 25);
 		
 		courseTabPanel.add(btnLggTillKurs);
-		panel.setBounds(397, 13, 389, 516);
+		switchPanel.setBounds(397, 13, 389, 516);
 		
 		
-		contentPane.add(panel);
+		contentPane.add(switchPanel);
+		switchPanel.setLayout(null);
+		lblNewLabel.setBounds(162, 229, 56, 16);
+		
+		switchPanel.add(lblNewLabel);
+	}
+	
+	private void addStudent(){
+		System.out.println("button");
+		new NewStudentPanel(switchPanel);
 	}
 }
