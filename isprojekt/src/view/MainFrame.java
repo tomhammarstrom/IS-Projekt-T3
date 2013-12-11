@@ -112,7 +112,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	 private void studentList_valueChanged(ListSelectionEvent e){
-		// 	student.getSelected   
+		// 	student.getSelected   sad
 		 	openStudent(studentList.getSelectedValue().toString());
 	    }
 	 
