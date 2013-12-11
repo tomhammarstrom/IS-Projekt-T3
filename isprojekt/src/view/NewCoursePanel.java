@@ -13,6 +13,7 @@ import tengil.Controller;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
 public class NewCoursePanel extends JPanel {
 	private Controller con;
@@ -74,7 +75,7 @@ public class NewCoursePanel extends JPanel {
 		idField.setColumns(10);
 		pointsField.setBounds(179, 140, 140, 20);
 		pointsField.setColumns(10);
-		setBounds(397, 13, 389, 516);
+		setBounds(397, 13, 810, 516);
 		setLayout(null);
 		
 		add(pointsField);		
@@ -162,5 +163,4 @@ public class NewCoursePanel extends JPanel {
 			e.printStackTrace();
 		}
 	}
-	
 }

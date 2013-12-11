@@ -81,7 +81,7 @@ public class NewStudentPanel extends JPanel{
 		nameLbl.setBounds(12, 96, 152, 16);
 		addressLbl.setBounds(12, 163, 152, 16);
 		
-		setBounds(397, 13, 389, 516);
+		setBounds(397, 13, 810, 516);
 		setLayout(null);
 		
 		add(civicField);
