@@ -68,19 +68,19 @@ public class ConnectBot{
     		}
     		else{
     			PreparedStatement s = connect().prepareStatement("insert into student values(?,?,?)");
-                s.setString(1,civic);
-                s.setString(2,name);
-                s.setString(3, address);
+                s.setString(1,civic.trim());
+                s.setString(2,name.trim());
+                s.setString(3, address.trim());
                 affectedRows =  s.executeUpdate();
     		}	
     	}
     	
     	else if (intent.equals("change")){
     		PreparedStatement s = connect().prepareStatement("update student set pnr = ?, name = ?, adr = ? where pnr = ?");
-            s.setString(1,civic);
-            s.setString(2,name);
-            s.setString(3,address);
-            s.setString(4,civic);
+            s.setString(1,civic.trim());
+            s.setString(2,name.trim());
+            s.setString(3,address.trim());
+            s.setString(4,civic.trim());
             affectedRows =  s.executeUpdate();
     	}
         
@@ -141,11 +141,11 @@ public class ConnectBot{
        	
        	else if (intent.equals("change")){
        		PreparedStatement s = connect().prepareStatement("update course set id = ?, name = ?, point = ?, descr = ? where id = ?");
-            s.setString(1,id);
-            s.setString(2,name);
+            s.setString(1,id.trim());
+            s.setString(2,name.trim());
             s.setInt(3,points);
-            s.setString(4,description);
-            s.setString(5,id);
+            s.setString(4,description.trim());
+            s.setString(5,id.trim());
             affectedRows =  s.executeUpdate();
        	}
            
