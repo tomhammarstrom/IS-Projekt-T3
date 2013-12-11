@@ -110,6 +110,12 @@ public class NewStudentPanel extends JPanel{
 	
 	
 	private void initComponents(){
+		btnBetygPls.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishCourse();
+			}
+		});
+		
 		addressField.setBounds(176, 160, 201, 22);
 		addressField.setColumns(10);
 		nameField.setBounds(176, 93, 201, 22);
@@ -220,6 +226,10 @@ public class NewStudentPanel extends JPanel{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private void finishCourse(){
+		// skit
 	}
 	
 
