@@ -43,7 +43,6 @@ public class MainFrame extends JFrame {
 	
 	private JButton btnLggTillStudent = new JButton("LEG TILL ELEF");
 	private JButton btnLggTillKurs = new JButton("LEG TILL KURZ");
-	private JPanel panel = new JPanel();
 	
 
 	public MainFrame(Controller con) {
@@ -117,8 +116,6 @@ public class MainFrame extends JFrame {
 		btnLggTillKurs.setBounds(98, 448, 124, 25);
 		
 		courseTabPanel.add(btnLggTillKurs);
-		panel.setBounds(409, 33, 352, 483);
-		contentPane.add(panel);
 		
 		studentList.addListSelectionListener(new ListSelectionListener() {
 	            public void valueChanged(ListSelectionEvent e) {
@@ -166,7 +163,6 @@ public class MainFrame extends JFrame {
 			}
 		studentPanel = new NewStudentPanel(con,civic, this);
 		repaint();
-		contentPane.remove(panel);
 		contentPane.add(studentPanel);
 	} 
 	 private void openCourse(String id){
@@ -178,7 +174,6 @@ public class MainFrame extends JFrame {
 			}
 		 studentPanel = new NewCoursePanel(con, id, this);
 		repaint();
-		contentPane.remove(panel);
 		contentPane.add(studentPanel);
 	}
 	 
@@ -186,6 +181,4 @@ public class MainFrame extends JFrame {
 		 remove(studentPanel);
 		 repaint();
 	 }
-	 
-	 
 }
