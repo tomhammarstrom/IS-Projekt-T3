@@ -4,10 +4,12 @@ import java.sql.*;
 
 public class Controller {
     private ConnectBot cb;
+    private Validator v;
     
     
     public Controller() throws SQLException {
         cb = new ConnectBot();
+        v = new Validator();
     }
     
     /**
