@@ -14,7 +14,7 @@ public class Validator {
 
         
        
-        public boolean validateFirstName(String firstName) {
+        public boolean validateName(String firstName) {
                 errorMessage = "";
                 return this.validateOnlyLetters(firstName);
         }
@@ -29,7 +29,7 @@ public class Validator {
 
         
     
-        public boolean validateNullInput(String str) {
+        public boolean validateNotNull(String str) {
                 errorMessage = "";
                 return validateNull(str);
         }

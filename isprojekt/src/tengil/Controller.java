@@ -103,5 +103,17 @@ public class Controller {
        return cb.highestFlow();
     }
     
+    /**
+     * Validerare
+     */
+    
+    public boolean validateNotNull(String input){
+    	return v.validateNotNull(input);
+    }
+    
+    public boolean validateNumbers(String input){
+    	return v.validateNumbers(input);
+    }
+    
 
 }
