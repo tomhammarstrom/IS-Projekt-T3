@@ -2,12 +2,18 @@ package view;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import tengil.Controller;
+
 import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class NewStudentPanel extends JPanel{
 	private Controller con;
@@ -20,11 +26,13 @@ public class NewStudentPanel extends JPanel{
 	private JLabel nameLbl = new JLabel("Namn");
 	private JLabel addressLbl = new JLabel("Adress");
 	private final JButton saveBtn = new JButton("Spara");
+	private MainFrame mainFrame;
 	
 	
-	public NewStudentPanel(Controller con, String civic) {
+	public NewStudentPanel(Controller con, String civic, MainFrame mainFrame) {
 		this.con = con;
 		currentStudent = civic;
+		this.mainFrame = mainFrame;
 		
 		initComponents();
 		setVisible(true);
@@ -76,8 +84,27 @@ public class NewStudentPanel extends JPanel{
 		add(civicLbl);
 		add(nameLbl);
 		add(addressLbl);
+		saveBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				addStudent();
+			}
+		});
 		saveBtn.setBounds(124, 430, 97, 25);
 		
 		add(saveBtn);
+	}
+	private void addStudent(){
+		try {
+			con.addStudent(civicField.getText(), nameField.getText(), addressField.getText());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	try {
+		mainFrame.populateList();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	}
 }
