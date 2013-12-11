@@ -182,5 +182,10 @@ public class MainFrame extends JFrame {
 		contentPane.add(studentPanel);
 	}
 	 
+	 public void clearPanel(){
+		 remove(studentPanel);
+		 repaint();
+	 }
+	 
 	 
 }

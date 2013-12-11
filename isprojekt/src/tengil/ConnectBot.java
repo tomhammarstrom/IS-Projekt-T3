@@ -89,7 +89,7 @@ public class ConnectBot{
     
     public int removeStudent(String civic) throws SQLException {
         Connection con = connect();
-        PreparedStatement s = con.prepareStatement("delete from student where civic = ?");
+        PreparedStatement s = con.prepareStatement("delete from student where pnr = ?");
         s.setString(1,civic);
         int temp = s.executeUpdate();
         

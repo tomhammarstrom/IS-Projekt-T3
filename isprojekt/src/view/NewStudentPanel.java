@@ -28,6 +28,7 @@ public class NewStudentPanel extends JPanel{
 	private JLabel addressLbl = new JLabel("Adress");
 	private final JButton saveBtn = new JButton("Spara");
 	private MainFrame mainFrame;
+	private JButton deleteBtn = new JButton("Ta bort");
 	
 	
 	public NewStudentPanel(Controller con, String civic, MainFrame mainFrame) {
@@ -52,10 +53,14 @@ public class NewStudentPanel extends JPanel{
 		if(currentStudent != null){
 			civicField.setEditable(false);
 			ResultSet r = con.getStudent(currentStudent);
+			add(deleteBtn);
+			repaint();
+			
 			while(r.next()){
 				civicField.setText(r.getString("pnr"));
 				nameField.setText(r.getString("name"));
-				addressField.setText(r.getString("adr"));	
+				addressField.setText(r.getString("adr"));
+				
 			}
 		}
 	}
@@ -89,9 +94,17 @@ public class NewStudentPanel extends JPanel{
 				addStudent();
 			}
 		});
-		saveBtn.setBounds(124, 430, 97, 25);
+		saveBtn.setBounds(280, 478, 97, 25);
 		
 		add(saveBtn);
+		deleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				removeStudent();
+			}
+		});
+		deleteBtn.setBounds(12, 478, 97, 25);
+		
+		
 	}
 	private void addStudent(){
 		try {
@@ -116,4 +129,20 @@ public class NewStudentPanel extends JPanel{
 		e.printStackTrace();
 	}
 	}
+	
+	private void removeStudent(){
+		try {
+			con.removeStudent(currentStudent);
+			mainFrame.populateList();
+			currentStudent = null;
+			mainFrame.clearPanel();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
 }
