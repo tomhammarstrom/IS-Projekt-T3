@@ -18,7 +18,10 @@ public class Controller {
      */
     
     public int addStudent(String civic, String name, String address) throws SQLException {
-        return cb.addStudent(civic, name,address);
+        return cb.addStudent("add", civic, name,address);
+    }
+    public int changeStudent(String civic, String name, String address) throws SQLException{
+    	return cb.addStudent("change", civic, name, address);
     }
     
     public int removeStudent(String civic) throws SQLException {

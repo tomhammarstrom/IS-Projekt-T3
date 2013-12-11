@@ -17,7 +17,8 @@ import java.awt.event.ActionEvent;
 
 public class NewStudentPanel extends JPanel{
 	private Controller con;
-	private String currentStudent;
+	private String currentStudent = null;
+	private String intent = null;
 	
 	private JTextField civicField = new JTextField();
 	private JTextField nameField = new JTextField();
@@ -37,29 +38,28 @@ public class NewStudentPanel extends JPanel{
 		initComponents();
 		setVisible(true);
 		
-		if(currentStudent != null){
-			try {
-				existingData();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			existingData();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		}
 		
-		
-	}
+
 	
 	private void existingData() throws SQLException{
-		
-		ResultSet r = con.getStudent(currentStudent);
-		
-		while(r.next()){
-			civicField.setText(r.getString("pnr"));
-			nameField.setText(r.getString("name"));
-			addressField.setText(r.getString("adr"));	
+		if(currentStudent != null){
+			civicField.setEditable(false);
+			ResultSet r = con.getStudent(currentStudent);
+			while(r.next()){
+				civicField.setText(r.getString("pnr"));
+				nameField.setText(r.getString("name"));
+				addressField.setText(r.getString("adr"));	
+			}
 		}
-		
 	}
+
 	
 
 	
@@ -95,13 +95,22 @@ public class NewStudentPanel extends JPanel{
 	}
 	private void addStudent(){
 		try {
-			con.addStudent(civicField.getText(), nameField.getText(), addressField.getText());
+			if(currentStudent == null){
+				con.addStudent(civicField.getText(), nameField.getText(), addressField.getText());
+			}
+			else{
+				con.changeStudent(civicField.getText(), nameField.getText(), addressField.getText());
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	try {
 		mainFrame.populateList();
+		currentStudent = civicField.getText();
+		existingData();
+		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

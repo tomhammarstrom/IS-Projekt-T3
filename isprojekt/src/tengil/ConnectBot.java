@@ -58,31 +58,33 @@ public class ConnectBot{
 
     
     
-    public int addStudent(String civic, String name, String address) throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select * from student where pnr = ?");
-        s.setString(1,civic);
-        int temp;
-        
+    public int addStudent(String intent, String civic, String name, String address) throws SQLException {
+        int affectedRows = 0;
 
-        
-        if(s.executeQuery().next()){
-        	
-        	
-        	temp = 0;
-        }
-        
-        else{
-        	s.close();
-            s = con.prepareStatement("insert into student values(?,?,?)");
+    	if(intent.equals("add")){
+    		if(getStudent(civic).next()){
+    			System.out.println("Student finns redan");
+    			affectedRows = 0;
+    		}
+    		else{
+    			PreparedStatement s = connect().prepareStatement("insert into student values(?,?,?)");
+                s.setString(1,civic);
+                s.setString(2,name);
+                s.setString(3, address);
+                affectedRows =  s.executeUpdate();
+    		}	
+    	}
+    	
+    	else if (intent.equals("change")){
+    		PreparedStatement s = connect().prepareStatement("update student set pnr = ?, name = ?, adr = ? where pnr = ?");
             s.setString(1,civic);
             s.setString(2,name);
-            s.setString(3, address);
-            temp =  s.executeUpdate();
-        }
+            s.setString(3,address);
+            s.setString(4,civic);
+            affectedRows =  s.executeUpdate();
+    	}
         
-        return temp;
-        
+        return affectedRows;
     }
     
     public int removeStudent(String civic) throws SQLException {
