@@ -43,7 +43,10 @@ public class Controller {
      */
     
     public int addCourse(String id, String name, String description, int points) throws SQLException {
-        return cb.addCourse(id, name, description, points);
+        return cb.addCourse("add",id, name, description, points);
+    }
+    public int changeCourse(String id, String name, String description, int points) throws SQLException {
+    	return cb.addCourse("change",  id, name, description, points);
     }
     
     public int removeCourse(String id) throws SQLException {

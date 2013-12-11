@@ -120,30 +120,37 @@ public class ConnectBot{
         return found;
     }
     
-    public int addCourse(String id, String name, String description, int points) throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select * from course where id = ?");
-        s.setString(1,id);
-        int temp;
+    public int addCourse(String intent, String id, String name, String description, int points) throws SQLException {
+    	   int affectedRows = 0;
 
-        
-        if(s.executeQuery().next()){
-            System.out.println("kurs finns redan");
-            temp = 0;
-        }
-        else{
-            s = con.prepareStatement("insert into course values(?,?,?,?)");
-            s.setString(1,id.trim());
-            s.setString(2,name.trim());
+       	if(intent.equals("add")){
+       		if(getCourse(id).next()){
+       			System.out.println("kurs finns redan");
+       			affectedRows = 0;
+       		}
+       		else{
+       			PreparedStatement s = connect().prepareStatement("insert into course values(?,?,?,?)");
+       		 	s.setString(1,id.trim());
+       		 	s.setString(2,name.trim());
+       		 	s.setInt(3,points);
+       		 	s.setString(4,description.trim());
+             
+             affectedRows =  s.executeUpdate();
+       		}	
+       	}
+       	
+       	else if (intent.equals("change")){
+       		PreparedStatement s = connect().prepareStatement("update course set id = ?, name = ?, point = ?, descr = ? where id = ?");
+            s.setString(1,id);
+            s.setString(2,name);
             s.setInt(3,points);
-            s.setString(4,description.trim());
-            
-            //System.out.println(id + name + description + points);
-            temp =  s.executeUpdate();
-        }
-        
-        return temp;
-        
+            s.setString(4,description);
+            s.setString(5,id);
+            affectedRows =  s.executeUpdate();
+       	}
+           
+           return affectedRows;
+  
     }
     
     public int removeCourse(String id) throws SQLException {

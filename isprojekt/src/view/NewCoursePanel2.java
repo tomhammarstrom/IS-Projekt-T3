@@ -105,21 +105,28 @@ public class NewCoursePanel2 extends JPanel {
 		
 	}
 	private void addCourse(){
-		try {
-			con.addCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			mainFrame.populateList();
-		} catch (SQLException e) {
+		try{
+			if(currentCourse == null){
+				con.addCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
+			}
+			else{
+				con.changeCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
+			}
+		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	try {
+		mainFrame.populateList();
+		currentCourse = idField.getText();
+		existingData();
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+		
 	}
 	
 	private void deleteCourse(){
