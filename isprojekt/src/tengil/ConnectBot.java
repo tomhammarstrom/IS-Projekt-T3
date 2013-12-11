@@ -114,7 +114,7 @@ public class ConnectBot{
         return found;
     }
     
-    public int addCourse(String id, String name, String contents, int points) throws SQLException {
+    public int addCourse(String id, String name, String description, int points) throws SQLException {
         Connection con = connect();
         PreparedStatement s = con.prepareStatement("select * from course where id = ?");
         s.setString(1,id);
@@ -129,7 +129,7 @@ public class ConnectBot{
             s = con.prepareStatement("insert into course values(?,?,?,?)");
             s.setString(1,id);
             s.setString(2,name);
-            s.setString(3,contents);
+            s.setString(3,description);
             s.setInt(4,points);
             temp =  s.executeUpdate();
         }
