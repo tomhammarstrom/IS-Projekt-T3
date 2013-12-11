@@ -63,13 +63,17 @@ public class ConnectBot{
         PreparedStatement s = con.prepareStatement("select * from student where pnr = ?");
         s.setString(1,civic);
         int temp;
+        
 
         
         if(s.executeQuery().next()){
-            System.out.println("student finns redan");
-            temp = 0;
+        	
+        	
+        	temp = 0;
         }
+        
         else{
+        	s.close();
             s = con.prepareStatement("insert into student values(?,?,?)");
             s.setString(1,civic);
             s.setString(2,name);

@@ -4,10 +4,12 @@ import java.sql.*;
 
 public class Controller {
     private ConnectBot cb;
+    private Validator v;
     
     
     public Controller() throws SQLException {
         cb = new ConnectBot();
+        v = new Validator();
     }
     
     /**
@@ -22,6 +24,7 @@ public class Controller {
     public int removeStudent(String civic) throws SQLException {
         return cb.removeStudent(civic);
     }
+    
     
     public ResultSet getStudent(String civic) throws SQLException {
         return cb.getStudent(civic);
