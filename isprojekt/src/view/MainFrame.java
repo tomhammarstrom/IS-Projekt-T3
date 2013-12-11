@@ -109,6 +109,11 @@ public class MainFrame extends JFrame {
 		
 		studentTabPanel.add(btnLggTillStudent); 
 		courseTabPanel.add(courseList);
+		btnLggTillKurs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				addCourse();
+			}
+		});
 		btnLggTillKurs.setBounds(98, 448, 124, 25);
 		
 		courseTabPanel.add(btnLggTillKurs);

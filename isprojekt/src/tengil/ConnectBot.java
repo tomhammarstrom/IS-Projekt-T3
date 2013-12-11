@@ -131,11 +131,12 @@ public class ConnectBot{
         }
         else{
             s = con.prepareStatement("insert into course values(?,?,?,?)");
-            s.setString(1,id);
-            s.setString(2,name);
-            s.setString(3,description);
-            s.setInt(4,points);
-            System.out.println(id + name + description + points);
+            s.setString(1,id.trim());
+            s.setString(2,name.trim());
+            s.setInt(3,points);
+            s.setString(4,description.trim());
+            
+            //System.out.println(id + name + description + points);
             temp =  s.executeUpdate();
         }
         
