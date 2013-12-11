@@ -53,7 +53,7 @@ public class NewCoursePanel2 extends JPanel {
 			pointsField.setText(r.getString("point"));
 			descrField.setText(r.getString("descr"));
 		}
-		
+		 
 	}
 	private void initComponents(){
 		descrField.setBounds(179, 201, 140, 20);

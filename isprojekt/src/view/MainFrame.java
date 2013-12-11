@@ -162,7 +162,7 @@ public class MainFrame extends JFrame {
 		repaint();
 		contentPane.remove(panel);
 		contentPane.add(studentPanel);
-	}
+	} 
 	 private void openCourse(String id){
 		 try{
 				contentPane.remove(studentPanel);
