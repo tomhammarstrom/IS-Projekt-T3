@@ -54,6 +54,7 @@ public class MainFrame extends JFrame {
 	
 	
 	private void populateList() throws SQLException{
+		studentListModel.clear();
 		ResultSet allStudents = con.getStudents();
 		
 		while(allStudents.next()){
@@ -114,15 +115,22 @@ public class MainFrame extends JFrame {
 	 private void studentList_valueChanged(ListSelectionEvent e){
 		// 	student.getSelected   sad
 		 	openStudent(studentList.getSelectedValue().toString());
+		 	
 	    }
 	 
 	 private void addStudent(){
 		 openStudent(null);
 	 }
 
-	
-	private void openStudent(String civic){
-		JPanel studentPanel = new NewStudentPanel(con,civic);
+	 private JPanel studentPanel;
+	 private void openStudent(String civic){
+		 try{
+				contentPane.remove(studentPanel);
+			}
+			catch(NullPointerException e){
+				
+			}
+		studentPanel = new NewStudentPanel(con,civic);
 		repaint();
 		contentPane.remove(panel);
 		contentPane.add(studentPanel);
