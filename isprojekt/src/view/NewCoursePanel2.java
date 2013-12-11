@@ -3,6 +3,7 @@ package view;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -105,27 +106,32 @@ public class NewCoursePanel2 extends JPanel {
 		
 	}
 	private void addCourse(){
+		int success = 0;
 		try{
 			if(currentCourse == null){
-				con.addCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
+				success = con.addCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
 			}
 			else{
-				con.changeCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
+				success = con.changeCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
 			}
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	try {
-		mainFrame.populateList();
-		currentCourse = idField.getText();
-		existingData();
-		
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-
+		if(success != 0){
+			try {
+				mainFrame.populateList();
+				currentCourse = idField.getText();
+				existingData();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "Kurs finns redan");
+		}
 		
 	}
 	
