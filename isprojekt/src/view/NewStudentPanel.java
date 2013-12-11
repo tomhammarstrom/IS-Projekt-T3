@@ -60,8 +60,7 @@ public class NewStudentPanel extends JPanel{
 		if(currentStudent != null){
 			civicField.setEditable(false);
 			ResultSet r = con.getStudent(currentStudent);
-			add(deleteBtn);
-			repaint();
+			showHiddenComponents();
 			
 			while(r.next()){
 				civicField.setText(r.getString("pnr"));
@@ -70,6 +69,16 @@ public class NewStudentPanel extends JPanel{
 				
 			}
 		}
+	}
+	
+	private void showHiddenComponents(){
+		add(deleteBtn);
+		add(inactiveCoursesList);
+		add(btnBetygPls);
+		add(lblAfslutatKurz);
+		add(activeCoursesList);
+		add(lblAllaKurserHuru);
+		repaint();
 	}
 
 	
@@ -106,19 +115,19 @@ public class NewStudentPanel extends JPanel{
 		add(saveBtn);
 		lblAllaKurserHuru.setBounds(492, 36, 269, 16);
 		
-		add(lblAllaKurserHuru);
+		
 		activeCoursesList.setBounds(449, 65, 303, 152);
 		
-		add(activeCoursesList);
+		
 		lblAfslutatKurz.setBounds(541, 282, 164, 16);
 		
-		add(lblAfslutatKurz);
+		
 		inactiveCoursesList.setBounds(461, 317, 300, 152);
 		
-		add(inactiveCoursesList);
+		
 		btnBetygPls.setBounds(541, 222, 97, 25);
 		
-		add(btnBetygPls);
+		
 		deleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				removeStudent();
