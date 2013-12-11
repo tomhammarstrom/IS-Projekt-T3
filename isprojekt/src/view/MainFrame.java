@@ -4,16 +4,23 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JTabbedPane;
 
 import tengil.Controller;
 
 import javax.swing.JList;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
+
 import java.awt.CardLayout;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
@@ -26,16 +33,33 @@ public class MainFrame extends JFrame {
 	
 	private DefaultListModel studentListModel = new DefaultListModel();
 	
-	private JList list = new JList(studentListModel);
+	private JList studentList = new JList(studentListModel);
 	private JList list_1 = new JList();
-	private JButton btnLggTillStudent = new JButton("L\u00E4gg till student");
-	private JButton btnLggTillKurs = new JButton("L\u00E4gg till kurs");
+	private JButton btnLggTillStudent = new JButton("LEG TILL ELEF");
+	private JButton btnLggTillKurs = new JButton("LEG TILL KURZ");
 	private JPanel panel = new JPanel();
 	
 
 	public MainFrame(Controller con) {
 		this.con = con;
 		initComponents();
+		
+		try{
+			populateList();	
+		}
+		catch(SQLException e){
+			
+		}
+	}
+	
+	
+	private void populateList() throws SQLException{
+		ResultSet allStudents = con.getStudents();
+		
+		while(allStudents.next()){
+			studentListModel.addElement(allStudents.getString(1));
+			
+		}
 	}
 	
 	private void initComponents(){
@@ -59,10 +83,10 @@ public class MainFrame extends JFrame {
 		studentTabPanel.setLayout(null);
 		courseTabPanel.setLayout(null);
 		
-		list.setBounds(12, 13, 314, 419);
+		studentList.setBounds(12, 13, 314, 419);
 		list_1.setBounds(12, 13, 314, 421);
 		
-		studentTabPanel.add(list);
+		studentTabPanel.add(studentList);
 		btnLggTillStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				addStudent();
@@ -78,10 +102,27 @@ public class MainFrame extends JFrame {
 		panel.setBounds(410, 13, 352, 483);
 		contentPane.add(panel);
 		
+		  studentList.addListSelectionListener(new ListSelectionListener() {
+	            public void valueChanged(ListSelectionEvent e) {
+	                studentList_valueChanged(e);
+	                    }
+	                });
+
+		
 	}
 	
-	private void addStudent(){
-		JPanel studentPanel = new NewStudentPanel();
+	 private void studentList_valueChanged(ListSelectionEvent e){
+		// 	student.getSelected
+		 	openStudent(studentList.getSelectedValue().toString());
+	    }
+	 
+	 private void addStudent(){
+		 openStudent(null);
+	 }
+
+	
+	private void openStudent(String civic){
+		JPanel studentPanel = new NewStudentPanel(con,civic);
 		repaint();
 		contentPane.remove(panel);
 		contentPane.add(studentPanel);

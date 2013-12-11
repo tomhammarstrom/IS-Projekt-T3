@@ -30,14 +30,15 @@ public class ConnectBot{
     public ResultSet getStudent(String civic) throws SQLException {
         Connection con = connect();
         
-        PreparedStatement stmnt = con.prepareStatement("select * from student where civic = ?");
+        PreparedStatement stmnt = con.prepareStatement("select * from student where pnr = ?");
         stmnt.setString(1,civic); 
         ResultSet found = stmnt.executeQuery();
         
         return found;
     }
+
     
-    public ResultSet getStudents (String pnr) throws SQLException{
+    public ResultSet getStudents () throws SQLException{
         //tar emot pnr från gränssnitt
         
             Connection c = connect();
@@ -47,9 +48,7 @@ public class ConnectBot{
             //skapar PreparedStatement ps som gör saker via denna connection c eller kopplingen
             //PreparedStatement ps med ? som vi sedan kan byta ut. where pnr = 'P01', where pnr = ?
             
-            //ps.setString(1, pnr);
-            //1: vilket frågetecken den använder, ? är primarykey, 
-            
+           
             
             ResultSet r = ps.executeQuery();
             //måste spara ResultSetet 
@@ -234,7 +233,7 @@ public class ConnectBot{
     
     public ResultSet studentResults(String civic, String id) throws SQLException {
         Connection con = connect();
-        PreparedStatement s = con.prepareStatement(" select s.civic, c.grade from student s join studies_inactive c on s.civic = c.civic where s.civic = (select civic from studies_inactive where civic = ? and courseId = ?)");
+        PreparedStatement s = con.prepareStatement("select s.civic, c.grade from student s join studies_inactive c on s.civic = c.civic where s.civic = (select civic from studies_inactive where civic = ? and courseId = ?)");
         s.setString(1, civic);
         s.setString(2, id);
         
