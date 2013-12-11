@@ -94,7 +94,7 @@ public class MainFrame extends JFrame {
 		});
 		btnLggTillStudent.setBounds(87, 448, 152, 25);
 		
-		studentTabPanel.add(btnLggTillStudent);
+		studentTabPanel.add(btnLggTillStudent); 
 		courseTabPanel.add(list_1);
 		btnLggTillKurs.setBounds(98, 448, 124, 25);
 		
@@ -112,7 +112,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	 private void studentList_valueChanged(ListSelectionEvent e){
-		// 	student.getSelected
+		// 	student.getSelected   sad
 		 	openStudent(studentList.getSelectedValue().toString());
 	    }
 	 
