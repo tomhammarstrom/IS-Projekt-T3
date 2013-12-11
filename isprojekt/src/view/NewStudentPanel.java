@@ -15,6 +15,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
 public class NewStudentPanel extends JPanel{
 	private Controller con;
@@ -30,6 +31,11 @@ public class NewStudentPanel extends JPanel{
 	private final JButton saveBtn = new JButton("Spara");
 	private MainFrame mainFrame;
 	private JButton deleteBtn = new JButton("Ta bort");
+	private final JLabel lblAllaKurserHuru = new JLabel("Alla kurser huru elefen studerar");
+	private final JList activeCoursesList = new JList();
+	private final JLabel lblAfslutatKurz = new JLabel("Afslutat kurz");
+	private final JList inactiveCoursesList = new JList();
+	private final JButton btnBetygPls = new JButton("betyg pls");
 	
 	
 	public NewStudentPanel(Controller con, String civic, MainFrame mainFrame) {
@@ -98,6 +104,21 @@ public class NewStudentPanel extends JPanel{
 		saveBtn.setBounds(280, 478, 97, 25);
 		
 		add(saveBtn);
+		lblAllaKurserHuru.setBounds(492, 36, 269, 16);
+		
+		add(lblAllaKurserHuru);
+		activeCoursesList.setBounds(449, 65, 303, 152);
+		
+		add(activeCoursesList);
+		lblAfslutatKurz.setBounds(541, 282, 164, 16);
+		
+		add(lblAfslutatKurz);
+		inactiveCoursesList.setBounds(461, 317, 300, 152);
+		
+		add(inactiveCoursesList);
+		btnBetygPls.setBounds(541, 222, 97, 25);
+		
+		add(btnBetygPls);
 		deleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				removeStudent();
