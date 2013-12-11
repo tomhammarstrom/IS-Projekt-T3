@@ -32,9 +32,15 @@ public class MainFrame extends JFrame {
 	private JPanel courseTabPanel = new JPanel(); 
 	
 	private DefaultListModel studentListModel = new DefaultListModel();
-	
 	private JList studentList = new JList(studentListModel);
-	private JList list_1 = new JList();
+	
+	private DefaultListModel courseListModel = new DefaultListModel();
+	private JList courseList = new JList(courseListModel);
+	
+	
+	
+	
+	
 	private JButton btnLggTillStudent = new JButton("LEG TILL ELEF");
 	private JButton btnLggTillKurs = new JButton("LEG TILL KURZ");
 	private JPanel panel = new JPanel();
@@ -55,12 +61,18 @@ public class MainFrame extends JFrame {
 	
 	public void populateList() throws SQLException{
 		studentListModel.clear();
+		courseListModel.clear();
 		ResultSet allStudents = con.getStudents();
+		ResultSet allCourses = con.getCourses();
 		
 		while(allStudents.next()){
 			studentListModel.addElement(allStudents.getString(1));
 			
 		}
+		while(allCourses.next()){
+			courseListModel.addElement(allCourses.getString(1));
+		}
+		
 	}
 	
 	private void initComponents(){
@@ -85,7 +97,7 @@ public class MainFrame extends JFrame {
 		courseTabPanel.setLayout(null);
 		
 		studentList.setBounds(12, 13, 314, 419);
-		list_1.setBounds(12, 13, 314, 421);
+		courseList.setBounds(12, 13, 314, 421);
 		
 		studentTabPanel.add(studentList);
 		btnLggTillStudent.addActionListener(new ActionListener() {
@@ -96,38 +108,52 @@ public class MainFrame extends JFrame {
 		btnLggTillStudent.setBounds(87, 448, 152, 25);
 		
 		studentTabPanel.add(btnLggTillStudent); 
-		courseTabPanel.add(list_1);
+		courseTabPanel.add(courseList);
 		btnLggTillKurs.setBounds(98, 448, 124, 25);
 		
 		courseTabPanel.add(btnLggTillKurs);
 		panel.setBounds(410, 13, 352, 483);
 		contentPane.add(panel);
 		
-		  studentList.addListSelectionListener(new ListSelectionListener() {
+		studentList.addListSelectionListener(new ListSelectionListener() {
 	            public void valueChanged(ListSelectionEvent e) {
 	                studentList_valueChanged(e);
 	                    }
 	                });
+		courseList.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				courseList_valueChanged(e);
+			}
+		});
 
 		
 	}
 	
-	 private void studentList_valueChanged(ListSelectionEvent e){
+	private void studentList_valueChanged(ListSelectionEvent e){
 		 	try{
 		 		openStudent(studentList.getSelectedValue().toString());
 		 	}
 		 	catch(NullPointerException f){
 		 	}
 	    }
+	private void courseList_valueChanged(ListSelectionEvent e){
+		try{
+			openCourse(courseList.getSelectedValue().toString());
+		}
+		catch(NullPointerException f){
+		}
+	}
 	 
 	 private void addStudent(){
 		 openStudent(null);
 	 }
 
 	 private JPanel studentPanel;
+	 private JPanel coursePanel;
 	 private void openStudent(String civic){
 		 try{
 				contentPane.remove(studentPanel);
+				contentPane.remove(coursePanel);
 			}
 			catch(NullPointerException e){
 				
@@ -136,5 +162,18 @@ public class MainFrame extends JFrame {
 		repaint();
 		contentPane.remove(panel);
 		contentPane.add(studentPanel);
+	}
+	 private void openCourse(String id){
+		 try{
+				contentPane.remove(studentPanel);
+				contentPane.remove(coursePanel);
+			}
+			catch(NullPointerException e){
+				
+			}
+		coursePanel = new NewCoursePanel2(con, id, this);
+		repaint();
+		contentPane.remove(panel);
+		contentPane.add(coursePanel);
 	}
 }
