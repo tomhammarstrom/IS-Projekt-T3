@@ -135,6 +135,7 @@ public class ConnectBot{
             s.setString(2,name);
             s.setString(3,description);
             s.setInt(4,points);
+            System.out.println(id + name + description + points);
             temp =  s.executeUpdate();
         }
         
