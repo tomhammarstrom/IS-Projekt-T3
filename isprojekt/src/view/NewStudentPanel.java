@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -106,28 +107,51 @@ public class NewStudentPanel extends JPanel{
 		
 		
 	}
+	
+	private boolean validateInput(){
+		if(con.validateNotNull(civicField.getText())){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	private void addStudent(){
-		try {
-			if(currentStudent == null){
-				con.addStudent(civicField.getText(), nameField.getText(), addressField.getText());
-			}
-			else{
-				con.changeStudent(civicField.getText(), nameField.getText(), addressField.getText());
+		if(validateInput()){
+			int success = 0;
+			try {
+				if(currentStudent == null){
+					success = con.addStudent(civicField.getText(), nameField.getText(), addressField.getText());
+				}
+				else{
+					success = con.changeStudent(civicField.getText(), nameField.getText(), addressField.getText());
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if (success != 0){
+				try {
+					mainFrame.populateList();
+					currentStudent = civicField.getText();
+					existingData();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Studenten finns redan");
+			}
+				}
+		else{
+			JOptionPane.showMessageDialog(null, "Var god fyll i ett personnummer");
 		}
-	try {
-		mainFrame.populateList();
-		currentStudent = civicField.getText();
-		existingData();
 		
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
 	}
 	
 	private void removeStudent(){
