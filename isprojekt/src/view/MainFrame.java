@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane = new JPanel();
 	private JPanel studentTabPanel = new JPanel();
-	private JPanel courseTabPanel = new JPanel();
+	private JPanel courseTabPanel = new JPanel(); 
 	
 	private DefaultListModel studentListModel = new DefaultListModel();
 	
