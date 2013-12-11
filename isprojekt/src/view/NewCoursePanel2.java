@@ -26,6 +26,7 @@ public class NewCoursePanel2 extends JPanel {
 	private JLabel pointsLbl = new JLabel("Poäng");
 	private JLabel descrLbl = new JLabel("Beskrivning");
 	private JButton saveBtn = new JButton("Spara");
+	private JButton deleteBtn = new JButton("Ta bort");
 
 	/**
 	 * Create the panel.
@@ -36,25 +37,30 @@ public class NewCoursePanel2 extends JPanel {
 		this.mainFrame = mainFrame;
 		
 		initComponents();
-		if(currentCourse != null){
+		
 			try {
 				existingData();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+
 		
 	}
+	
 	private void existingData() throws SQLException{
+		if(currentCourse != null){	
+			ResultSet r = con.getCourse(currentCourse);
 		
-		ResultSet r = con.getCourse(currentCourse);
-		
-		while(r.next()){
-			idField.setText(r.getString("id"));
-			nameField.setText(r.getString("name"));
-			pointsField.setText(r.getString("point"));
-			descrField.setText(r.getString("descr"));
+			while(r.next()){
+				idField.setText(r.getString("id"));
+				nameField.setText(r.getString("name"));
+				pointsField.setText(r.getString("point"));
+				descrField.setText(r.getString("descr"));
+			}
+			add(deleteBtn);
+			idField.setEditable(false);
+			repaint();
 		}
 		 
 	}
@@ -87,8 +93,16 @@ public class NewCoursePanel2 extends JPanel {
 				addCourse();
 			}
 		});
-		saveBtn.setBounds(49, 361, 89, 23);		
+		saveBtn.setBounds(288, 480, 89, 23);		
 		add(saveBtn);
+		deleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				deleteCourse();
+			}
+		});
+		deleteBtn.setBounds(12, 479, 97, 25);
+		
+		
 	}
 	private void addCourse(){
 		try {
@@ -102,6 +116,20 @@ public class NewCoursePanel2 extends JPanel {
 		}
 		try {
 			mainFrame.populateList();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void deleteCourse(){
+		try {
+			con.removeCourse(currentCourse);
+			mainFrame.populateList();
+			currentCourse = null;
+			mainFrame.clearPanel();
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
