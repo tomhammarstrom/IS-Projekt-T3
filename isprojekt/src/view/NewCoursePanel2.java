@@ -105,33 +105,47 @@ public class NewCoursePanel2 extends JPanel {
 		
 		
 	}
-	private void addCourse(){
-		int success = 0;
-		try{
-			if(currentCourse == null){
-				success = con.addCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
-			}
-			else{
-				success = con.changeCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
-			}
-		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	private boolean validateInput(){
+		if (con.validateNotNull(idField.getText()) && con.validateNotNull(pointsField.getText()) && con.validateNumbers(pointsField.getText())){
+			return true;
 		}
-		if(success != 0){
-			try {
-				mainFrame.populateList();
-				currentCourse = idField.getText();
-				existingData();
-				
-			} catch (SQLException e) {
+		else{
+			return false;
+		}
+	}
+	private void addCourse(){
+		if(validateInput()){
+			int success = 0;
+			try{
+				if(currentCourse == null){
+					success = con.addCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
+				}
+				else{
+					success = con.changeCourse(idField.getText(), nameField.getText(), descrField.getText(), Integer.parseInt(pointsField.getText()));
+				}
+			}catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			if(success != 0){
+				try {
+					mainFrame.populateList();
+					currentCourse = idField.getText();
+					existingData();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Kurs finns redan");
+			}
 		}
 		else{
-			JOptionPane.showMessageDialog(null, "Kurs finns redan");
+			JOptionPane.showMessageDialog(null, "Var god fyll i ett id och ett poängantal (i siffror)");
 		}
+		
 		
 	}
 	
