@@ -58,7 +58,7 @@ public class ConnectBot{
 
     
     
-    public int addStudent(String civic, String name) throws SQLException {
+    public int addStudent(String civic, String name, String address) throws SQLException {
         Connection con = connect();
         PreparedStatement s = con.prepareStatement("select * from student where civic = ?");
         s.setString(1,civic);
@@ -70,9 +70,10 @@ public class ConnectBot{
             temp = 0;
         }
         else{
-            s = con.prepareStatement("insert into student values(?,?)");
+            s = con.prepareStatement("insert into student values(?,?,?)");
             s.setString(1,civic);
             s.setString(2,name);
+            s.setString(3, address);
             temp =  s.executeUpdate();
         }
         

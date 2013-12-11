@@ -1,4 +1,4 @@
-package tengil;
+	package tengil;
 
 import java.sql.*;
 
@@ -15,8 +15,8 @@ public class Controller {
      * 
      */
     
-    public int addStudent(String civic, String name) throws SQLException {
-        return cb.addStudent(civic, name);
+    public int addStudent(String civic, String name, String address) throws SQLException {
+        return cb.addStudent(civic, name,address);
     }
     
     public int removeStudent(String civic) throws SQLException {
