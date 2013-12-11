@@ -176,7 +176,7 @@ public class MainFrame extends JFrame {
 			catch(NullPointerException e){
 				
 			}
-		 studentPanel = new NewCoursePanel2(con, id, this);
+		 studentPanel = new NewCoursePanel(con, id, this);
 		repaint();
 		contentPane.remove(panel);
 		contentPane.add(studentPanel);

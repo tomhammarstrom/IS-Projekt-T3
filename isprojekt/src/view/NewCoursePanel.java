@@ -14,7 +14,7 @@ import tengil.Controller;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class NewCoursePanel2 extends JPanel {
+public class NewCoursePanel extends JPanel {
 	private Controller con;
 	private String currentCourse; 
 	private MainFrame mainFrame;
@@ -32,7 +32,7 @@ public class NewCoursePanel2 extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NewCoursePanel2(Controller con, String id, MainFrame mainFrame) {
+	public NewCoursePanel(Controller con, String id, MainFrame mainFrame) {
 		this.con = con;
 		currentCourse = id;
 		this.mainFrame = mainFrame;
