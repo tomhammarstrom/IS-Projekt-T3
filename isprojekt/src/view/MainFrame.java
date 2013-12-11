@@ -113,9 +113,11 @@ public class MainFrame extends JFrame {
 	}
 	
 	 private void studentList_valueChanged(ListSelectionEvent e){
-		// 	student.getSelected   sad
-		 	//openStudent(studentList.getSelectedValue().toString());
-		 	
+		 	try{
+		 		openStudent(studentList.getSelectedValue().toString());
+		 	}
+		 	catch(NullPointerException f){
+		 	}
 	    }
 	 
 	 private void addStudent(){
