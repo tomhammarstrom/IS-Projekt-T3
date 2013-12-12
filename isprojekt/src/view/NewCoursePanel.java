@@ -141,7 +141,7 @@ public class NewCoursePanel extends JPanel {
 		
 		btnVisaStudent_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	showStudent("bottom");
+				mainFrame.openStudent(inactiveStudentsList.getSelectedValue().toString());
 			}
 		});
 		
