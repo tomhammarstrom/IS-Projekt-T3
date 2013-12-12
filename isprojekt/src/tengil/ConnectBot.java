@@ -214,14 +214,14 @@ public class ConnectBot{
     
     public int endCourse(String civic, String id, String grade) throws SQLException {
         PreparedStatement s = connect().prepareStatement("delete from studies where pnr = ? and id = ?");
-        s.setString(1, civic);
-        s.setString(2, id);
+        s.setString(1, civic.trim());
+        s.setString(2, id.trim());
         s.executeUpdate();
         
         s = connect().prepareStatement("insert into studies values(?,?,?)");
-        s.setString(1, civic);
-        s.setString(2, id);
-        s.setString(3, grade);
+        s.setString(1, civic.trim());
+        s.setString(2, id.trim());
+        s.setString(3, grade.trim());
         
         return s.executeUpdate();
     }
