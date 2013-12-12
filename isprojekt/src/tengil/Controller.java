@@ -36,6 +36,12 @@ public class Controller {
     public ResultSet getStudents() throws SQLException {
         return cb.getStudents();
     }
+    public ResultSet getFinishedWithCourse(String id)throws SQLException{
+    	return cb.getFinishedWithCourse(id);
+    }
+    public ResultSet getNotFinishedWithCourse(String id)throws SQLException{
+    	return cb.getNotFinishedWithCourse(id);
+    }
     
     /**
      * Kursfunktioner

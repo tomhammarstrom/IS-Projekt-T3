@@ -71,7 +71,16 @@ public class NewCoursePanel extends JPanel {
 				pointsField.setText(r.getString("point"));
 				descrField.setText(r.getString("descr"));
 			}
-			r = con.get
+			r = con.getNotFinishedWithCourse(currentCourse);
+			inactiveStudentsListModel.clear();
+			while (r.next()){
+				inactiveStudentsListModel.addElement(r.getString(1));
+			}
+			r = con.getFinishedWithCourse(currentCourse);
+			activeStudentsListModel.clear();
+			while (r.next()){
+				activeStudentsListModel.addElement(r.getString(1));
+			}
 			add(deleteBtn);
 			idField.setEditable(false);
 			repaint();

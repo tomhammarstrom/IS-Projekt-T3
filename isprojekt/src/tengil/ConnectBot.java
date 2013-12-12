@@ -88,13 +88,13 @@ public class ConnectBot{
         s.setString(1,civic);
         return s.executeUpdate();
     }
-    public ResultSet notFinishedWithCourse (String id)throws SQLException{
+    public ResultSet getNotFinishedWithCourse (String id)throws SQLException{
         PreparedStatement ps = connect().prepareStatement("select pnr from studies where id = ?");
         ps.setString(1, id);            
         ResultSet r = ps.executeQuery();
         return r;
     }
-    public ResultSet finishedWithCourse (String id)throws SQLException{
+    public ResultSet getFinishedWithCourse (String id)throws SQLException{
     	PreparedStatement ps = connect().prepareStatement("select pnr from studied where id = ?");
     	ps.setString(1, id);
     	ResultSet r = ps.executeQuery();
