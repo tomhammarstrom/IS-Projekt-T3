@@ -215,6 +215,17 @@ public class ConnectBot{
     	if(!option){
     		return 0;
     	}
+    	alt = getFinishedCoursesForStudent(civic);
+    	option = false;
+    	while(alt.next()){
+    		if (alt.getString(1).equals(id)){
+    			option = true;
+    		}
+    	}
+    	if(!option){
+    		return 0;
+    	}
+    	
     	int temp = 0;
     	if (isActive(civic)){
 
