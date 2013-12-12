@@ -320,8 +320,13 @@ public class ConnectBot{
                 theRest++;
             }
         }
-        
-        return  a/(a + theRest);
+        try{
+        	return  a/(a + theRest);
+        }
+        catch (ArithmeticException e){
+        	
+        }
+        return 0;
     }
     
     public String highestFlow() throws SQLException {
