@@ -168,10 +168,10 @@ public class ConnectBot{
     	s.setString(1, civic);
     	ResultSet r = s.executeQuery();
     	if (r.next()){
-    		return true;
+    		return false;
     	}
     	else{
-    		return false;
+    		return true;
     	}
     	
     }
