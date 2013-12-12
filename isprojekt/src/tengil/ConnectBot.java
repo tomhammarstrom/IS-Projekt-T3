@@ -218,7 +218,7 @@ public class ConnectBot{
         s.setString(2, id.trim());
         s.executeUpdate();
         
-        s = connect().prepareStatement("insert into studies values(?,?,?)");
+        s = connect().prepareStatement("insert into studied values(?,?,?)");
         s.setString(1, civic.trim());
         s.setString(2, id.trim());
         s.setString(3, grade.trim());
