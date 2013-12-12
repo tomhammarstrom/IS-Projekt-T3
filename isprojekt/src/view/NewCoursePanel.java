@@ -133,13 +133,16 @@ public class NewCoursePanel extends JPanel {
 		add(lblAktifaStudenter);
 		add(lblStudenterKlarr);
 		add(btnVisaStudent_1);
-		
-		
+		float dan = 0;
 		try {
-			numberOfALbl.setText(Float.toString(con.numberOfA(currentCourse)));
-		} catch (SQLException e1) {
+			dan = con.numberOfA(currentCourse);
+		} catch (SQLException e2) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e2.printStackTrace();
+		}
+		try {
+			numberOfALbl.setText("Procent A: " + Float.toString(dan));
+		} catch (ArithmeticException ad){
 		}
 		
 		
