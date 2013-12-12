@@ -4,21 +4,34 @@ import java.sql.*;
     
 public class ConnectBot{
     
-    public ConnectBot() throws SQLException {
-        registerDriver();
+    public ConnectBot(){
+			registerDriver();
     }
+    
     
     /**
      * Generella funktioner
      *
      */
 
-    public void registerDriver() throws SQLException {
-        DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
+    public void registerDriver(){
+        try {
+			DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
+		} catch (SQLException e) {
+			System.out.println("Problem med att ladda driver");
+			e.printStackTrace();
+		}
     }
     
-    public Connection connect() throws SQLException {
-        return DriverManager.getConnection("JDBC:ODBC:isprojekt_cool");
+    public Connection connect() {
+    	Connection con = null;
+        try {
+			con =  DriverManager.getConnection("JDBC:ODBC:isprojekt_cool");
+		} catch (SQLException e) {
+			System.out.println("Problem med att skapa en connection");
+			e.printStackTrace();
+		}
+        return con;
     }
     
     
@@ -27,7 +40,7 @@ public class ConnectBot{
      * 
      */
     
-    public ResultSet getStudent(String civic) throws SQLException {
+    public ResultSet getStudent(String civic) throws SQLException{
     	PreparedStatement ps = connect().prepareStatement("select * from student where pnr = ?");
         ps.setString(1,civic); 
         
