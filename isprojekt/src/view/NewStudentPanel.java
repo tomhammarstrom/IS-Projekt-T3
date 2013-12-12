@@ -306,7 +306,7 @@ public class NewStudentPanel extends JPanel{
 				e.printStackTrace();
 			}
 			if (success == 0){
-				JOptionPane.showMessageDialog(null, "Elev antingen registrerad eller så finns inte kursen");
+				JOptionPane.showMessageDialog(null, "Redan avslutad / registerad / kurs finns ej");
 			}
 		}
 	
