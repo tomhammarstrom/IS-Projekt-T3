@@ -7,13 +7,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JTabbedPane;
+
 import tengil.Controller;
+
 import javax.swing.JList;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 //wazzap
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
@@ -30,6 +34,9 @@ public class MainFrame extends JFrame {
 	
 	private JList<String> studentList = new JList<String>(studentListModel);
 	private JList<String> courseList = new JList<String>(courseListModel);
+	
+	private ArrayList<String> studentRef = new ArrayList<String>();
+	private ArrayList<String> courseRef = new ArrayList<String>();
 	
 	private JButton addStudentButton = new JButton("LEG TILL ELEF");
 	private JButton addCourseButton = new JButton("LEG TILL KURZ");
@@ -53,15 +60,25 @@ public class MainFrame extends JFrame {
 		studentListModel.clear();
 		courseListModel.clear();
 		
+		studentRef.clear();
+		courseRef.clear();
+		
 		ResultSet allStudents = con.getStudents();
 		ResultSet allCourses = con.getCourses();
 		
 		while(allStudents.next()){
-			studentListModel.addElement(allStudents.getString(1));
+			String civ = allStudents.getString(1);
+			String name = allStudents.getString(2);
+			
+			studentRef.add(civ);
+			studentListModel.addElement(civ + ": " + name);
 			
 		}
 		while(allCourses.next()){
-			courseListModel.addElement(allCourses.getString(1));
+			String id = allCourses.getString(1);
+			String name = allCourses.getString(2);
+			courseRef.add(id);
+			courseListModel.addElement(id + ": " + name);
 		}
 		
 	}
@@ -129,20 +146,26 @@ public class MainFrame extends JFrame {
 	
 	//listener för studentlistan
 	private void studentList_valueChanged(ListSelectionEvent e){
-		 	try{
-		 		openStudent(studentList.getSelectedValue().toString());
+		if(studentList.getSelectedValue() != null){
+			try{
+		 		openStudent(studentRef.get(studentList.getSelectedIndex()));
 		 	}
 		 	catch(NullPointerException f){
 		 	}
+		}
+		 	
 	    }
 	
 	//listener för kurslistan
 	private void courseList_valueChanged(ListSelectionEvent e){
-		try{
-			openCourse(courseList.getSelectedValue().toString());
+		if(courseList.getSelectedValue() != null){
+			try{
+				openCourse(courseRef.get(courseList.getSelectedIndex()));
+			}
+			catch(NullPointerException f){
+			}
 		}
-		catch(NullPointerException f){
-		}
+		
 	 }
 	 
 	
