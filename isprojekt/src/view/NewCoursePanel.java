@@ -13,6 +13,7 @@ import tengil.Controller;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
 @SuppressWarnings("serial")
 public class NewCoursePanel extends JPanel {
@@ -31,6 +32,12 @@ public class NewCoursePanel extends JPanel {
 	private JLabel descrLbl = new JLabel("Beskrivning");
 	private JButton saveBtn = new JButton("Spara");
 	private JButton deleteBtn = new JButton("Ta bort");
+	private final JList list = new JList();
+	private final JList list_1 = new JList();
+	private final JLabel lblAktifaStudenter = new JLabel("Aktifa studenter");
+	private final JLabel lblStudenterKlarr = new JLabel("Studenter klarr");
+	private final JButton btnVisaStudent = new JButton("Visa student");
+	private final JButton btnVisaStudent_1 = new JButton("Visa student");
 
 	// konstruktor
 	public NewCoursePanel(Controller con, String id, MainFrame mainFrame) {
@@ -86,6 +93,12 @@ public class NewCoursePanel extends JPanel {
 		pointsLbl.setBounds(49, 143, 46, 14);
 		saveBtn.setBounds(288, 480, 89, 23);
 		deleteBtn.setBounds(12, 479, 97, 25);
+		list.setBounds(489, 33, 280, 188);
+		list_1.setBounds(489, 280, 271, 188);
+		lblAktifaStudenter.setBounds(525, 13, 140, 16);
+		lblStudenterKlarr.setBounds(525, 259, 140, 16);
+		btnVisaStudent.setBounds(564, 221, 128, 25);
+		btnVisaStudent_1.setBounds(568, 479, 124, 25);
 		
 		add(pointsField);		
 		add(idField);		
@@ -96,6 +109,27 @@ public class NewCoursePanel extends JPanel {
 		add(pointsLbl);	
 		add(descrLbl);
 		add(saveBtn);
+		add(btnVisaStudent);
+		
+		
+		add(list);		
+		add(list_1);
+		add(lblAktifaStudenter);
+		add(lblStudenterKlarr);
+		add(btnVisaStudent_1);
+		
+		
+		btnVisaStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			//	showStudent("top");
+			}
+		});
+		
+		btnVisaStudent_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			//	showStudent("bottom");
+			}
+		});
 		
 		saveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
