@@ -117,6 +117,9 @@ public class NewStudentPanel extends JPanel{
 		add(activeCoursesLabel);
 		add(cancelCourseButton);
 		add(gradeComboBox);
+		add(btnKursenMitRegistreiren);
+		add(startNewCourseField);
+		add(startNewCourseLbl);
 		
 		repaint();
 	}
@@ -147,6 +150,8 @@ public class NewStudentPanel extends JPanel{
 		saveBtn.setBounds(280, 478, 97, 25);
 		gradeComboBox.setBounds(706, 223, 46, 22);
 		cancelCourseButton.setBounds(448, 230, 133, 25);
+		btnKursenMitRegistreiren.setBounds(63, 336, 314, 25);
+		startNewCourseLbl.setBounds(63, 387, 132, 14);
 		
 		add(civicField);
 		add(nameField);
@@ -159,16 +164,7 @@ public class NewStudentPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				startNewCourse();
 			}	
-		});
-		btnKursenMitRegistreiren.setBounds(63, 336, 314, 25);
-		
-		add(btnKursenMitRegistreiren);
-		
-		add(startNewCourseField);
-		startNewCourseLbl.setBounds(63, 387, 132, 14);
-		
-		add(startNewCourseLbl);
-		
+		});		
 		
 		cancelCourseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
