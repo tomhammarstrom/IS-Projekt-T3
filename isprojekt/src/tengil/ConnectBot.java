@@ -163,7 +163,7 @@ public class ConnectBot{
      */
     
     private boolean maxPoints(String civic) throws SQLException {
-        PreparedStatement s = connect().prepareStatement("select Sum(points) from course where id in (select courseId from studies_active where civic ='?')");
+        PreparedStatement s = connect().prepareStatement("select Sum(points) from course where id in (select id from studies where pnr ='?')");
         s.setString(1,civic);
         
         if (s.executeQuery().getInt(1) >= 45){
@@ -179,7 +179,7 @@ public class ConnectBot{
         
         if (!maxPoints(civic)){
             Connection con = connect();
-            PreparedStatement s = con.prepareStatement("select * from studies_inactive where courseId = ? and civic = ?");
+            PreparedStatement s = con.prepareStatement("select * from studied where id = ? and pnr = ?");
             s.setString(1,civic);
             s.setString(2, id);
             
@@ -190,7 +190,7 @@ public class ConnectBot{
             }
             
             else{
-                s = con.prepareStatement("select * from studies_active where courseId = ? and civic = ?");
+                s = con.prepareStatement("select * from studies where id = ? and pnr = ?");
                 s.setString(1,civic);
                 s.setString(2, id);
                 
@@ -199,7 +199,7 @@ public class ConnectBot{
                     temp = 0;
                 }
                 else{
-                    s = con.prepareStatement("insert into studies_active values(?,?)");
+                    s = con.prepareStatement("insert into studies values(?,?)");
                     s.setString(1,civic);
                     s.setString(2,id);
 
@@ -213,12 +213,12 @@ public class ConnectBot{
     }
     
     public int endCourse(String civic, String id, String grade) throws SQLException {
-        PreparedStatement s = connect().prepareStatement("delete from studies_active where civic = ? and courseId = ?");
+        PreparedStatement s = connect().prepareStatement("delete from studies where pnr = ? and id = ?");
         s.setString(1, civic);
         s.setString(2, id);
         s.executeUpdate();
         
-        s = connect().prepareStatement("insert into studies_inactive values(?,?,?)");
+        s = connect().prepareStatement("insert into studies values(?,?,?)");
         s.setString(1, civic);
         s.setString(2, id);
         s.setString(3, grade);
@@ -227,7 +227,7 @@ public class ConnectBot{
     }
 
     public int cancelCourse(String civic, String id) throws SQLException {
-        PreparedStatement s = connect().prepareStatement("delete from studies_active where civic = ? and courseId = ?");
+        PreparedStatement s = connect().prepareStatement("delete from studies where pnr = ? and id = ?");
         s.setString(1, civic);
         s.setString(2, id);
         return s.executeUpdate();
@@ -240,7 +240,7 @@ public class ConnectBot{
      */
     
     public ResultSet studentResults(String civic, String id) throws SQLException {
-        PreparedStatement s = connect().prepareStatement("select s.civic, c.grade from student s join studies_inactive c on s.civic = c.civic where s.civic = (select civic from studies_inactive where civic = ? and courseId = ?)");
+        PreparedStatement s = connect().prepareStatement("select s.pnr, c.grade from student s join studied c on s.pnr = c.pnr where s.pnr = (select pnr from studied where pnr = ? and id = ?)");
         s.setString(1, civic);
         s.setString(2, id);
         
@@ -248,21 +248,21 @@ public class ConnectBot{
     }
     
     public ResultSet courseResults(String id) throws SQLException {
-        PreparedStatement s = connect().prepareStatement("select civic, grade from studies_inactive where courseId =?");
+        PreparedStatement s = connect().prepareStatement("select pnr, grade from studied where id =?");
         s.setString(1, id);
         
         return s.executeQuery();
     }
     
     public ResultSet studentsNotDone(String id) throws SQLException {
-        PreparedStatement s = connect().prepareStatement("select civic from studies_active where courseId =?");
+        PreparedStatement s = connect().prepareStatement("select pnr from studies where id =?");
         s.setString(1, id);
         
         return s.executeQuery();
     }
     
     public float numberOfA(String id) throws SQLException {
-        PreparedStatement s = connect().prepareStatement("select grade from studies_inactive where courseId = ?");
+        PreparedStatement s = connect().prepareStatement("select grade from studied where id = ?");
         s.setString(1, id);
         
         ResultSet calc =  s.executeQuery();
@@ -282,7 +282,7 @@ public class ConnectBot{
     }
     
     public String highestFlow() throws SQLException {
-        PreparedStatement s = connect().prepareStatement("select courseId, count(*) as passes from studies_inactive where grade != 'U' group by courseId");
+        PreparedStatement s = connect().prepareStatement("select id, count(*) as passes from studied where grade != 'U' group by id");
         ResultSet calc = s.executeQuery();
         
         String best = null;

@@ -2,15 +2,20 @@ package view;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import tengil.Controller;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JList;
 import javax.swing.JComboBox;
 
@@ -242,6 +247,15 @@ public class NewStudentPanel extends JPanel{
 	// avslutar en kurs och ber användaren sätta ett betyg på den
 	private void finishCourse(){
 		String selectedCourse = activeCoursesList.getSelectedValue();
+		String grade = (String) gradeComboBox.getSelectedItem();
+		
+		try {
+			con.endCourse(currentStudent, selectedCourse, grade);
+			existingData();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
