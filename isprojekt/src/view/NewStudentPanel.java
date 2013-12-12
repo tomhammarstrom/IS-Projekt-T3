@@ -264,42 +264,55 @@ public class NewStudentPanel extends JPanel{
 	
 	// avslutar en kurs och ber användaren sätta ett betyg på den
 	private void finishCourse(){
-		String selectedCourse = activeCoursesList.getSelectedValue();
-		String grade = (String) gradeComboBox.getSelectedItem();
-		
-		try {
-			con.endCourse(currentStudent, selectedCourse, grade);
-			existingData();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(activeCoursesList.getSelectedValue() != null){
+			String selectedCourse = activeCoursesList.getSelectedValue();
+			String grade = (String) gradeComboBox.getSelectedItem();
+			
+			try {
+				con.endCourse(currentStudent, selectedCourse, grade);
+				existingData();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
+	
 	}
 	
 	// avregistrerar från en kurs
 	private void cancelCourse(){
-		String selectedCourse = activeCoursesList.getSelectedValue();
-		
-		try {
-			con.cancelCourse(currentStudent, selectedCourse);
-			existingData();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (activeCoursesList.getSelectedValue() != null){
+			String selectedCourse = activeCoursesList.getSelectedValue();
+			
+			try {
+				con.cancelCourse(currentStudent, selectedCourse);
+				existingData();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
 	}
 	// startar ny kurs för student
 	private void startNewCourse(){
-		int success = 0;
-		try {
-			success = con.startCourse(currentStudent, startNewCourseField.getText());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (!startNewCourseField.getText().equals("")){
+			int success = 0;
+			try {
+				success = con.startCourse(currentStudent, startNewCourseField.getText());
+				existingData();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (success == 0){
+				JOptionPane.showMessageDialog(null, "Redan avslutad / registerad / kurs finns ej");
+			}
 		}
-		if (success == 0){
-			JOptionPane.showMessageDialog(null, "Student är redan registrerad på kurs");
-		}
+	
 	}
+	
+	
+	
+	
 }
