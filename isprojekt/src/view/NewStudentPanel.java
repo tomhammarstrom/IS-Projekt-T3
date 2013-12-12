@@ -300,6 +300,7 @@ public class NewStudentPanel extends JPanel{
 			int success = 0;
 			try {
 				success = con.startCourse(currentStudent, startNewCourseField.getText());
+				existingData();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
