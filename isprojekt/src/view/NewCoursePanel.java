@@ -3,6 +3,7 @@ package view;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -13,6 +14,7 @@ import tengil.Controller;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JList;
 
 @SuppressWarnings("serial")
@@ -32,12 +34,14 @@ public class NewCoursePanel extends JPanel {
 	private JLabel descrLbl = new JLabel("Beskrivning");
 	private JButton saveBtn = new JButton("Spara");
 	private JButton deleteBtn = new JButton("Ta bort");
-	private final JList list = new JList();
-	private final JList list_1 = new JList();
-	private final JLabel lblAktifaStudenter = new JLabel("Aktifa studenter");
-	private final JLabel lblStudenterKlarr = new JLabel("Studenter klarr");
-	private final JButton btnVisaStudent = new JButton("Visa student");
-	private final JButton btnVisaStudent_1 = new JButton("Visa student");
+	private DefaultListModel<String> activeStudentsListModel = new DefaultListModel<String>();
+	private DefaultListModel<String> inactiveStudentsListModel = new DefaultListModel<String>();
+	private JList activeStudentsList = new JList<String>(activeStudentsListModel);
+	private JList inactiveStudentsList = new JList<String>(inactiveStudentsListModel);
+	private JLabel lblAktifaStudenter = new JLabel("Aktifa studenter");
+	private JLabel lblStudenterKlarr = new JLabel("Studenter klarr");
+	private JButton btnVisaStudent = new JButton("Visa student");
+	private JButton btnVisaStudent_1 = new JButton("Visa student");
 
 	// konstruktor
 	public NewCoursePanel(Controller con, String id, MainFrame mainFrame) {
@@ -67,6 +71,7 @@ public class NewCoursePanel extends JPanel {
 				pointsField.setText(r.getString("point"));
 				descrField.setText(r.getString("descr"));
 			}
+			r = con.get
 			add(deleteBtn);
 			idField.setEditable(false);
 			repaint();
@@ -93,8 +98,8 @@ public class NewCoursePanel extends JPanel {
 		pointsLbl.setBounds(49, 143, 46, 14);
 		saveBtn.setBounds(288, 480, 89, 23);
 		deleteBtn.setBounds(12, 479, 97, 25);
-		list.setBounds(489, 33, 280, 188);
-		list_1.setBounds(489, 280, 271, 188);
+		activeStudentsList.setBounds(489, 33, 280, 188);
+		inactiveStudentsList.setBounds(489, 280, 271, 188);
 		lblAktifaStudenter.setBounds(525, 13, 140, 16);
 		lblStudenterKlarr.setBounds(525, 259, 140, 16);
 		btnVisaStudent.setBounds(564, 221, 128, 25);
@@ -112,8 +117,8 @@ public class NewCoursePanel extends JPanel {
 		add(btnVisaStudent);
 		
 		
-		add(list);		
-		add(list_1);
+		add(activeStudentsList);		
+		add(inactiveStudentsList);
 		add(lblAktifaStudenter);
 		add(lblStudenterKlarr);
 		add(btnVisaStudent_1);
