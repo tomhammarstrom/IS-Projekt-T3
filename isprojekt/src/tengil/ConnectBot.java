@@ -159,8 +159,22 @@ public class ConnectBot{
     
     /**
      * Funktioner för att starta/avsluta kurser
+     * @throws SQLException 
      * 
      */
+    
+    private boolean isActive(String civic) throws SQLException{
+    	PreparedStatement s = connect().prepareStatement("select * from studies where pnr = ?");
+    	s.setString(1, civic);
+    	ResultSet r = s.executeQuery();
+    	if (r.next()){
+    		return true;
+    	}
+    	else{
+    		return false;
+    	}
+    	
+    }
     
     private boolean maxPoints(String civic) throws SQLException {
     	boolean ok = true;
@@ -180,40 +194,43 @@ public class ConnectBot{
     }
     
     public int startCourse(String civic, String id) throws SQLException {
-        int temp = 0;
-        
-        if (maxPoints(civic)){
-            Connection con = connect();
-            PreparedStatement s = con.prepareStatement("select * from studied where id = ? and pnr = ?");
-            s.setString(1,civic);
-            s.setString(2, id);
-            
-            
-            if(s.executeQuery().next()){
-                System.out.println("kurs är redan avslutat");
-                temp = 0;
-            }
-            
-            else{
-                s = con.prepareStatement("select * from studies where id = ? and pnr = ?");
+    	int temp = 0;
+    	if (isActive(civic)){
+
+            if (maxPoints(civic)){
+                Connection con = connect();
+                PreparedStatement s = con.prepareStatement("select * from studied where id = ? and pnr = ?");
                 s.setString(1,civic);
                 s.setString(2, id);
                 
+                
                 if(s.executeQuery().next()){
-                    System.out.println("student har redan påbörjat kurs");
+                    System.out.println("kurs är redan avslutat");
                     temp = 0;
                 }
+                
                 else{
-                    s = con.prepareStatement("insert into studies values(?,?)");
+                    s = con.prepareStatement("select * from studies where id = ? and pnr = ?");
                     s.setString(1,civic);
-                    s.setString(2,id);
+                    s.setString(2, id);
+                    
+                    if(s.executeQuery().next()){
+                        System.out.println("student har redan påbörjat kurs");
+                        temp = 0;
+                    }
+                    else{
+                        s = con.prepareStatement("insert into studies values(?,?)");
+                        s.setString(1,civic);
+                        s.setString(2,id);
 
-                    temp =  s.executeUpdate();
+                        temp =  s.executeUpdate();
+                    }
                 }
             }
-        }
-
-
+    	}
+    	else{
+    		temp = 0;
+    	}
         
         return temp;
     }

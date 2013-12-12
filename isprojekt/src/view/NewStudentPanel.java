@@ -291,11 +291,15 @@ public class NewStudentPanel extends JPanel{
 	}
 	// startar ny kurs för student
 	private void startNewCourse(){
+		int success = 0;
 		try {
-			con.startCourse(currentStudent, startNewCourseField.getText());
+			success = con.startCourse(currentStudent, startNewCourseField.getText());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		if (success == 0){
+			JOptionPane.showMessageDialog(null, "Student är redan registrerad på kurs");
 		}
 	}
 }
