@@ -261,6 +261,13 @@ public class NewStudentPanel extends JPanel{
 	
 	// avregistrerar från en kurs
 	private void cancelCourse(){
+		String selectedCourse = activeCoursesList.getSelectedValue();
 		
+		try {
+			con.cancelCourse(currentStudent, selectedCourse);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
