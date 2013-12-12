@@ -13,8 +13,8 @@ import tengil.Controller;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JList;
 
+@SuppressWarnings("serial")
 public class NewCoursePanel extends JPanel {
 	private Controller con;
 	private String currentCourse; 

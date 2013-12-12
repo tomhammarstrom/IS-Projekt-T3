@@ -15,10 +15,6 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-import javax.swing.JLabel;
-
-import java.awt.CardLayout;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -31,11 +27,11 @@ public class MainFrame extends JFrame {
 	private JPanel studentTabPanel = new JPanel();
 	private JPanel courseTabPanel = new JPanel(); 
 	
-	private DefaultListModel studentListModel = new DefaultListModel();
-	private JList studentList = new JList(studentListModel);
+	private DefaultListModel<String> studentListModel = new DefaultListModel<String>();
+	private JList<String> studentList = new JList<String>(studentListModel);
 	
-	private DefaultListModel courseListModel = new DefaultListModel();
-	private JList courseList = new JList(courseListModel);
+	private DefaultListModel<String> courseListModel = new DefaultListModel<String>();
+	private JList<String> courseList = new JList<String>(courseListModel);
 	
 	
 	

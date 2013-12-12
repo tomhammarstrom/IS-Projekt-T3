@@ -72,7 +72,8 @@ public class Validator {
 
         
        
-        private boolean validateLength(String str) {
+        @SuppressWarnings("unused")
+		private boolean validateLength(String str) {
                 if (str.length() == 1) {
                         errorMessage += "Faltet maste vara minst tva bokstaver!";
                         return false;

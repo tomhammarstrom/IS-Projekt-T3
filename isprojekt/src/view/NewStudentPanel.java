@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -19,29 +18,32 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JList;
 
+@SuppressWarnings("serial")
 public class NewStudentPanel extends JPanel{
 	private Controller con;
 	private String currentStudent = null;
-	private String intent = null;
+	private MainFrame mainFrame;
 	
 	private JTextField civicField = new JTextField();
 	private JTextField nameField = new JTextField();
 	private JTextField addressField = new JTextField();
+	
 	private JLabel civicLbl = new JLabel("Personnummer");
 	private JLabel nameLbl = new JLabel("Namn");
 	private JLabel addressLbl = new JLabel("Adress");
-	private final JButton saveBtn = new JButton("Spara");
-	private MainFrame mainFrame;
-	private JButton deleteBtn = new JButton("Ta bort");
-	
-	
-	private JLabel lblAllaKurserHuru = new JLabel("Alla kurser huru elefen studerar");
-	private DefaultListModel activeCoursesModel = new DefaultListModel();
-	private DefaultListModel inactiveCoursesModel = new DefaultListModel();
-	private JList activeCoursesList = new JList(activeCoursesModel);
+	private JLabel currentCoursesLabel = new JLabel("Alla kurser huru elefen studerar");
 	private JLabel lblAfslutatKurz = new JLabel("Afslutat kurz");
-	private JList inactiveCoursesList = new JList(inactiveCoursesModel);
+	
+	private JButton saveBtn = new JButton("Spara");
+	private JButton deleteBtn = new JButton("Ta bort");
 	private JButton btnBetygPls = new JButton("betyg pls");
+	
+	private DefaultListModel<String> activeCoursesModel = new DefaultListModel<String>();
+	private DefaultListModel<String> inactiveCoursesModel = new DefaultListModel<String>();
+	
+	private JList<String> activeCoursesList = new JList<String>(activeCoursesModel);
+	private JList<String> inactiveCoursesList = new JList<String>(inactiveCoursesModel);
+	
 	
 	
 	public NewStudentPanel(Controller con, String civic, MainFrame mainFrame) {
@@ -101,20 +103,16 @@ public class NewStudentPanel extends JPanel{
 		add(btnBetygPls);
 		add(lblAfslutatKurz);
 		add(activeCoursesList);
-		add(lblAllaKurserHuru);
+		add(currentCoursesLabel);
 		repaint();
 	}
 
 	
 
-	
-	
-	private void initComponents(){
-		btnBetygPls.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				finishCourse();
-			}
-		});
+
+	private void initComponents(){		
+		setBounds(397, 13, 810, 516);
+		setLayout(null);
 		
 		addressField.setBounds(176, 160, 201, 22);
 		addressField.setColumns(10);
@@ -125,9 +123,13 @@ public class NewStudentPanel extends JPanel{
 		civicLbl.setBounds(12, 36, 152, 16);
 		nameLbl.setBounds(12, 96, 152, 16);
 		addressLbl.setBounds(12, 163, 152, 16);
-		
-		setBounds(397, 13, 810, 516);
-		setLayout(null);
+		currentCoursesLabel.setBounds(492, 36, 269, 16);
+		activeCoursesList.setBounds(449, 65, 303, 152);		
+		lblAfslutatKurz.setBounds(541, 282, 164, 16);
+		inactiveCoursesList.setBounds(461, 317, 300, 152);
+		btnBetygPls.setBounds(541, 222, 97, 25);
+		deleteBtn.setBounds(12, 478, 97, 25);
+		saveBtn.setBounds(280, 478, 97, 25);
 		
 		add(civicField);
 		add(nameField);
@@ -135,35 +137,26 @@ public class NewStudentPanel extends JPanel{
 		add(civicLbl);
 		add(nameLbl);
 		add(addressLbl);
+		add(saveBtn);
+		
+		
 		saveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				addStudent();
 			}
 		});
-		saveBtn.setBounds(280, 478, 97, 25);
-		
-		add(saveBtn);
-		lblAllaKurserHuru.setBounds(492, 36, 269, 16);
-		
-		
-		activeCoursesList.setBounds(449, 65, 303, 152);
-		
-		
-		lblAfslutatKurz.setBounds(541, 282, 164, 16);
-		
-		
-		inactiveCoursesList.setBounds(461, 317, 300, 152);
-		
-		
-		btnBetygPls.setBounds(541, 222, 97, 25);
-		
-		
+
 		deleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				removeStudent();
 			}
 		});
-		deleteBtn.setBounds(12, 478, 97, 25);
+		
+		btnBetygPls.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishCourse();
+			}
+		});
 		
 		
 	}
