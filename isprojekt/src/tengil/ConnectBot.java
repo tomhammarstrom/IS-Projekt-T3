@@ -5,7 +5,7 @@ import java.sql.*;
 public class ConnectBot{
     
     public ConnectBot() throws SQLException {
-        connectToDatabase();
+        registerDriver();
     }
     
     /**
@@ -13,7 +13,7 @@ public class ConnectBot{
      *
      */
 
-    public void connectToDatabase() throws SQLException {
+    public void registerDriver() throws SQLException {
         DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
     }
     
@@ -28,32 +28,16 @@ public class ConnectBot{
      */
     
     public ResultSet getStudent(String civic) throws SQLException {
-        Connection con = connect();
+    	PreparedStatement ps = connect().prepareStatement("select * from student where pnr = ?");
+        ps.setString(1,civic); 
         
-        PreparedStatement stmnt = con.prepareStatement("select * from student where pnr = ?");
-        stmnt.setString(1,civic); 
-        ResultSet found = stmnt.executeQuery();
-        
-        return found;
+        return ps.executeQuery();
     }
 
     
     public ResultSet getStudents () throws SQLException{
-        //tar emot pnr från gränssnitt
-        
-            Connection c = connect();
-            //vilken databas vi pratar med 
-            
-            PreparedStatement ps = c.prepareStatement("select * from student");
-            //skapar PreparedStatement ps som gör saker via denna connection c eller kopplingen
-            //PreparedStatement ps med ? som vi sedan kan byta ut. where pnr = 'P01', where pnr = ?
-            
-           
-            
-            ResultSet r = ps.executeQuery();
-            //måste spara ResultSetet 
-            
-            return r;
+    	PreparedStatement ps = connect().prepareStatement("select * from student");
+        return ps.executeQuery();
         }
 
     
@@ -63,7 +47,6 @@ public class ConnectBot{
 
     	if(intent.equals("add")){
     		if(getStudent(civic).next()){
-    			System.out.println("Student finns redan");
     			affectedRows = 0;
     		}
     		else{
@@ -88,13 +71,11 @@ public class ConnectBot{
     }
     
     public int removeStudent(String civic) throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("delete from student where pnr = ?");
+        PreparedStatement s = connect().prepareStatement("delete from student where pnr = ?");
         s.setString(1,civic);
-        int temp = s.executeUpdate();
-        
-        return temp;
+        return s.executeUpdate();
     }
+    
     
     /**
      * Kursfunktioner
@@ -102,22 +83,14 @@ public class ConnectBot{
      */
     
     public ResultSet getCourse(String id) throws SQLException {
-        Connection con = connect();
-        
-        PreparedStatement stmnt = con.prepareStatement("select * from course where id = ?");
+        PreparedStatement stmnt = connect().prepareStatement("select * from course where id = ?");
         stmnt.setString(1,id); 
-        ResultSet found = stmnt.executeQuery();
-        
-        return found;
+        return stmnt.executeQuery();
     }
     
     public ResultSet getCourses() throws SQLException {
-        Connection con = connect();
-        
-        PreparedStatement stmnt = con.prepareStatement("select * from course");
-        ResultSet found = stmnt.executeQuery();
-        
-        return found;
+        PreparedStatement stmnt = connect().prepareStatement("select * from course");
+        return stmnt.executeQuery();
     }
     
     public int addCourse(String intent, String id, String name, String description, int points) throws SQLException {
@@ -150,34 +123,26 @@ public class ConnectBot{
        	}
            
            return affectedRows;
-  
     }
     
     public int removeCourse(String id) throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("delete from course where id = ?");
+        PreparedStatement s = connect().prepareStatement("delete from course where id = ?");
         s.setString(1,id);
-        int temp = s.executeUpdate();
-        
-        return temp;
+        return s.executeUpdate();
     }
     
     public ResultSet getCoursesForStudent(String civic) throws SQLException{
-
         PreparedStatement stmnt = connect().prepareStatement("select * from studies where pnr = ?");
         stmnt.setString(1, civic);
-        ResultSet found = stmnt.executeQuery();
-        
-        return found;
+        return stmnt.executeQuery();
     }
     
     public ResultSet getFinishedCoursesForStudent(String civic) throws SQLException{
     	 PreparedStatement stmnt = connect().prepareStatement("select * from studied where pnr = ?");
          stmnt.setString(1, civic);
-         ResultSet found = stmnt.executeQuery();
-         
-         return found;
+         return stmnt.executeQuery();
     }
+    
     
     /**
      * Funktioner för att starta/avsluta kurser
@@ -185,8 +150,7 @@ public class ConnectBot{
      */
     
     private boolean maxPoints(String civic) throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select Sum(points) from course where id in (select courseId from studies_active where civic ='?')");
+        PreparedStatement s = connect().prepareStatement("select Sum(points) from course where id in (select courseId from studies_active where civic ='?')");
         s.setString(1,civic);
         
         if (s.executeQuery().getInt(1) >= 45){
@@ -236,13 +200,12 @@ public class ConnectBot{
     }
     
     public int endCourse(String civic, String id, String grade) throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("delete from studies_active where civic = ? and courseId = ?");
+        PreparedStatement s = connect().prepareStatement("delete from studies_active where civic = ? and courseId = ?");
         s.setString(1, civic);
         s.setString(2, id);
         s.executeUpdate();
         
-        s = con.prepareStatement("insert into studies_inactive values(?,?,?)");
+        s = connect().prepareStatement("insert into studies_inactive values(?,?,?)");
         s.setString(1, civic);
         s.setString(2, id);
         s.setString(3, grade);
@@ -251,8 +214,7 @@ public class ConnectBot{
     }
 
     public int cancelCourse(String civic, String id) throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("delete from studies_active where civic = ? and courseId = ?");
+        PreparedStatement s = connect().prepareStatement("delete from studies_active where civic = ? and courseId = ?");
         s.setString(1, civic);
         s.setString(2, id);
         return s.executeUpdate();
@@ -265,8 +227,7 @@ public class ConnectBot{
      */
     
     public ResultSet studentResults(String civic, String id) throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select s.civic, c.grade from student s join studies_inactive c on s.civic = c.civic where s.civic = (select civic from studies_inactive where civic = ? and courseId = ?)");
+        PreparedStatement s = connect().prepareStatement("select s.civic, c.grade from student s join studies_inactive c on s.civic = c.civic where s.civic = (select civic from studies_inactive where civic = ? and courseId = ?)");
         s.setString(1, civic);
         s.setString(2, id);
         
@@ -274,24 +235,21 @@ public class ConnectBot{
     }
     
     public ResultSet courseResults(String id) throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select civic, grade from studies_inactive where courseId =?");
+        PreparedStatement s = connect().prepareStatement("select civic, grade from studies_inactive where courseId =?");
         s.setString(1, id);
         
         return s.executeQuery();
     }
     
     public ResultSet studentsNotDone(String id) throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select civic from studies_active where courseId =?");
+        PreparedStatement s = connect().prepareStatement("select civic from studies_active where courseId =?");
         s.setString(1, id);
         
         return s.executeQuery();
     }
     
     public float numberOfA(String id) throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select grade from studies_inactive where courseId = ?");
+        PreparedStatement s = connect().prepareStatement("select grade from studies_inactive where courseId = ?");
         s.setString(1, id);
         
         ResultSet calc =  s.executeQuery();
@@ -311,8 +269,7 @@ public class ConnectBot{
     }
     
     public String highestFlow() throws SQLException {
-        Connection con = connect();
-        PreparedStatement s = con.prepareStatement("select courseId, count(*) as passes from studies_inactive where grade != 'U' group by courseId");
+        PreparedStatement s = connect().prepareStatement("select courseId, count(*) as passes from studies_inactive where grade != 'U' group by courseId");
         ResultSet calc = s.executeQuery();
         
         String best = null;
