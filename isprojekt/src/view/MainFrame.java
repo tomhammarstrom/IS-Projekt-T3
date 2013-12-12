@@ -105,7 +105,7 @@ public class MainFrame extends JFrame {
 		});
 		
 		studentList.addListSelectionListener(new ListSelectionListener() {
-	            public void valueChanged(ListSelectionEvent e) {
+	            public void valueChanged(ListSelectionEvent e) { 
 	                studentList_valueChanged(e);
 	                    }
 	                });
