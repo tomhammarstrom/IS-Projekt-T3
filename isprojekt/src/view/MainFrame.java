@@ -146,7 +146,7 @@ public class MainFrame extends JFrame {
 	 }
 
 	 //öppna en existerande student eller skapa en ny
-	 private void openStudent(String civic){
+	 public void openStudent(String civic){
 		 try{
 				contentPane.remove(studentPanel);
 			}
@@ -159,7 +159,7 @@ public class MainFrame extends JFrame {
 	} 
 	 
 	 //öppna eller skapa en kurs
-	 private void openCourse(String id){
+	 public void openCourse(String id){
 		 try{
 				contentPane.remove(studentPanel);
 			}
