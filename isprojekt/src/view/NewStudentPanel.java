@@ -47,14 +47,12 @@ public class NewStudentPanel extends JPanel{
 	private JComboBox<String> gradeComboBox = new JComboBox<String>();
 	private JButton cancelCourseButton = new JButton("Avregisterireriren");
 	private final JButton btnKursenMitRegistreiren = new JButton("Kursen mit REGISTREIREN GEWESEN SEIN");
-	private final JTextField startNewCourseField = new JTextField();
 	private final JLabel startNewCourseLbl = new JLabel("Registrera p\u00E5 kurs (id):");
+	private final JComboBox<String> coursesComboBox = new JComboBox<String>();
 	
 	
 	// Konstruktur
 	public NewStudentPanel(Controller con, String civic, MainFrame mainFrame) {
-		startNewCourseField.setBounds(195, 384, 182, 20);
-		startNewCourseField.setColumns(10);
 		this.con = con;
 		currentStudent = civic;
 		this.mainFrame = mainFrame;
@@ -104,6 +102,13 @@ public class NewStudentPanel extends JPanel{
 				inactiveCoursesModel.addElement(r.getString(2));
 			}
 			
+			r = con.getCourses();
+			coursesComboBox.removeAllItems();
+			
+			while (r.next()){
+				coursesComboBox.addItem(r.getString(1));
+			}
+			
 		}
 	}
 	
@@ -118,8 +123,8 @@ public class NewStudentPanel extends JPanel{
 		add(cancelCourseButton);
 		add(gradeComboBox);
 		add(btnKursenMitRegistreiren);
-		add(startNewCourseField);
 		add(startNewCourseLbl);
+		add(coursesComboBox);
 		
 		repaint();
 	}
@@ -152,6 +157,7 @@ public class NewStudentPanel extends JPanel{
 		cancelCourseButton.setBounds(448, 230, 133, 25);
 		btnKursenMitRegistreiren.setBounds(63, 336, 314, 25);
 		startNewCourseLbl.setBounds(63, 387, 132, 14);
+		coursesComboBox.setBounds(210, 380, 181, 31);
 		
 		add(civicField);
 		add(nameField);
@@ -160,6 +166,8 @@ public class NewStudentPanel extends JPanel{
 		add(nameLbl);
 		add(addressLbl);
 		add(saveBtn);
+		
+		
 		btnKursenMitRegistreiren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				startNewCourse();
@@ -292,10 +300,10 @@ public class NewStudentPanel extends JPanel{
 	}
 	// startar ny kurs för student
 	private void startNewCourse(){
-		if (!startNewCourseField.getText().equals("")){
+		if (coursesComboBox.getSelectedItem() != null){
 			int success = 0;
 			try {
-				success = con.startCourse(currentStudent, startNewCourseField.getText());
+				success = con.startCourse(currentStudent, (String) coursesComboBox.getSelectedItem());
 				existingData();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -307,8 +315,4 @@ public class NewStudentPanel extends JPanel{
 		}
 	
 	}
-	
-	
-	
-	
 }

@@ -174,19 +174,7 @@ public class ConnectBot{
      * 
      */
     
-    private boolean isActive(String civic) throws SQLException{
-    	PreparedStatement s = connect().prepareStatement("select * from studies where pnr = ?");
-    	s.setString(1, civic);
-    	ResultSet r = s.executeQuery();
-    	if (r.next()){
-    		return false;
-    	}
-    	else{
-    		return true;
-    	}
-    	
-    }
-    
+
     private boolean maxPoints(String civic) throws SQLException {
     	boolean ok = true;
         PreparedStatement s = connect().prepareStatement("select Sum(point) from course where id in (select id from studies where pnr = ?)");
@@ -205,33 +193,35 @@ public class ConnectBot{
     }
     
     public int startCourse(String civic, String id) throws SQLException {
-    	ResultSet alt = getCourses();
-    	boolean option = false;
-    	while(alt.next()){
-    		if (alt.getString(1).equals(id)){
-    			option = true;
+    	ResultSet hasFinished = getFinishedCoursesForStudent(civic);
+
+
+    	while(hasFinished.next()){
+    		String comp = hasFinished.getString(1).trim();
+    		if (comp.equals(id)){
+    			return 0;
     		}
     	}
-    	if(!option){
-    		return 0;
-    	}
-    	alt = getFinishedCoursesForStudent(civic);
-    	option = false;
-    	while(alt.next()){
-    		if (alt.getString(1).equals(id)){
-    			option = true;
+    	    	
+    	PreparedStatement s = connect().prepareStatement("select * from studies where pnr = ?");
+    	s.setString(1, civic);
+    	ResultSet isActive = s.executeQuery();
+    	
+    	while(isActive.next()){
+    		String comp = isActive.getString(2).trim();
+    		
+    		if (comp.equals(id.trim())){
+    			return 0;
     		}
     	}
-    	if(!option){
-    		return 0;
-    	}
+
     	
     	int temp = 0;
-    	if (isActive(civic)){
+    	if (true){
 
             if (maxPoints(civic)){
                 Connection con = connect();
-                PreparedStatement s = con.prepareStatement("select * from studied where id = ? and pnr = ?");
+                s = con.prepareStatement("select * from studied where id = ? and pnr = ?");
                 s.setString(1,civic);
                 s.setString(2, id);
                 
