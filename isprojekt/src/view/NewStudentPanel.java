@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class NewStudentPanel extends JPanel{
@@ -38,6 +39,8 @@ public class NewStudentPanel extends JPanel{
 	
 	private JList<String> activeCoursesList = new JList<String>(activeCoursesModel);
 	private JList<String> inactiveCoursesList = new JList<String>(inactiveCoursesModel);
+	private JComboBox<String> gradeComboBox = new JComboBox<String>();
+	private JButton cancelCourseButton = new JButton("Avregisterireriren");
 	
 	
 	// Konstruktur
@@ -59,6 +62,13 @@ public class NewStudentPanel extends JPanel{
 
 	// laddar information om student om den öppnas från listan
 	private void existingData() throws SQLException{
+		gradeComboBox.addItem("A");
+		gradeComboBox.addItem("B");
+		gradeComboBox.addItem("C");
+		gradeComboBox.addItem("D");
+		gradeComboBox.addItem("E");
+		gradeComboBox.addItem("U");
+
 		if(currentStudent != null){
 			civicField.setEditable(false);
 			ResultSet r = con.getStudent(currentStudent);
@@ -95,6 +105,9 @@ public class NewStudentPanel extends JPanel{
 		add(inactiveCoursesLabel);
 		add(activeCoursesList);
 		add(activeCoursesLabel);
+		add(cancelCourseButton);
+		add(gradeComboBox);
+		
 		repaint();
 	}
 
@@ -105,7 +118,7 @@ public class NewStudentPanel extends JPanel{
 		setBounds(397, 13, 810, 516);
 		setLayout(null);
 		setVisible(true);
-		
+
 		addressField.setBounds(176, 160, 201, 22);
 		addressField.setColumns(10);
 		nameField.setBounds(176, 93, 201, 22);
@@ -115,13 +128,15 @@ public class NewStudentPanel extends JPanel{
 		civicLbl.setBounds(12, 36, 152, 16);
 		nameLbl.setBounds(12, 96, 152, 16);
 		addressLbl.setBounds(12, 163, 152, 16);
-		activeCoursesLabel.setBounds(492, 36, 269, 16);
+		activeCoursesLabel.setBounds(447, 36, 269, 16);
 		activeCoursesList.setBounds(449, 65, 303, 152);		
-		inactiveCoursesLabel.setBounds(541, 282, 164, 16);
-		inactiveCoursesList.setBounds(461, 317, 300, 152);
-		finishCourseButton.setBounds(541, 222, 97, 25);
+		inactiveCoursesLabel.setBounds(461, 285, 164, 16);
+		inactiveCoursesList.setBounds(449, 316, 300, 187);
+		finishCourseButton.setBounds(639, 258, 113, 25);
 		deleteBtn.setBounds(12, 478, 97, 25);
 		saveBtn.setBounds(280, 478, 97, 25);
+		gradeComboBox.setBounds(706, 223, 46, 22);
+		cancelCourseButton.setBounds(448, 230, 133, 25);
 		
 		add(civicField);
 		add(nameField);
@@ -131,6 +146,12 @@ public class NewStudentPanel extends JPanel{
 		add(addressLbl);
 		add(saveBtn);
 		
+		
+		cancelCourseButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cancelCourse();
+			}
+		});
 		
 		saveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -220,8 +241,12 @@ public class NewStudentPanel extends JPanel{
 	
 	// avslutar en kurs och ber användaren sätta ett betyg på den
 	private void finishCourse(){
-		// skit
+		String selectedCourse = activeCoursesList.getSelectedValue();
+		
 	}
 	
-
+	// avregistrerar från en kurs
+	private void cancelCourse(){
+		
+	}
 }
