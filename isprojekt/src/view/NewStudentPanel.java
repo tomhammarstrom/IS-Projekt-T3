@@ -296,15 +296,22 @@ public class NewStudentPanel extends JPanel{
 	}
 	// startar ny kurs för student
 	private void startNewCourse(){
-		int success = 0;
-		try {
-			success = con.startCourse(currentStudent, startNewCourseField.getText());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (!startNewCourseField.getText().equals("")){
+			int success = 0;
+			try {
+				success = con.startCourse(currentStudent, startNewCourseField.getText());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (success == 0){
+				JOptionPane.showMessageDialog(null, "Elev antingen registrerad eller så finns inte kursen");
+			}
 		}
-		if (success == 0){
-			JOptionPane.showMessageDialog(null, "Elev antingen registrerad eller så finns inte kursen");
-		}
+	
 	}
+	
+	
+	
+	
 }
