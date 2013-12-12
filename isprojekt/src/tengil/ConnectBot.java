@@ -194,8 +194,7 @@ public class ConnectBot{
     
     public int startCourse(String civic, String id) throws SQLException {
     	ResultSet hasFinished = getFinishedCoursesForStudent(civic);
-
-
+    	
     	while(hasFinished.next()){
     		String comp = hasFinished.getString(1).trim();
     		if (comp.equals(id)){
