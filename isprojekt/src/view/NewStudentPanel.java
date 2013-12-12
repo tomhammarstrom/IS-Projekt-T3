@@ -47,10 +47,14 @@ public class NewStudentPanel extends JPanel{
 	private JComboBox<String> gradeComboBox = new JComboBox<String>();
 	private JButton cancelCourseButton = new JButton("Avregisterireriren");
 	private final JButton btnKursenMitRegistreiren = new JButton("Kursen mit REGISTREIREN GEWESEN SEIN");
+	private final JTextField startNewCourseField = new JTextField();
+	private final JLabel startNewCourseLbl = new JLabel("Registrera p\u00E5 kurs (id):");
 	
 	
 	// Konstruktur
 	public NewStudentPanel(Controller con, String civic, MainFrame mainFrame) {
+		startNewCourseField.setBounds(195, 384, 182, 20);
+		startNewCourseField.setColumns(10);
 		this.con = con;
 		currentStudent = civic;
 		this.mainFrame = mainFrame;
@@ -153,11 +157,17 @@ public class NewStudentPanel extends JPanel{
 		add(saveBtn);
 		btnKursenMitRegistreiren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
+				startNewCourse();
+			}	
 		});
-		btnKursenMitRegistreiren.setBounds(63, 368, 314, 25);
+		btnKursenMitRegistreiren.setBounds(63, 336, 314, 25);
 		
 		add(btnKursenMitRegistreiren);
+		
+		add(startNewCourseField);
+		startNewCourseLbl.setBounds(63, 387, 132, 14);
+		
+		add(startNewCourseLbl);
 		
 		
 		cancelCourseButton.addActionListener(new ActionListener() {
@@ -274,6 +284,15 @@ public class NewStudentPanel extends JPanel{
 		try {
 			con.cancelCourse(currentStudent, selectedCourse);
 			existingData();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	// startar ny kurs för student
+	private void startNewCourse(){
+		try {
+			con.startCourse(currentStudent, startNewCourseField.getText());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
