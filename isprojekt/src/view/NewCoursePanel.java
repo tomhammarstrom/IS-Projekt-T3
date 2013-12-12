@@ -72,14 +72,14 @@ public class NewCoursePanel extends JPanel {
 				descrField.setText(r.getString("descr"));
 			}
 			r = con.getNotFinishedWithCourse(currentCourse);
-			inactiveStudentsListModel.clear();
-			while (r.next()){
-				inactiveStudentsListModel.addElement(r.getString(1));
-			}
-			r = con.getFinishedWithCourse(currentCourse);
 			activeStudentsListModel.clear();
 			while (r.next()){
 				activeStudentsListModel.addElement(r.getString(1));
+			}
+			r = con.getFinishedWithCourse(currentCourse);
+			inactiveStudentsListModel.clear();
+			while (r.next()){
+				inactiveStudentsListModel.addElement(r.getString(1));
 			}
 			add(deleteBtn);
 			idField.setEditable(false);
