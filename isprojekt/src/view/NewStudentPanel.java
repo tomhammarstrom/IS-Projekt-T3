@@ -2,20 +2,15 @@ package view;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-
 import tengil.Controller;
-
 import javax.swing.JButton;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.JList;
 
 @SuppressWarnings("serial")
@@ -31,12 +26,12 @@ public class NewStudentPanel extends JPanel{
 	private JLabel civicLbl = new JLabel("Personnummer");
 	private JLabel nameLbl = new JLabel("Namn");
 	private JLabel addressLbl = new JLabel("Adress");
-	private JLabel currentCoursesLabel = new JLabel("Alla kurser huru elefen studerar");
-	private JLabel lblAfslutatKurz = new JLabel("Afslutat kurz");
+	private JLabel activeCoursesLabel = new JLabel("Alla kurser huru elefen studerar");
+	private JLabel inactiveCoursesLabel = new JLabel("Afslutat kurz");
 	
 	private JButton saveBtn = new JButton("Spara");
 	private JButton deleteBtn = new JButton("Ta bort");
-	private JButton btnBetygPls = new JButton("betyg pls");
+	private JButton finishCourseButton = new JButton("hafa betyg tak");
 	
 	private DefaultListModel<String> activeCoursesModel = new DefaultListModel<String>();
 	private DefaultListModel<String> inactiveCoursesModel = new DefaultListModel<String>();
@@ -45,25 +40,24 @@ public class NewStudentPanel extends JPanel{
 	private JList<String> inactiveCoursesList = new JList<String>(inactiveCoursesModel);
 	
 	
-	
+	// Konstruktur
 	public NewStudentPanel(Controller con, String civic, MainFrame mainFrame) {
 		this.con = con;
 		currentStudent = civic;
 		this.mainFrame = mainFrame;
 		
 		initComponents();
-		setVisible(true);
 		
 		try {
 			existingData();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("problem med att ladda existerande data för student");
 			e.printStackTrace();
 		}
-		}
+	}
 		
 
-	
+	// laddar information om student om den öppnas från listan
 	private void existingData() throws SQLException{
 		if(currentStudent != null){
 			civicField.setEditable(false);
@@ -75,44 +69,42 @@ public class NewStudentPanel extends JPanel{
 				nameField.setText(r.getString("name"));
 				addressField.setText(r.getString("adr"));
 			}
-			r.close();
 			
 			r = con.getCoursesForStudent(currentStudent);
-			
 			activeCoursesModel.clear();
-			
-			r = con.getCoursesForStudent(currentStudent);
 			
 			while(r.next()){
 				activeCoursesModel.addElement(r.getString(2));
-				
 			}
 			
 			inactiveCoursesModel.clear();
 			r = con.getFinishedCoursesForStudent(currentStudent);
+			
 			while(r.next()){
 				inactiveCoursesModel.addElement(r.getString(2));
-				
 			}
+			
 		}
 	}
 	
+	// visar extraknappar för nyskapade eller existerande studenter
 	private void showHiddenComponents(){
 		add(deleteBtn);
 		add(inactiveCoursesList);
-		add(btnBetygPls);
-		add(lblAfslutatKurz);
+		add(finishCourseButton);
+		add(inactiveCoursesLabel);
 		add(activeCoursesList);
-		add(currentCoursesLabel);
+		add(activeCoursesLabel);
 		repaint();
 	}
 
 	
 
-
+	// skapar alla grafiska komponenter, körs av konstruktorn
 	private void initComponents(){		
 		setBounds(397, 13, 810, 516);
 		setLayout(null);
+		setVisible(true);
 		
 		addressField.setBounds(176, 160, 201, 22);
 		addressField.setColumns(10);
@@ -123,11 +115,11 @@ public class NewStudentPanel extends JPanel{
 		civicLbl.setBounds(12, 36, 152, 16);
 		nameLbl.setBounds(12, 96, 152, 16);
 		addressLbl.setBounds(12, 163, 152, 16);
-		currentCoursesLabel.setBounds(492, 36, 269, 16);
+		activeCoursesLabel.setBounds(492, 36, 269, 16);
 		activeCoursesList.setBounds(449, 65, 303, 152);		
-		lblAfslutatKurz.setBounds(541, 282, 164, 16);
+		inactiveCoursesLabel.setBounds(541, 282, 164, 16);
 		inactiveCoursesList.setBounds(461, 317, 300, 152);
-		btnBetygPls.setBounds(541, 222, 97, 25);
+		finishCourseButton.setBounds(541, 222, 97, 25);
 		deleteBtn.setBounds(12, 478, 97, 25);
 		saveBtn.setBounds(280, 478, 97, 25);
 		
@@ -152,7 +144,7 @@ public class NewStudentPanel extends JPanel{
 			}
 		});
 		
-		btnBetygPls.addActionListener(new ActionListener() {
+		finishCourseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishCourse();
 			}
@@ -161,6 +153,7 @@ public class NewStudentPanel extends JPanel{
 		
 	}
 	
+	// körs av addStudent() när man försöker spara för att se till så att det finns ett personnummer
 	private boolean validateInput(){
 		if(con.validateNotNull(civicField.getText())){
 			return true;
@@ -169,9 +162,12 @@ public class NewStudentPanel extends JPanel{
 			return false;
 		}
 	}
+	
+	//lägger till eller uppdaterar en student
 	private void addStudent(){
 		if(validateInput()){
 			int success = 0;
+			
 			try {
 				if(currentStudent == null){
 					success = con.addStudent(civicField.getText(), nameField.getText(), addressField.getText());
@@ -181,7 +177,7 @@ public class NewStudentPanel extends JPanel{
 				}
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				System.out.println("problem med att skapa/uppdatera student");
 				e.printStackTrace();
 			}
 			
@@ -207,6 +203,7 @@ public class NewStudentPanel extends JPanel{
 		
 	}
 	
+	// tar bort en student
 	private void removeStudent(){
 		try {
 			con.removeStudent(currentStudent);
@@ -221,6 +218,7 @@ public class NewStudentPanel extends JPanel{
 		}
 	}
 	
+	// avslutar en kurs och ber användaren sätta ett betyg på den
 	private void finishCourse(){
 		// skit
 	}
