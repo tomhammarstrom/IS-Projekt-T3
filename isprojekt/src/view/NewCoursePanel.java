@@ -42,6 +42,7 @@ public class NewCoursePanel extends JPanel {
 	private JLabel lblStudenterKlarr = new JLabel("Studenter klarr");
 	private JButton btnVisaStudent = new JButton("Visa student");
 	private JButton btnVisaStudent_1 = new JButton("Visa student");
+	private final JLabel numberOfALbl = new JLabel("New label");
 
 	// konstruktor
 	public NewCoursePanel(Controller con, String id, MainFrame mainFrame) {
@@ -113,6 +114,7 @@ public class NewCoursePanel extends JPanel {
 		lblStudenterKlarr.setBounds(525, 259, 140, 16);
 		btnVisaStudent.setBounds(564, 221, 128, 25);
 		btnVisaStudent_1.setBounds(568, 479, 124, 25);
+		numberOfALbl.setBounds(49, 354, 140, 20);
 		
 		add(pointsField);		
 		add(idField);		
@@ -124,13 +126,21 @@ public class NewCoursePanel extends JPanel {
 		add(descrLbl);
 		add(saveBtn);
 		add(btnVisaStudent);
-		
+		add(numberOfALbl);
 		
 		add(activeStudentsList);		
 		add(inactiveStudentsList);
 		add(lblAktifaStudenter);
 		add(lblStudenterKlarr);
 		add(btnVisaStudent_1);
+		
+		
+		try {
+			numberOfALbl.setText(Float.toString(con.numberOfA(currentCourse)));
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		
 		btnVisaStudent.addActionListener(new ActionListener() {
