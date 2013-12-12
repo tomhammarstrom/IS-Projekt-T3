@@ -33,6 +33,7 @@ public class MainFrame extends JFrame {
 	
 	private JButton addStudentButton = new JButton("LEG TILL ELEF");
 	private JButton addCourseButton = new JButton("LEG TILL KURZ");
+	private JButton highestFlowButton = new JButton("St\u00F6rst genom");
 	
 	//konstruktor
 	public MainFrame(Controller con) {
@@ -75,7 +76,8 @@ public class MainFrame extends JFrame {
 		courseList.setBounds(12, 13, 314, 421);
 		addStudentButton.setBounds(87, 448, 152, 25);
 		tabbedPane.setBounds(12, 13, 343, 516);
-		addCourseButton.setBounds(98, 448, 124, 25);
+		addCourseButton.setBounds(186, 447, 124, 25);
+		highestFlowButton.setBounds(12, 447, 124, 25);
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
@@ -91,6 +93,13 @@ public class MainFrame extends JFrame {
 		courseTabPanel.setLayout(null);
 		courseTabPanel.add(courseList);
 		courseTabPanel.add(addCourseButton);
+		courseTabPanel.add(highestFlowButton);
+		
+		highestFlowButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showHighestFlow();
+			}
+		});
 		
 		addStudentButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -175,5 +184,16 @@ public class MainFrame extends JFrame {
 	 public void clearPanel(){
 		 remove(studentPanel);
 		 repaint();
+	 }
+	 
+	 private void showHighestFlow(){
+		try {
+			String best = con.highestFlow();
+			openCourse(best);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
 	 }
 }

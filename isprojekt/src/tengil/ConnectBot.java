@@ -250,9 +250,7 @@ public class ConnectBot{
                 }
             }
     	}
-    	else{
-    		temp = 0;
-    	}
+
         
         return temp;
     }
@@ -334,8 +332,11 @@ public class ConnectBot{
         int value = 0;
         
         while(calc.next()){
-            if (calc.getInt(2) > value){
-                best = calc.getString(1);
+        	String currentString = calc.getString(1);
+        	int current = calc.getInt(2);
+
+            if (current > value){
+                best = currentString;
             }
         }
         
