@@ -264,30 +264,35 @@ public class NewStudentPanel extends JPanel{
 	
 	// avslutar en kurs och ber användaren sätta ett betyg på den
 	private void finishCourse(){
-		String selectedCourse = activeCoursesList.getSelectedValue();
-		String grade = (String) gradeComboBox.getSelectedItem();
-		
-		try {
-			con.endCourse(currentStudent, selectedCourse, grade);
-			existingData();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(activeCoursesList.getSelectedValue() != null){
+			String selectedCourse = activeCoursesList.getSelectedValue();
+			String grade = (String) gradeComboBox.getSelectedItem();
+			
+			try {
+				con.endCourse(currentStudent, selectedCourse, grade);
+				existingData();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
+	
 	}
 	
 	// avregistrerar från en kurs
 	private void cancelCourse(){
-		String selectedCourse = activeCoursesList.getSelectedValue();
-		
-		try {
-			con.cancelCourse(currentStudent, selectedCourse);
-			existingData();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (activeCoursesList.getSelectedValue() != null){
+			String selectedCourse = activeCoursesList.getSelectedValue();
+			
+			try {
+				con.cancelCourse(currentStudent, selectedCourse);
+				existingData();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
 	}
 	// startar ny kurs för student
 	private void startNewCourse(){
@@ -299,7 +304,7 @@ public class NewStudentPanel extends JPanel{
 			e.printStackTrace();
 		}
 		if (success == 0){
-			JOptionPane.showMessageDialog(null, "Student är redan registrerad på kurs");
+			JOptionPane.showMessageDialog(null, "Elev antingen registrerad eller så finns inte kursen");
 		}
 	}
 }
