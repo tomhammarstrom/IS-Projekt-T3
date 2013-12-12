@@ -13,6 +13,8 @@ public class Main {
     	new MainFrame(new Controller()).setVisible(true);
     	
     	//matilda was here
+    	
+    	//johannes också
 
     }
     

@@ -46,6 +46,7 @@ public class NewStudentPanel extends JPanel{
 	private JList<String> inactiveCoursesList = new JList<String>(inactiveCoursesModel);
 	private JComboBox<String> gradeComboBox = new JComboBox<String>();
 	private JButton cancelCourseButton = new JButton("Avregisterireriren");
+	private final JButton btnKursenMitRegistreiren = new JButton("Kursen mit REGISTREIREN GEWESEN SEIN");
 	
 	
 	// Konstruktur
@@ -150,6 +151,13 @@ public class NewStudentPanel extends JPanel{
 		add(nameLbl);
 		add(addressLbl);
 		add(saveBtn);
+		btnKursenMitRegistreiren.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnKursenMitRegistreiren.setBounds(63, 368, 314, 25);
+		
+		add(btnKursenMitRegistreiren);
 		
 		
 		cancelCourseButton.addActionListener(new ActionListener() {
