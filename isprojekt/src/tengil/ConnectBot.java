@@ -165,8 +165,16 @@ public class ConnectBot{
     private boolean maxPoints(String civic) throws SQLException {
         PreparedStatement s = connect().prepareStatement("select Sum(point) from course where id in (select id from studies where pnr ='?')");
         s.setString(1,civic);
-        
-        if (s.executeQuery().getInt(1) >= 45){
+        Integer ba = 0;
+        ba = s.executeQuery().getInt(1);
+        int val = 0;
+        if (ba.equals(null)){
+        	val = 0;
+        }
+        else{
+        	val = s.executeQuery().getInt(1);
+        }
+        if (val >= 45){
             return false;
         }
         else{
@@ -177,7 +185,7 @@ public class ConnectBot{
     public int startCourse(String civic, String id) throws SQLException {
         int temp = 0;
         
-      //  if (maxPoints(civic)){
+        if (maxPoints(civic)){
             Connection con = connect();
             PreparedStatement s = con.prepareStatement("select * from studied where id = ? and pnr = ?");
             s.setString(1,civic);
@@ -206,7 +214,7 @@ public class ConnectBot{
                     temp =  s.executeUpdate();
                 }
             }
-     //   }
+        }
 
         
         return temp;
