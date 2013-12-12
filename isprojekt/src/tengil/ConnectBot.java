@@ -163,23 +163,20 @@ public class ConnectBot{
      */
     
     private boolean maxPoints(String civic) throws SQLException {
-        PreparedStatement s = connect().prepareStatement("select Sum(point) from course where id in (select id from studies where pnr ='?')");
+    	boolean ok = true;
+        PreparedStatement s = connect().prepareStatement("select Sum(point) from course where id in (select id from studies where pnr = ?)");
         s.setString(1,civic);
-        Integer ba = 0;
-        ba = s.executeQuery().getInt(1);
-        int val = 0;
-        if (ba.equals(null)){
-        	val = 0;
+        ResultSet r = s.executeQuery();
+        while(r.next()){
+        	int amount = r.getInt(1);
+        	if (amount >= 45){
+        		ok =  false;
+        	}
+        	else{
+        		ok =  true;
+        	}
         }
-        else{
-        	val = s.executeQuery().getInt(1);
-        }
-        if (val >= 45){
-            return false;
-        }
-        else{
-            return true;
-        }
+		return ok;
     }
     
     public int startCourse(String civic, String id) throws SQLException {
