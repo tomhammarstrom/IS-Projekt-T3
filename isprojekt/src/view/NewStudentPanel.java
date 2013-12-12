@@ -265,6 +265,7 @@ public class NewStudentPanel extends JPanel{
 		
 		try {
 			con.cancelCourse(currentStudent, selectedCourse);
+			existingData();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
