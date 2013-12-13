@@ -291,8 +291,12 @@ public class NewStudentPanel extends JPanel{
 			String selectedCourse = activeCoursesList.getSelectedValue();
 			
 			try {
-				con.cancelCourse(currentStudent, selectedCourse);
-				existingData();
+				int yes = JOptionPane.showConfirmDialog(null, "Avregistrera från " + selectedCourse + "?");
+				if (yes == JOptionPane.YES_OPTION){
+					con.cancelCourse(currentStudent, selectedCourse);
+					existingData();
+				}
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
