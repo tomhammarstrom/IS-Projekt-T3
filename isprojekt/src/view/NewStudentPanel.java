@@ -97,15 +97,22 @@ public class NewStudentPanel extends JPanel{
 			activeCoursesModel.clear();
 			
 			while(r.next()){
+				String id = r.getString(2);
+				String name = r.getString(3);
 				
-				activeCoursesModel.addElement(r.getString(2));
+				activeCoursesModel.addElement(id + ": " + name);
+				activeCoursesRef.add(id);
 			}
 			
 			inactiveCoursesModel.clear();
 			r = con.getFinishedCoursesForStudent(currentStudent);
 			
 			while(r.next()){
-				inactiveCoursesModel.addElement(r.getString(2));
+				String id = r.getString(2);
+				String name = r.getString(3);
+				String grade = r.getString(4);
+				inactiveCoursesModel.addElement(id + ": " + name + " Betyg: (" + grade + ")");
+				inactiveCoursesRef.add(id);
 			}
 			
 			r = con.getCourses();
