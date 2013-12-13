@@ -3,6 +3,7 @@ package view;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -37,6 +38,9 @@ public class MainFrame extends JFrame {
 	
 	private ArrayList<String> studentRef = new ArrayList<String>();
 	private ArrayList<String> courseRef = new ArrayList<String>();
+	
+	JScrollPane studentScroll = new JScrollPane();
+	JScrollPane courseScroll = new JScrollPane();
 	
 	private JButton addStudentButton = new JButton("LEG TILL ELEF");
 	private JButton addCourseButton = new JButton("LEG TILL KURZ");
@@ -95,6 +99,9 @@ public class MainFrame extends JFrame {
 		tabbedPane.setBounds(12, 13, 343, 516);
 		addCourseButton.setBounds(186, 431, 124, 41);
 		highestFlowButton.setBounds(12, 424, 124, 48);
+		
+		studentScroll.setViewportView(studentList);
+		courseScroll.setViewportView(courseList);
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
