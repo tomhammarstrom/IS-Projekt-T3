@@ -64,19 +64,19 @@ public class ConnectBot{
     		}
     		else{
     			PreparedStatement s = connect().prepareStatement("insert into student values(?,?,?)");
-                s.setString(1,civic.replaceAll("\\s+", " AND "));
-                s.setString(2,name.trim()); 	
-                s.setString(3, address.trim());
+                s.setString(1,civic);
+                s.setString(2,name); 	
+                s.setString(3, address);
                 affectedRows =  s.executeUpdate();
     		}	
     	}
     	
     	else if (intent.equals("change")){
     		PreparedStatement s = connect().prepareStatement("update student set pnr = ?, name = ?, adr = ? where pnr = ?");
-            s.setString(1,civic.replaceAll("\\s+", " AND "));
-            s.setString(2,name.trim());
-            s.setString(3,address.trim());
-            s.setString(4,civic.trim());
+            s.setString(1,civic);
+            s.setString(2,name);
+            s.setString(3,address);
+            s.setString(4,civic);
             affectedRows =  s.executeUpdate();
     	}
         
@@ -127,10 +127,10 @@ public class ConnectBot{
        		}
        		else{
        			PreparedStatement s = connect().prepareStatement("insert into course values(?,?,?,?)");
-       		 	s.setString(1,id.replaceAll("\\s+", " AND "));
-       		 	s.setString(2,name.trim());
+       		 	s.setString(1,id);
+       		 	s.setString(2,name);
        		 	s.setInt(3,points);
-       		 	s.setString(4,description.trim());
+       		 	s.setString(4,description);
              
              affectedRows =  s.executeUpdate();
        		}	
@@ -138,11 +138,11 @@ public class ConnectBot{
        	
        	else if (intent.equals("change")){
        		PreparedStatement s = connect().prepareStatement("update course set id = ?, name = ?, point = ?, descr = ? where id = ?");
-            s.setString(1,id.replaceAll("\\s+", " AND "));
-            s.setString(2,name.trim());
+            s.setString(1,id);
+            s.setString(2,name);
             s.setInt(3,points);
-            s.setString(4,description.trim());
-            s.setString(5,id.trim());
+            s.setString(4,description);
+            s.setString(5,id);
             affectedRows =  s.executeUpdate();
        	}
            
@@ -196,8 +196,8 @@ public class ConnectBot{
     	ResultSet hasFinished = getFinishedCoursesForStudent(civic);
     	
     	while(hasFinished.next()){
-    		String comp = hasFinished.getString(2).trim();
-    		id = id.trim();
+    		String comp = hasFinished.getString(2);
+    		id = id;
     		if (comp.equals(id)){
     			return 0;
     		}
@@ -208,9 +208,9 @@ public class ConnectBot{
     	ResultSet isActive = s.executeQuery();
     	
     	while(isActive.next()){
-    		String comp = isActive.getString(2).trim();
+    		String comp = isActive.getString(2);
     		
-    		if (comp.equals(id.trim())){
+    		if (comp.equals(id)){
     			return 0;
     		}
     	}
@@ -257,14 +257,14 @@ public class ConnectBot{
     
     public int endCourse(String civic, String id, String grade) throws SQLException {
         PreparedStatement s = connect().prepareStatement("delete from studies where pnr = ? and id = ?");
-        s.setString(1, civic.trim());
-        s.setString(2, id.trim());
+        s.setString(1, civic);
+        s.setString(2, id);
         s.executeUpdate();
         
         s = connect().prepareStatement("insert into studied values(?,?,?)");
-        s.setString(1, civic.trim());
-        s.setString(2, id.trim());
-        s.setString(3, grade.trim());
+        s.setString(1, civic);
+        s.setString(2, id);
+        s.setString(3, grade);
         
         return s.executeUpdate();
     }
