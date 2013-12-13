@@ -36,6 +36,7 @@ public class NewStudentPanel extends JPanel{
 	private JLabel activeCoursesLabel = new JLabel("Pågående kurser");
 	private JLabel inactiveCoursesLabel = new JLabel("Avslutade kurser");
 	private JLabel startNewCourseLbl = new JLabel("Välj kurs:");
+	private JLabel gradeLabel = new JLabel("Betyg:");
 	
 	private JButton saveBtn = new JButton("Spara");
 	private JButton deleteBtn = new JButton("Ta bort");
@@ -54,6 +55,7 @@ public class NewStudentPanel extends JPanel{
 	private ArrayList<String> activeCoursesRef = new ArrayList<String>();
 	private ArrayList<String> inactiveCoursesRef = new ArrayList<String>();
 	private ArrayList<String> startNewCourseRef = new ArrayList<String>();
+	
 	
 	
 	// Konstruktur
@@ -142,6 +144,7 @@ public class NewStudentPanel extends JPanel{
 		add(startNewCourseButton);
 		add(startNewCourseLbl);
 		add(coursesComboBox);
+		add(gradeLabel);
 		
 		repaint();
 	}
@@ -175,6 +178,7 @@ public class NewStudentPanel extends JPanel{
 		startNewCourseButton.setBounds(23, 388, 164, 25);
 		startNewCourseLbl.setBounds(23, 318, 132, 14);
 		coursesComboBox.setBounds(12, 345, 181, 31);
+		gradeLabel.setBounds(621, 207, 56, 16);
 		
 		add(civicField);
 		add(nameField);
