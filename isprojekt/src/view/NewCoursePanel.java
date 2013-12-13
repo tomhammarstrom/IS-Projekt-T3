@@ -102,7 +102,7 @@ public class NewCoursePanel extends JPanel {
 				inactiveStudentsListModel.addElement(id + ": " + name);
 				inactiveStudentsRef.add(civic);
 			}
-			add(deleteBtn);
+			showHiddenComponents();
 			idField.setEditable(false);
 			repaint();
 		}
@@ -145,15 +145,6 @@ public class NewCoursePanel extends JPanel {
 		add(pointsLbl);	
 		add(descrLbl);
 		add(saveBtn);
-		add(showActiveStudentsButton);
-		add(numberOfALbl);
-		
-		add(activeStudentsList);		
-		add(inactiveStudentsList);
-		add(activeStudentsLbl);
-		add(inactiveStudentsLbl);
-		add(showInactiveStudentsButton);
-		
 		
 		textForNumberOfALabel();
 		
@@ -182,6 +173,19 @@ public class NewCoursePanel extends JPanel {
 			}
 		});
 		
+	}
+	
+	private void showHiddenComponents(){
+		add(activeStudentsList);		
+		add(inactiveStudentsList);
+		add(activeStudentsLbl);
+		add(inactiveStudentsLbl);
+		add(showInactiveStudentsButton);
+		add(deleteBtn);
+		add(showActiveStudentsButton);
+		add(numberOfALbl);
+		
+		repaint();
 	}
 	
 	private void textForNumberOfALabel(){
