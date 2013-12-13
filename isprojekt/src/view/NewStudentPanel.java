@@ -119,7 +119,11 @@ public class NewStudentPanel extends JPanel{
 			coursesComboBox.removeAllItems();
 			
 			while (r.next()){
-				coursesComboBox.addItem(r.getString(1));
+				String id = r.getString(1);
+				String name = r.getString(2);
+				int points = r.getInt(3);
+				coursesComboBox.addItem(id + ": " + name + " (" + points + "p)");
+				startNewCourseRef.add(id);
 			}
 			
 		}
@@ -282,7 +286,7 @@ public class NewStudentPanel extends JPanel{
 	// avslutar en kurs och ber användaren sätta ett betyg på den
 	private void finishCourse(){
 		if(activeCoursesList.getSelectedValue() != null){
-			String selectedCourse = activeCoursesList.getSelectedValue();
+			String selectedCourse = activeCoursesRef.get(activeCoursesList.getSelectedIndex());
 			String grade = (String) gradeComboBox.getSelectedItem();
 			
 			int yes = JOptionPane.showConfirmDialog(null, "Avsluta kurs \"" + selectedCourse + "\" med betyg " + grade + "?");
@@ -303,7 +307,7 @@ public class NewStudentPanel extends JPanel{
 	// avregistrerar från en kurs
 	private void cancelCourse(){
 		if (activeCoursesList.getSelectedValue() != null){
-			String selectedCourse = activeCoursesList.getSelectedValue();
+			String selectedCourse = activeCoursesRef.get(activeCoursesList.getSelectedIndex());
 			int yes = JOptionPane.showConfirmDialog(null, "Avregistrera från \"" + selectedCourse + "\"?");
 			
 			if (yes == JOptionPane.YES_OPTION){
@@ -327,7 +331,7 @@ public class NewStudentPanel extends JPanel{
 		if (coursesComboBox.getSelectedItem() != null){
 			int success = 0;
 			try {
-				success = con.startCourse(currentStudent, (String) coursesComboBox.getSelectedItem());
+				success = con.startCourse(currentStudent, (String) startNewCourseRef.get(coursesComboBox.getSelectedIndex()));
 				existingData();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
