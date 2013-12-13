@@ -88,9 +88,9 @@ public class NewStudentPanel extends JPanel{
 			showHiddenComponents();
 			
 			while(r.next()){
-				civicField.setText(r.getString("pnr"));
-				nameField.setText(r.getString("name"));
-				addressField.setText(r.getString("adr"));
+				civicField.setText(r.getString("pnr").trim());
+				nameField.setText(r.getString("name").trim());
+				addressField.setText(r.getString("adr").trim());
 			}
 			
 			r = con.getCoursesForStudent(currentStudent);
@@ -111,7 +111,7 @@ public class NewStudentPanel extends JPanel{
 				String id = r.getString(2).trim();
 				String name = r.getString(3).trim();
 				String grade = r.getString(4).trim();
-				inactiveCoursesModel.addElement(id + ": " + name + " Betyg: (" + grade + ")");
+				inactiveCoursesModel.addElement(id + ": " + name + " - Betyg: (" + grade + ")");
 				inactiveCoursesRef.add(id);
 			}
 			
@@ -287,9 +287,10 @@ public class NewStudentPanel extends JPanel{
 	private void finishCourse(){
 		if(activeCoursesList.getSelectedValue() != null){
 			String selectedCourse = activeCoursesRef.get(activeCoursesList.getSelectedIndex());
+			String fullName = activeCoursesList.getSelectedValue();
 			String grade = (String) gradeComboBox.getSelectedItem();
 			
-			int yes = JOptionPane.showConfirmDialog(null, "Avsluta kurs \"" + selectedCourse + "\" med betyg " + grade + "?");
+			int yes = JOptionPane.showConfirmDialog(null, "Avsluta kurs \"" + fullName + "\" med betyg " + grade + "?");
 			if (yes == JOptionPane.YES_OPTION){
 				try {
 					con.endCourse(currentStudent, selectedCourse, grade);
@@ -308,7 +309,9 @@ public class NewStudentPanel extends JPanel{
 	private void cancelCourse(){
 		if (activeCoursesList.getSelectedValue() != null){
 			String selectedCourse = activeCoursesRef.get(activeCoursesList.getSelectedIndex());
-			int yes = JOptionPane.showConfirmDialog(null, "Avregistrera från \"" + selectedCourse + "\"?");
+			String fullName = activeCoursesList.getSelectedValue();
+			
+			int yes = JOptionPane.showConfirmDialog(null, "Avregistrera från \"" + fullName + "\"?");
 			
 			if (yes == JOptionPane.YES_OPTION){
 				try {
