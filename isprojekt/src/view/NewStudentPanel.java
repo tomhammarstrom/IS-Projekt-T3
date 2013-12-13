@@ -274,13 +274,17 @@ public class NewStudentPanel extends JPanel{
 			String selectedCourse = activeCoursesList.getSelectedValue();
 			String grade = (String) gradeComboBox.getSelectedItem();
 			
-			try {
-				con.endCourse(currentStudent, selectedCourse, grade);
-				existingData();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			int yes = JOptionPane.showConfirmDialog(null, "Avsluta kurs \"" + selectedCourse + "\" med betyg " + grade + "?");
+			if (yes == JOptionPane.YES_OPTION){
+				try {
+					con.endCourse(currentStudent, selectedCourse, grade);
+					existingData();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+			
 		}
 	
 	}
@@ -289,21 +293,24 @@ public class NewStudentPanel extends JPanel{
 	private void cancelCourse(){
 		if (activeCoursesList.getSelectedValue() != null){
 			String selectedCourse = activeCoursesList.getSelectedValue();
+			int yes = JOptionPane.showConfirmDialog(null, "Avregistrera från \"" + selectedCourse + "\"?");
 			
-			try {
-				int yes = JOptionPane.showConfirmDialog(null, "Avregistrera från " + selectedCourse + "?");
-				if (yes == JOptionPane.YES_OPTION){
+			if (yes == JOptionPane.YES_OPTION){
+				try {
 					con.cancelCourse(currentStudent, selectedCourse);
 					existingData();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
+			
 		}
 		
 	}
+	
+	
 	// startar ny kurs för student
 	private void startNewCourse(){
 		if (coursesComboBox.getSelectedItem() != null){
