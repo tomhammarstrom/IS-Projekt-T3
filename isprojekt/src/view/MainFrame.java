@@ -41,8 +41,8 @@ public class MainFrame extends JFrame {
 	JScrollPane studentScroll = new JScrollPane();
 	JScrollPane courseScroll = new JScrollPane();
 	
-	private JButton addStudentButton = new JButton("LEG TILL ELEF");
-	private JButton addCourseButton = new JButton("LEG TILL KURZ");
+	private JButton addStudentButton = new JButton("Ny student");
+	private JButton addCourseButton = new JButton("Ny kurs");
 	private JButton highestFlowButton = new JButton("Kurs med störst genomströmning");
 	
 	//konstruktor
