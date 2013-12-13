@@ -97,8 +97,8 @@ public class NewStudentPanel extends JPanel{
 			activeCoursesModel.clear();
 			
 			while(r.next()){
-				String id = r.getString(2);
-				String name = r.getString(3);
+				String id = r.getString(2).trim();
+				String name = r.getString(3).trim();
 				
 				activeCoursesModel.addElement(id + ": " + name);
 				activeCoursesRef.add(id);
@@ -108,9 +108,9 @@ public class NewStudentPanel extends JPanel{
 			r = con.getFinishedCoursesForStudent(currentStudent);
 			
 			while(r.next()){
-				String id = r.getString(2);
-				String name = r.getString(3);
-				String grade = r.getString(4);
+				String id = r.getString(2).trim();
+				String name = r.getString(3).trim();
+				String grade = r.getString(4).trim();
 				inactiveCoursesModel.addElement(id + ": " + name + " Betyg: (" + grade + ")");
 				inactiveCoursesRef.add(id);
 			}
@@ -119,8 +119,8 @@ public class NewStudentPanel extends JPanel{
 			coursesComboBox.removeAllItems();
 			
 			while (r.next()){
-				String id = r.getString(1);
-				String name = r.getString(2);
+				String id = r.getString(1).trim();
+				String name = r.getString(2).trim();
 				int points = r.getInt(3);
 				coursesComboBox.addItem(id + ": " + name + " (" + points + "p)");
 				startNewCourseRef.add(id);
