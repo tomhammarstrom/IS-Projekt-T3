@@ -2,6 +2,7 @@ package view;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -48,9 +49,11 @@ public class NewStudentPanel extends JPanel{
 	private JList<String> activeCoursesList = new JList<String>(activeCoursesModel);
 	private JList<String> inactiveCoursesList = new JList<String>(inactiveCoursesModel);
 	private JComboBox<String> gradeComboBox = new JComboBox<String>();
-	
-	
 	private JComboBox<String> coursesComboBox = new JComboBox<String>();
+	
+	private ArrayList<String> activeCoursesRef = new ArrayList<String>();
+	private ArrayList<String> inactiveCoursesRef = new ArrayList<String>();
+	private ArrayList<String> startNewCourseRef = new ArrayList<String>();
 	
 	
 	// Konstruktur
@@ -94,6 +97,7 @@ public class NewStudentPanel extends JPanel{
 			activeCoursesModel.clear();
 			
 			while(r.next()){
+				
 				activeCoursesModel.addElement(r.getString(2));
 			}
 			

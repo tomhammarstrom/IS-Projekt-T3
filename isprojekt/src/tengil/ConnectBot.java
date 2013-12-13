@@ -156,7 +156,7 @@ public class ConnectBot{
     }
     
     public ResultSet getCoursesForStudent(String civic) throws SQLException{
-        PreparedStatement stmnt = connect().prepareStatement("select * from studies where pnr = ?");
+        PreparedStatement stmnt = connect().prepareStatement("select a.pnr, a.id, b.name from studies a join course b on a.id = b.id where a.pnr = ?");
         stmnt.setString(1, civic);
         return stmnt.executeQuery();
     }
