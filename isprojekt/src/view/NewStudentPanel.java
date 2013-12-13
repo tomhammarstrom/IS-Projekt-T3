@@ -338,14 +338,14 @@ public class NewStudentPanel extends JPanel{
 		if (coursesComboBox.getSelectedItem() != null){
 			int success = 0;
 			try {
-				success = con.startCourse(currentStudent, (String) startNewCourseRef.get(coursesComboBox.getSelectedIndex()));
+				success = con.startCourse(currentStudent, startNewCourseRef.get(coursesComboBox.getSelectedIndex()));
 				existingData();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if (success == 0){
-				JOptionPane.showMessageDialog(null, "Redan avslutad / registerad / kurs finns ej");
+				JOptionPane.showMessageDialog(null, "Redan avslutad / registerad");
 			}
 		}
 	

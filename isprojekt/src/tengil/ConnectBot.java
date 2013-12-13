@@ -196,9 +196,10 @@ public class ConnectBot{
     	ResultSet hasFinished = getFinishedCoursesForStudent(civic);
     	
     	while(hasFinished.next()){
-    		String comp = hasFinished.getString(2);
+    		String comp = hasFinished.getString(2).trim();
     		id = id.trim();
     		if (comp.equals(id)){
+    			System.out.println("1");
     			return 0;
     		}
     	}
