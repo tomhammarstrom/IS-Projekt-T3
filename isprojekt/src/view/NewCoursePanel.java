@@ -71,10 +71,10 @@ public class NewCoursePanel extends JPanel {
 			ResultSet r = con.getCourse(currentCourse);
 		
 			while(r.next()){
-				idField.setText(r.getString("id"));
-				nameField.setText(r.getString("name"));
+				idField.setText(r.getString("id").trim());
+				nameField.setText(r.getString("name").trim());
 				pointsField.setText(r.getString("point"));
-				descrField.setText(r.getString("descr"));
+				descrField.setText(r.getString("descr").trim());
 			}
 			r = con.getNotFinishedWithCourse(currentCourse);
 			activeStudentsListModel.clear();
