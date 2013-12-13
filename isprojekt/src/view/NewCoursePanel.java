@@ -258,13 +258,13 @@ public class NewCoursePanel extends JPanel {
 	private void showStudent(String list){
 		if(list.equals("active")){
 			if(activeStudentsList.getSelectedValue() != null){
-				mainFrame.openStudent(activeStudentsList.getSelectedValue().toString());
+				mainFrame.openStudent(activeStudentsRef.get(activeStudentsList.getSelectedIndex()));
 			}
 		}
 		
 		else if (list.equals("inactive")){
 			if(inactiveStudentsList.getSelectedValue() != null){
-				mainFrame.openStudent(inactiveStudentsList.getSelectedValue().toString());
+				mainFrame.openStudent(inactiveStudentsRef.get(inactiveStudentsList.getSelectedIndex()));
 			}
 			
 		}
