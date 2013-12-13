@@ -33,9 +33,9 @@ public class NewCoursePanel extends JPanel {
 	private JLabel nameLbl = new JLabel("Namn");
 	private JLabel pointsLbl = new JLabel("Poäng");
 	private JLabel descrLbl = new JLabel("Beskrivning");
-	private JLabel activeStudentsLbl = new JLabel("Aktifa studenter");
-	private JLabel inactiveStudentsLbl = new JLabel("Studenter klarr");
-	private JLabel numberOfALbl = new JLabel("New label");
+	private JLabel activeStudentsLbl = new JLabel("Aktiva studenter");
+	private JLabel inactiveStudentsLbl = new JLabel("Examinerade studenter");
+	private JLabel numberOfALbl = new JLabel();
 	
 	private DefaultListModel<String> activeStudentsListModel = new DefaultListModel<String>();
 	private DefaultListModel<String> inactiveStudentsListModel = new DefaultListModel<String>();
@@ -130,11 +130,11 @@ public class NewCoursePanel extends JPanel {
 		deleteBtn.setBounds(12, 479, 97, 25);
 		activeStudentsList.setBounds(489, 33, 280, 188);
 		inactiveStudentsList.setBounds(489, 280, 271, 188);
-		activeStudentsLbl.setBounds(525, 13, 140, 16);
-		inactiveStudentsLbl.setBounds(525, 259, 140, 16);
+		activeStudentsLbl.setBounds(552, 13, 140, 16);
+		inactiveStudentsLbl.setBounds(552, 259, 140, 16);
 		showActiveStudentsButton.setBounds(564, 221, 128, 25);
 		showInactiveStudentsButton.setBounds(568, 479, 124, 25);
-		numberOfALbl.setBounds(49, 354, 140, 20);
+		numberOfALbl.setBounds(57, 353, 140, 20);
 		
 		add(pointsField);		
 		add(idField);		
