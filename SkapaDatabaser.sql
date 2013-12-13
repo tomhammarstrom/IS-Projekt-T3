@@ -1,45 +1,24 @@
-create table student(
-civic varchar(20) not null, 
-name varchar(20), 
-constraint student_pk PRIMARY KEY(civic)
-)
+create table student (
+pnr varchar (20) primary key,
+name varchar (50),
+adr varchar (50))
 
-create table course(
-id varchar(20) not null, 
-name varchar(20), 
-contents varchar(100),
-points int not null,
-constraint course_pk PRIMARY KEY(id)
-)
+create table course (
+id varchar (20) primary key,
+name varchar (50),
+point int,
+descr varchar (100))
 
-create table studies_active(
-civic varchar(20) not null, 
-courseId varchar(20) not null, 
-constraint active_pk PRIMARY KEY(civic,courseId),
-constraint active_fk1 FOREIGN KEY(civic) references student(civic) on delete cascade,
-constraint active_fk2 FOREIGN KEY(courseId) references course(id) on delete cascade
-)
+create table studies (
+pnr varchar (20),
+id varchar (20),
+constraint _studies_pk primary key (pnr, id),
+constraint studies_student_fk foreign key (pnr) references student(pnr) on delete cascade,
+constraint studies_course_fk foreign key (id) references course(id) on delete cascade)
 
-create table studies_inactive(
-civic varchar(20) not null, 
-courseId varchar(20) not null, 
-grade char, 
-constraint inactive_pk PRIMARY KEY(civic,courseId), 
-constraint inactive_fk1 FOREIGN KEY(civic) references student(civic) on delete cascade,
-constraint inactive_fk2 FOREIGN KEY(courseId) references course(id) on delete cascade
-)
-
-
-insert into student values('111', 'AAAName')
-insert into student values('222', 'BBBName')
-insert into student values('333', 'CCCName')
-
-insert into course values('KursKodA01', 'KursNameAAA', 'Rolig kurs', 10)
-insert into course values('KursKodB02', 'KursNameBBB', 'Trakig kurs', 20)
-insert into course values('KursKodC03', 'KursNameCCC', 'Ambivalent kurs', 30)
-
-insert into studies_active values('111', 'KursKodA01')
-insert into studies_active values('222', 'KursKodB02')
-
-insert into studies_inactive values('333', 'KursKodC03', 'A')
-insert into studies_inactive values('222', 'KursKodC03', 'D')
+create table studied (
+pnr varchar (20),
+id varchar (20),
+grade varchar (1), constraint __studies_pk primary key (pnr, id),
+constraint studied_student_fk foreign key (pnr) references student(pnr) on delete cascade,
+constraint studied_course_fk foreign key (id) references course(id) on delete cascade)
