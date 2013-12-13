@@ -2,6 +2,7 @@ package view;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -42,6 +43,9 @@ public class NewCoursePanel extends JPanel {
 	private JList<String> activeStudentsList = new JList<String>(activeStudentsListModel);
 	private JList<String> inactiveStudentsList = new JList<String>(inactiveStudentsListModel);
 	
+	private ArrayList<String> activeStudentsRef = new ArrayList<String>();
+	private ArrayList<String> inactiveStudentsRef = new ArrayList<String>();
+	
 	private JButton saveBtn = new JButton("Spara");
 	private JButton deleteBtn = new JButton("Ta bort");
 	private JButton showActiveStudentsButton = new JButton("Visa student");
@@ -76,15 +80,25 @@ public class NewCoursePanel extends JPanel {
 				pointsField.setText(r.getString("point"));
 				descrField.setText(r.getString("descr").trim());
 			}
+			
 			r = con.getNotFinishedWithCourse(currentCourse);
 			activeStudentsListModel.clear();
+			
 			while (r.next()){
-				activeStudentsListModel.addElement(r.getString(1));
+				String id = r.getString(1);
+				String name = r.getString(2);
+				activeStudentsListModel.addElement(id + ": " + name);
+				activeStudentsRef.add(id);
 			}
+			
 			r = con.getFinishedWithCourse(currentCourse);
 			inactiveStudentsListModel.clear();
+			
 			while (r.next()){
-				inactiveStudentsListModel.addElement(r.getString(1));
+				String id = r.getString(1);
+				String name = r.getString(2);
+				inactiveStudentsListModel.addElement(id + ": " + name);
+				inactiveStudentsRef.add(id);
 			}
 			add(deleteBtn);
 			idField.setEditable(false);
@@ -138,19 +152,10 @@ public class NewCoursePanel extends JPanel {
 		add(inactiveStudentsLbl);
 		add(showInactiveStudentsButton);
 		
-		float dan = 0;
-		try {
-			dan = con.numberOfA(currentCourse);
-		} catch (SQLException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		try {
-			numberOfALbl.setText("Procent A: " + Float.toString(dan));
-		} catch (ArithmeticException ad){
-		}
 		
+		textForNumberOfALabel();
 		
+
 		showActiveStudentsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				showStudent("active");
@@ -175,6 +180,18 @@ public class NewCoursePanel extends JPanel {
 			}
 		});
 		
+	}
+	
+	private void textForNumberOfALabel(){
+		float dan = 0;
+		try {
+			dan = con.numberOfA(currentCourse);
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
+		numberOfALbl.setText("Procent A: " + Float.toString(dan));
 	}
 	
 	//körs att addCourse() för att se till så att det finns poäng(int) och ett id
