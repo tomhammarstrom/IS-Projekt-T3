@@ -32,12 +32,15 @@ public class NewStudentPanel extends JPanel{
 	private JLabel civicLbl = new JLabel("Personnummer");
 	private JLabel nameLbl = new JLabel("Namn");
 	private JLabel addressLbl = new JLabel("Adress");
-	private JLabel activeCoursesLabel = new JLabel("Alla kurser huru elefen studerar");
-	private JLabel inactiveCoursesLabel = new JLabel("Afslutat kurz");
+	private JLabel activeCoursesLabel = new JLabel("Pågående kurser");
+	private JLabel inactiveCoursesLabel = new JLabel("Avslutade kurser");
+	private JLabel startNewCourseLbl = new JLabel("Välj kurs:");
 	
 	private JButton saveBtn = new JButton("Spara");
 	private JButton deleteBtn = new JButton("Ta bort");
-	private JButton finishCourseButton = new JButton("hafa betyg tak");
+	private JButton finishCourseButton = new JButton("Kurs klar");
+	private JButton cancelCourseButton = new JButton("Avregistera");
+	private JButton startNewCourseButton = new JButton("Påbörja ny kurs");
 	
 	private DefaultListModel<String> activeCoursesModel = new DefaultListModel<String>();
 	private DefaultListModel<String> inactiveCoursesModel = new DefaultListModel<String>();
@@ -45,10 +48,9 @@ public class NewStudentPanel extends JPanel{
 	private JList<String> activeCoursesList = new JList<String>(activeCoursesModel);
 	private JList<String> inactiveCoursesList = new JList<String>(inactiveCoursesModel);
 	private JComboBox<String> gradeComboBox = new JComboBox<String>();
-	private JButton cancelCourseButton = new JButton("Avregisterireriren");
-	private final JButton btnKursenMitRegistreiren = new JButton("Kursen mit REGISTREIREN GEWESEN SEIN");
-	private final JLabel startNewCourseLbl = new JLabel("Registrera p\u00E5 kurs (id):");
-	private final JComboBox<String> coursesComboBox = new JComboBox<String>();
+	
+	
+	private JComboBox<String> coursesComboBox = new JComboBox<String>();
 	
 	
 	// Konstruktur
@@ -122,7 +124,7 @@ public class NewStudentPanel extends JPanel{
 		add(activeCoursesLabel);
 		add(cancelCourseButton);
 		add(gradeComboBox);
-		add(btnKursenMitRegistreiren);
+		add(startNewCourseButton);
 		add(startNewCourseLbl);
 		add(coursesComboBox);
 		
@@ -146,18 +148,18 @@ public class NewStudentPanel extends JPanel{
 		civicLbl.setBounds(12, 36, 152, 16);
 		nameLbl.setBounds(12, 96, 152, 16);
 		addressLbl.setBounds(12, 163, 152, 16);
-		activeCoursesLabel.setBounds(447, 36, 269, 16);
-		activeCoursesList.setBounds(449, 65, 303, 152);		
-		inactiveCoursesLabel.setBounds(461, 285, 164, 16);
+		activeCoursesLabel.setBounds(449, 13, 269, 16);
+		activeCoursesList.setBounds(446, 42, 303, 152);		
+		inactiveCoursesLabel.setBounds(445, 287, 164, 16);
 		inactiveCoursesList.setBounds(449, 316, 300, 187);
-		finishCourseButton.setBounds(639, 258, 113, 25);
+		finishCourseButton.setBounds(636, 242, 113, 25);
 		deleteBtn.setBounds(12, 478, 97, 25);
 		saveBtn.setBounds(280, 478, 97, 25);
-		gradeComboBox.setBounds(706, 223, 46, 22);
-		cancelCourseButton.setBounds(448, 230, 133, 25);
-		btnKursenMitRegistreiren.setBounds(63, 336, 314, 25);
-		startNewCourseLbl.setBounds(63, 387, 132, 14);
-		coursesComboBox.setBounds(210, 380, 181, 31);
+		gradeComboBox.setBounds(703, 207, 46, 22);
+		cancelCourseButton.setBounds(449, 207, 133, 25);
+		startNewCourseButton.setBounds(23, 388, 164, 25);
+		startNewCourseLbl.setBounds(23, 318, 132, 14);
+		coursesComboBox.setBounds(12, 345, 181, 31);
 		
 		add(civicField);
 		add(nameField);
@@ -168,7 +170,7 @@ public class NewStudentPanel extends JPanel{
 		add(saveBtn);
 		
 		
-		btnKursenMitRegistreiren.addActionListener(new ActionListener() {
+		startNewCourseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				startNewCourse();
 			}	
