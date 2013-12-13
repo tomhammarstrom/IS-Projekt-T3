@@ -67,16 +67,16 @@ public class MainFrame extends JFrame {
 		ResultSet allCourses = con.getCourses();
 		
 		while(allStudents.next()){
-			String civ = allStudents.getString(1);
-			String name = allStudents.getString(2);
+			String civ = allStudents.getString(1).trim();
+			String name = allStudents.getString(2).trim();
 			
 			studentRef.add(civ);
 			studentListModel.addElement(civ + ": " + name);
 			
 		}
 		while(allCourses.next()){
-			String id = allCourses.getString(1);
-			String name = allCourses.getString(2);
+			String id = allCourses.getString(1).trim();
+			String name = allCourses.getString(2).trim();
 			courseRef.add(id);
 			courseListModel.addElement(id + ": " + name);
 		}
