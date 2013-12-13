@@ -11,12 +11,12 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import tengil.Controller;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JList;
+
+import controller.Controller;
 
 @SuppressWarnings("serial")
 public class CoursePanel extends JPanel {

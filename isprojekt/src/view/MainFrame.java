@@ -8,11 +8,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JTabbedPane;
-
-import tengil.Controller;
-
 import javax.swing.JList;
 import javax.swing.JButton;
+
+import controller.Controller;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

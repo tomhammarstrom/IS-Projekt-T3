@@ -1,9 +1,9 @@
-package tengil;
+package view;
 
 
 import java.sql.SQLException;
 
-import view.MainFrame;
+import controller.Controller;
 
 
 

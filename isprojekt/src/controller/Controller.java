@@ -1,6 +1,8 @@
-	package tengil;
+	package controller;
 
 import java.sql.*;
+
+import data_access_layer.ConnectBot;
 
 public class Controller {
     private ConnectBot cb;

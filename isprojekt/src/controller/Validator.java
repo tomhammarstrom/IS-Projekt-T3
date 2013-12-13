@@ -1,4 +1,4 @@
-package tengil;
+package controller;
 
 public class Validator {
         String errorMessage;
