@@ -197,7 +197,7 @@ public class ConnectBot{
     	
     	while(hasFinished.next()){
     		String comp = hasFinished.getString(2);
-    		id = id;
+    		id = id.trim();
     		if (comp.equals(id)){
     			return 0;
     		}

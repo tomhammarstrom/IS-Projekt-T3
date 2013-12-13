@@ -36,8 +36,8 @@ public class NewCoursePanel extends JPanel {
 	private JButton deleteBtn = new JButton("Ta bort");
 	private DefaultListModel<String> activeStudentsListModel = new DefaultListModel<String>();
 	private DefaultListModel<String> inactiveStudentsListModel = new DefaultListModel<String>();
-	private JList activeStudentsList = new JList<String>(activeStudentsListModel);
-	private JList inactiveStudentsList = new JList<String>(inactiveStudentsListModel);
+	private JList<String> activeStudentsList = new JList<String>(activeStudentsListModel);
+	private JList<String> inactiveStudentsList = new JList<String>(inactiveStudentsListModel);
 	private JLabel lblAktifaStudenter = new JLabel("Aktifa studenter");
 	private JLabel lblStudenterKlarr = new JLabel("Studenter klarr");
 	private JButton btnVisaStudent = new JButton("Visa student");
