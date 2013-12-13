@@ -85,10 +85,9 @@ public class CoursePanel extends JPanel {
 			activeStudentsListModel.clear();
 			
 			while (r.next()){
-				String id = r.getString(1).trim();
 				String civic = r.getString(2).trim();
 				String name = r.getString(3).trim();
-				activeStudentsListModel.addElement(id + ": " + name);
+				activeStudentsListModel.addElement(civic + ": " + name);
 				activeStudentsRef.add(civic);
 			}
 			
@@ -96,11 +95,10 @@ public class CoursePanel extends JPanel {
 			inactiveStudentsListModel.clear();
 			
 			while (r.next()){
-				String id = r.getString(1).trim();
 				String civic = r.getString(2).trim();
 				String name = r.getString(3).trim();
 				String grade = r.getString(4).trim();
-				inactiveStudentsListModel.addElement(id + ": " + name + " - Betyg: (" + grade + ")");
+				inactiveStudentsListModel.addElement(civic + ": " + name + " - Betyg: (" + grade + ")");
 				inactiveStudentsRef.add(civic);
 			}
 			showHiddenComponents();
