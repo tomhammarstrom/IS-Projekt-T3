@@ -95,7 +95,7 @@ public class ConnectBot{
         return r;
     }
     public ResultSet getFinishedWithCourse (String id)throws SQLException{
-    	PreparedStatement ps = connect().prepareStatement("select a.id, b.pnr, b.name from studied a join student b on a.pnr = b.pnr where id = ?");
+    	PreparedStatement ps = connect().prepareStatement("select a.id, b.pnr, b.name, a.grade from studied a join student b on a.pnr = b.pnr where id = ?");
     	ps.setString(1, id);
     	ResultSet r = ps.executeQuery();
     	return r;
