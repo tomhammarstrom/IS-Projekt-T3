@@ -32,17 +32,21 @@ public class NewCoursePanel extends JPanel {
 	private JLabel nameLbl = new JLabel("Namn");
 	private JLabel pointsLbl = new JLabel("Poäng");
 	private JLabel descrLbl = new JLabel("Beskrivning");
-	private JButton saveBtn = new JButton("Spara");
-	private JButton deleteBtn = new JButton("Ta bort");
+	private JLabel activeStudentsLbl = new JLabel("Aktifa studenter");
+	private JLabel inactiveStudentsLbl = new JLabel("Studenter klarr");
+	private JLabel numberOfALbl = new JLabel("New label");
+	
 	private DefaultListModel<String> activeStudentsListModel = new DefaultListModel<String>();
 	private DefaultListModel<String> inactiveStudentsListModel = new DefaultListModel<String>();
+	
 	private JList<String> activeStudentsList = new JList<String>(activeStudentsListModel);
 	private JList<String> inactiveStudentsList = new JList<String>(inactiveStudentsListModel);
-	private JLabel lblAktifaStudenter = new JLabel("Aktifa studenter");
-	private JLabel lblStudenterKlarr = new JLabel("Studenter klarr");
-	private JButton btnVisaStudent = new JButton("Visa student");
-	private JButton btnVisaStudent_1 = new JButton("Visa student");
-	private final JLabel numberOfALbl = new JLabel("New label");
+	
+	private JButton saveBtn = new JButton("Spara");
+	private JButton deleteBtn = new JButton("Ta bort");
+	private JButton showActiveStudentsButton = new JButton("Visa student");
+	private JButton showInactiveStudentsButton = new JButton("Visa student");
+	
 
 	// konstruktor
 	public NewCoursePanel(Controller con, String id, MainFrame mainFrame) {
@@ -110,10 +114,10 @@ public class NewCoursePanel extends JPanel {
 		deleteBtn.setBounds(12, 479, 97, 25);
 		activeStudentsList.setBounds(489, 33, 280, 188);
 		inactiveStudentsList.setBounds(489, 280, 271, 188);
-		lblAktifaStudenter.setBounds(525, 13, 140, 16);
-		lblStudenterKlarr.setBounds(525, 259, 140, 16);
-		btnVisaStudent.setBounds(564, 221, 128, 25);
-		btnVisaStudent_1.setBounds(568, 479, 124, 25);
+		activeStudentsLbl.setBounds(525, 13, 140, 16);
+		inactiveStudentsLbl.setBounds(525, 259, 140, 16);
+		showActiveStudentsButton.setBounds(564, 221, 128, 25);
+		showInactiveStudentsButton.setBounds(568, 479, 124, 25);
 		numberOfALbl.setBounds(49, 354, 140, 20);
 		
 		add(pointsField);		
@@ -125,14 +129,15 @@ public class NewCoursePanel extends JPanel {
 		add(pointsLbl);	
 		add(descrLbl);
 		add(saveBtn);
-		add(btnVisaStudent);
+		add(showActiveStudentsButton);
 		add(numberOfALbl);
 		
 		add(activeStudentsList);		
 		add(inactiveStudentsList);
-		add(lblAktifaStudenter);
-		add(lblStudenterKlarr);
-		add(btnVisaStudent_1);
+		add(activeStudentsLbl);
+		add(inactiveStudentsLbl);
+		add(showInactiveStudentsButton);
+		
 		float dan = 0;
 		try {
 			dan = con.numberOfA(currentCourse);
@@ -146,14 +151,13 @@ public class NewCoursePanel extends JPanel {
 		}
 		
 		
-		btnVisaStudent.addActionListener(new ActionListener() {
+		showActiveStudentsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				showStudent("active");
-				
 			}
 		});
 		
-		btnVisaStudent_1.addActionListener(new ActionListener() {
+		showInactiveStudentsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				showStudent("inactive");
 			}
