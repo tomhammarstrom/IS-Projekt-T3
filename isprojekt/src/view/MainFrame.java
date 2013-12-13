@@ -40,7 +40,7 @@ public class MainFrame extends JFrame {
 	
 	private JButton addStudentButton = new JButton("LEG TILL ELEF");
 	private JButton addCourseButton = new JButton("LEG TILL KURZ");
-	private JButton highestFlowButton = new JButton("St\u00F6rst genom");
+	private JButton highestFlowButton = new JButton("Kurs med störst genomströmning");
 	
 	//konstruktor
 	public MainFrame(Controller con) {
@@ -90,11 +90,11 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		
 		studentList.setBounds(12, 13, 314, 419);
-		courseList.setBounds(12, 13, 314, 421);
+		courseList.setBounds(12, 13, 314, 387);
 		addStudentButton.setBounds(87, 448, 152, 25);
 		tabbedPane.setBounds(12, 13, 343, 516);
-		addCourseButton.setBounds(186, 447, 124, 25);
-		highestFlowButton.setBounds(12, 447, 124, 25);
+		addCourseButton.setBounds(186, 431, 124, 41);
+		highestFlowButton.setBounds(12, 424, 124, 48);
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
@@ -111,6 +111,7 @@ public class MainFrame extends JFrame {
 		courseTabPanel.add(courseList);
 		courseTabPanel.add(addCourseButton);
 		courseTabPanel.add(highestFlowButton);
+		highestFlowButton.setText("<html><center>"+"Kurs med störst"+"<br>"+"genomströmning"+"</center></html>");
 		
 		highestFlowButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
