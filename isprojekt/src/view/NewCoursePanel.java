@@ -192,13 +192,17 @@ public class NewCoursePanel extends JPanel {
 	private void textForNumberOfALabel(){
 		float dan = 0;
 		try {
-			dan = con.numberOfA(currentCourse);
+			dan = con.numberOfA(currentCourse)*100;
 		} catch (SQLException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
+			
 		}
 		
-		numberOfALbl.setText("Procent A: " + Float.toString(dan));
+		if(!Float.isNaN(dan)){
+			numberOfALbl.setText("Procent A: " + dan + "%");
+		}
+		
+	
+		
 	}
 	
 	//körs att addCourse() för att se till så att det finns poäng(int) och ett id

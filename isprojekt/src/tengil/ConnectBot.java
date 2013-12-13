@@ -313,7 +313,7 @@ public class ConnectBot{
         int theRest = 0;
         
         while(calc.next()){
-            if (calc.getString(1).equals("A")){
+            if (calc.getString(1).trim().equals("A")){
                 a++;
             }
             else{
@@ -321,7 +321,7 @@ public class ConnectBot{
             }
         }
         try{
-        	return  a/(a + theRest);
+        	return  (float)a/(a + theRest);
         }
         catch (ArithmeticException e){
         	
