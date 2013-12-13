@@ -3,6 +3,7 @@ package data_access_layer;
 import java.sql.*;
     
 public class ConnectBot{
+	private Connection con;
     
     public ConnectBot(){
 			registerDriver();
@@ -24,7 +25,6 @@ public class ConnectBot{
     }
     
     public Connection connect() {
-    	Connection con = null;
         try {
 			con =  DriverManager.getConnection("JDBC:ODBC:isprojekt_cool");
 		} catch (SQLException e) {
