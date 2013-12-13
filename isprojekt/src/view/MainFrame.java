@@ -193,7 +193,7 @@ public class MainFrame extends JFrame {
 			catch(NullPointerException e){
 				
 			}
-		studentPanel = new NewStudentPanel(con,civic, this);
+		studentPanel = new StudentPanel(con,civic, this);
 		repaint();
 		contentPane.add(studentPanel);
 	} 
@@ -206,7 +206,7 @@ public class MainFrame extends JFrame {
 			catch(NullPointerException e){
 				
 			}
-		 studentPanel = new NewCoursePanel(con, id, this);
+		 studentPanel = new CoursePanel(con, id, this);
 		repaint();
 		contentPane.add(studentPanel);
 	}

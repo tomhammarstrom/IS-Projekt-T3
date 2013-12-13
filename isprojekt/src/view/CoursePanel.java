@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 
 @SuppressWarnings("serial")
-public class NewCoursePanel extends JPanel {
+public class CoursePanel extends JPanel {
 	private Controller con;
 	private String currentCourse; 
 	private MainFrame mainFrame;
@@ -53,7 +53,7 @@ public class NewCoursePanel extends JPanel {
 	
 
 	// konstruktor
-	public NewCoursePanel(Controller con, String id, MainFrame mainFrame) {
+	public CoursePanel(Controller con, String id, MainFrame mainFrame) {
 		this.con = con;
 		currentCourse = id;
 		this.mainFrame = mainFrame;

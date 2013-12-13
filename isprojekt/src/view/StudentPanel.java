@@ -21,7 +21,7 @@ import javax.swing.JList;
 import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
-public class NewStudentPanel extends JPanel{
+public class StudentPanel extends JPanel{
 	private Controller con;
 	private String currentStudent = null;
 	private MainFrame mainFrame;
@@ -59,7 +59,7 @@ public class NewStudentPanel extends JPanel{
 	
 	
 	// Konstruktur
-	public NewStudentPanel(Controller con, String civic, MainFrame mainFrame) {
+	public StudentPanel(Controller con, String civic, MainFrame mainFrame) {
 		this.con = con;
 		currentStudent = civic;
 		this.mainFrame = mainFrame;
