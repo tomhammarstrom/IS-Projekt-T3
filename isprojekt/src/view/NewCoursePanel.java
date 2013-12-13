@@ -148,13 +148,14 @@ public class NewCoursePanel extends JPanel {
 		
 		btnVisaStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mainFrame.openStudent(activeStudentsList.getSelectedValue().toString());
+				showStudent("active");
+				
 			}
 		});
 		
 		btnVisaStudent_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainFrame.openStudent(inactiveStudentsList.getSelectedValue().toString());
+				showStudent("inactive");
 			}
 		});
 		
@@ -231,5 +232,22 @@ public class NewCoursePanel extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private void showStudent(String list){
+		if(list.equals("active")){
+			if(activeStudentsList.getSelectedValue() != null){
+				mainFrame.openStudent(activeStudentsList.getSelectedValue().toString());
+			}
+		}
+		
+		else if (list.equals("inactive")){
+			if(inactiveStudentsList.getSelectedValue() != null){
+				mainFrame.openStudent(inactiveStudentsList.getSelectedValue().toString());
+			}
+			
+		}
+		
+		
 	}
 }
