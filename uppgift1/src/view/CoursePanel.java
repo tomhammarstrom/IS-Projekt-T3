@@ -98,7 +98,7 @@ public class CoursePanel extends JPanel {
 				String civic = r.getString(2).trim();
 				String name = r.getString(3).trim();
 				String grade = r.getString(4).trim();
-				inactiveStudentsListModel.addElement(civic + ": " + name + " - Betyg: (" + grade + ")");
+				inactiveStudentsListModel.addElement(civic + ": " + name + " - Betyg: " + grade);
 				inactiveStudentsRef.add(civic);
 			}
 			showHiddenComponents();
