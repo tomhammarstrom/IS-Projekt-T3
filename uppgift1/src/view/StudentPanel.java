@@ -104,8 +104,8 @@ public class StudentPanel extends JPanel{
 			while(r.next()){
 				String id = r.getString(2).trim();
 				String name = r.getString(3).trim();
-				
-				activeCoursesModel.addElement(id + ": " + name);
+				int points = r.getInt(4);
+				activeCoursesModel.addElement(id + ": " + name + " - (" + points + "p)");
 				activeCoursesRef.add(id);
 			}
 			
@@ -116,7 +116,8 @@ public class StudentPanel extends JPanel{
 				String id = r.getString(2).trim();
 				String name = r.getString(3).trim();
 				String grade = r.getString(4).trim();
-				inactiveCoursesModel.addElement(id + ": " + name + " - Betyg: (" + grade + ")");
+				int points = r.getInt(5);
+				inactiveCoursesModel.addElement(id + ": " + name + " - (" + points +"p)" + " - Betyg: " + grade);
 				inactiveCoursesRef.add(id);
 			}
 			

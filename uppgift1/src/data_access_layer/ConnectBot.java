@@ -156,13 +156,13 @@ public class ConnectBot{
     }
     
     public ResultSet getCoursesForStudent(String civic) throws SQLException{
-        PreparedStatement stmnt = connect().prepareStatement("select a.pnr, a.id, b.name from studies a join course b on a.id = b.id where a.pnr = ?");
+        PreparedStatement stmnt = connect().prepareStatement("select a.pnr, a.id, b.name, b.point from studies a join course b on a.id = b.id where a.pnr = ?");
         stmnt.setString(1, civic);
         return stmnt.executeQuery();
     }
     
     public ResultSet getFinishedCoursesForStudent(String civic) throws SQLException{
-    	 PreparedStatement stmnt = connect().prepareStatement("select a.pnr, a.id, b.name, a.grade from studied a join course b on a.id = b.id where a.pnr = ?");
+    	 PreparedStatement stmnt = connect().prepareStatement("select a.pnr, a.id, b.name, a.grade, b.point from studied a join course b on a.id = b.id where a.pnr = ?");
          stmnt.setString(1, civic);
          return stmnt.executeQuery();
     }
