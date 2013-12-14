@@ -347,6 +347,7 @@ public class ConnectBot{
 
             if (current > value){
                 best = currentString;
+                value = current;
             }
         }
         
