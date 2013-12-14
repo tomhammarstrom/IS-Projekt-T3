@@ -3,7 +3,6 @@ package view;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -18,8 +17,6 @@ import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 //wazzap
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
