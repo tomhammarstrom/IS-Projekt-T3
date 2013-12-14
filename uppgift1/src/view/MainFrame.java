@@ -185,14 +185,25 @@ public class MainFrame extends JFrame {
 		}
 		
 	 }
+	
+	private void clearAllSelections(){
+		if(!isChanging){
+			isChanging = true;
+			studentList.clearSelection();
+			courseList.clearSelection();
+			isChanging = false;
+		}
+	}
 	 
 	
 	//delegerare för att skapa nya studenter/kurser
 	private void addStudent(){
 		 openStudent(null);
+		 clearAllSelections();
 	 }
 	private void addCourse(){
 		 openCourse(null);
+		 clearAllSelections();
 	 }
 
 	 //öppna en existerande student eller skapa en ny
