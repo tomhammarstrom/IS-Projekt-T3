@@ -18,6 +18,8 @@ import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 //wazzap
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
@@ -37,9 +39,7 @@ public class MainFrame extends JFrame {
 	
 	private ArrayList<String> studentRef = new ArrayList<String>();
 	private ArrayList<String> courseRef = new ArrayList<String>();
-	
-	JScrollPane studentScroll = new JScrollPane();
-	JScrollPane courseScroll = new JScrollPane();
+
 	
 	private JButton addStudentButton = new JButton("Ny student");
 	private JButton addCourseButton = new JButton("Ny kurs");
@@ -99,12 +99,11 @@ public class MainFrame extends JFrame {
 		addCourseButton.setBounds(186, 431, 124, 41);
 		highestFlowButton.setBounds(12, 424, 124, 48);
 		
-		studentScroll.setViewportView(studentList);
-		courseScroll.setViewportView(courseList);
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		contentPane.add(tabbedPane);
+
 
 		tabbedPane.addTab("Studenter", null, studentTabPanel, null);
 		tabbedPane.addTab("Kurser", null, courseTabPanel, null);
@@ -151,8 +150,15 @@ public class MainFrame extends JFrame {
 		
 	}
 	
+	private boolean isChanging = false;
+	
 	//listener för studentlistan
 	private void studentList_valueChanged(ListSelectionEvent e){
+		if(!isChanging){
+			isChanging = true;
+			courseList.clearSelection();
+			isChanging = false;
+		}
 		if(studentList.getSelectedValue() != null){
 			try{
 		 		openStudent(studentRef.get(studentList.getSelectedIndex()));
@@ -165,6 +171,11 @@ public class MainFrame extends JFrame {
 	
 	//listener för kurslistan
 	private void courseList_valueChanged(ListSelectionEvent e){
+		if(!isChanging){
+			isChanging = true;
+			studentList.clearSelection();
+			isChanging = false;
+		}
 		if(courseList.getSelectedValue() != null){
 			try{
 				openCourse(courseRef.get(courseList.getSelectedIndex()));
