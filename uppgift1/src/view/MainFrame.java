@@ -231,10 +231,24 @@ public class MainFrame extends JFrame {
 		try {
 			String best = con.highestFlow();
 			openCourse(best);
+			setSelectedValue(best);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		 
+	 }
+	 
+	 private void setSelectedValue(String best){
+		 int index = 0;
+		 int found = 0;
+		 for (String s : courseRef){
+			 if(s.equals(best)){
+				 found = index;
+			 }
+			 index++;
+		 }
+		 
+		 courseList.setSelectedIndex(found);
 	 }
 }
