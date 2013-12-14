@@ -72,16 +72,20 @@ public class StudentPanel extends JPanel{
 			e.printStackTrace();
 		}
 	}
-		
-
-	// laddar information om student om den öppnas från listan
-	private void existingData() throws SQLException{
+	
+	private void gradeComboValues(){
+		gradeComboBox.removeAllItems();
 		gradeComboBox.addItem("A");
 		gradeComboBox.addItem("B");
 		gradeComboBox.addItem("C");
 		gradeComboBox.addItem("D");
 		gradeComboBox.addItem("E");
 		gradeComboBox.addItem("U");
+	}
+
+	// laddar information om student om den öppnas från listan
+	private void existingData() throws SQLException{
+		gradeComboValues();
 
 		if(currentStudent != null){
 			civicField.setEditable(false);
