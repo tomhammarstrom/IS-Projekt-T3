@@ -349,7 +349,7 @@ public class StudentPanel extends JPanel{
 				e.printStackTrace();
 			}
 			if (success == 0){
-				JOptionPane.showMessageDialog(null, "Redan avslutad / registerad");
+				JOptionPane.showMessageDialog(null, "Så himla inte ok, hörru");
 			}
 		}
 	
