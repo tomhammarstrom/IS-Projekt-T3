@@ -121,24 +121,32 @@ public class MeinFrame extends JFrame {
 		
 	}
 	
-	private void getCustomerInfo(){
-		
-	}
-	
-	private void getMetaData(){
-		
-	}
-	
-	
-	private void getKeys() {
-		try{
-			ResultSet r = controller.getKeys();
+	private void fillList(ResultSet r){
+		try {
 			while(r.next()){
 				listis.add(r.getString(1));
 
 			}
-		}catch(SQLException e){
-			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void getCustomerInfo(){
+		// att göra
+	}
+	
+	private void getMetaData(){
+		//jobbig
+	}
+	
+	
+	private void getKeys() {
+		try {
+			ResultSet r = controller.getKeys();
+			fillList(r);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 	}
