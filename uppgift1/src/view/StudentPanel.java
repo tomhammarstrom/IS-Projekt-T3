@@ -73,6 +73,7 @@ public class StudentPanel extends JPanel{
 		}
 	}
 	
+	//värden och reset för betygslistan
 	private void gradeComboValues(){
 		gradeComboBox.removeAllItems();
 		gradeComboBox.addItem("A");
@@ -83,7 +84,7 @@ public class StudentPanel extends JPanel{
 		gradeComboBox.addItem("U");
 	}
 
-	// laddar information om student om den öppnas från listan
+	// laddar information om student om den öppnas från listan. Laddar även pågående och avslutade kurser
 	private void existingData() throws SQLException{
 		gradeComboValues();
 
