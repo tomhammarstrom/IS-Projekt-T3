@@ -152,23 +152,48 @@ public class MeinFrame extends JFrame {
 	}
 	
 	private void getIndex() {
-		
+		try {
+			ResultSet r = controller.getIndex();
+			fillList(r);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void getConstraints(){
-		
+		try {
+			ResultSet r = controller.getConstraints();
+			fillList(r);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void getTables(){
-		
+		try {
+			ResultSet r = controller.getTables();
+			fillList(r);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void getColumns(){
-		
+		try {
+			ResultSet r = controller.getColumns();
+			fillList(r);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void getMaxRow(){
-		
+		try {
+			ResultSet r = controller.getMaxRow();
+			fillList(r);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
