@@ -174,6 +174,8 @@ public class CoursePanel extends JPanel {
 		
 	}
 	
+	
+	//visar dolda komponenter för nysparade eller öppnade kurser
 	private void showHiddenComponents(){
 		add(activeStudentsList);		
 		add(inactiveStudentsList);
@@ -187,6 +189,7 @@ public class CoursePanel extends JPanel {
 		repaint();
 	}
 	
+	//text för hur många som har A på kursen (i procents)
 	private void textForNumberOfALabel(){
 		float dan = 0;
 		try {
@@ -264,6 +267,7 @@ public class CoursePanel extends JPanel {
 		}
 	}
 	
+	//visar en student från antingen den aktiva- eller den inaktiva listan
 	private void showStudent(String list){
 		if(list.equals("active")){
 			if(activeStudentsList.getSelectedValue() != null){
