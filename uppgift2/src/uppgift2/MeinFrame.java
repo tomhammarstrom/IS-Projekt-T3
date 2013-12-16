@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import java.awt.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -137,7 +138,12 @@ public class MeinFrame extends JFrame {
 	}
 	
 	private void getMetaData(){
-		//jobbig
+		try {
+			DatabaseMetaData r = controller.getMetaData();
+			listis.add(r.getDriverName());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
