@@ -196,7 +196,7 @@ public class CoursePanel extends JPanel {
 		}
 		
 		if(!Float.isNaN(dan)){
-			numberOfALbl.setText("Procent A: " + dan + "%");
+			numberOfALbl.setText("Procent A: " + (int)dan + "%");
 		}
 		
 	
