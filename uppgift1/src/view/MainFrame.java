@@ -156,7 +156,10 @@ public class MainFrame extends JFrame {
 			courseList.clearSelection();
 			isChanging = false;
 		}
-		openStudent(studentRef.get(studentList.getSelectedIndex()));
+		if (studentList.getSelectedValue() != null){
+			openStudent(studentRef.get(studentList.getSelectedIndex()));
+		}
+		
 		 	
 	    }
 	
@@ -167,7 +170,10 @@ public class MainFrame extends JFrame {
 			studentList.clearSelection();
 			isChanging = false;
 		}
-		openCourse(courseRef.get(courseList.getSelectedIndex()));
+		if(courseList.getSelectedValue() != null){
+			openCourse(courseRef.get(courseList.getSelectedIndex()));
+		}
+		
 		
 		
 	 }
