@@ -16,6 +16,8 @@ public class MeinFrame extends JFrame {
 	
 	private JPanel contentPane;
 	
+	private JButton btnCustomer = new JButton("Kund-tabellen");
+	private JButton btnMeta = new JButton("Metadata");
 	private JButton btnKey = new JButton("Alla nycklar");
 	private JButton btnIndex = new JButton("Alla index");
 	private JButton btnConstraints = new JButton("Constrains");
@@ -24,7 +26,6 @@ public class MeinFrame extends JFrame {
 	private JButton btnMaxRows = new JButton("Max rad");
 	
 	private List listis = new List();
-
 
 	public MeinFrame() throws SQLException {
 		controller = new Controller();
@@ -42,26 +43,18 @@ public class MeinFrame extends JFrame {
 		setBounds(500, 100, 1048, 511);
 		setContentPane(contentPane);
 		
-		btnKey.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				listis.removeAll();
-				try {
-					getKeys();
-				} catch (SQLException e) {
-					System.out.println("FEEEEEEEEEEEL");
-				}
-			}
-		});
-		
-		
-		btnKey.setBounds(12, 36, 155, 25);
-		btnIndex.setBounds(12, 90, 155, 25);
-		btnConstraints.setBounds(12, 151, 155, 25);
-		btnTables.setBounds(12, 206, 155, 25);
-		btnMaxRows.setBounds(12, 331, 155, 25);
-		btnColumns.setBounds(12, 269, 155, 25);
+		btnKey.setBounds(12, 224, 155, 25);
+		btnIndex.setBounds(12, 262, 155, 25);
+		btnConstraints.setBounds(12, 299, 155, 25);
+		btnTables.setBounds(12, 339, 155, 25);
+		btnMaxRows.setBounds(12, 426, 155, 25);
+		btnColumns.setBounds(12, 380, 155, 25);
 		listis.setBounds(206, 27, 753, 388);
+		btnCustomer.setBounds(12, 41, 155, 25);
+		btnMeta.setBounds(12, 98, 155, 25);
 		
+		contentPane.add(btnCustomer);
+		contentPane.add(btnMeta);
 		contentPane.add(btnKey);
 		contentPane.add(btnIndex);
 		contentPane.add(btnConstraints);
@@ -70,16 +63,104 @@ public class MeinFrame extends JFrame {
 		contentPane.add(btnMaxRows);
 		contentPane.add(listis);
 		
-		System.out.println(controller.getMetaData().getDriverName());
+		btnKey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				listis.removeAll();
+				getKeys();
+			}
+		});
+		
+		btnIndex.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				listis.removeAll();
+				getIndex();
+			}		
+		});
+		
+		btnConstraints.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listis.removeAll();
+				getConstraints();
+			}
+		});
+		
+		btnTables.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listis.removeAll();
+				getTables();
+			}
+		});
+		
+		btnMaxRows.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listis.removeAll();
+				getMaxRow();
+			}
+		});
+	
+		btnColumns.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listis.removeAll();
+				getColumns();
+			}
+		});
+		
+		btnCustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listis.removeAll();
+				getCustomerInfo();
+			}
+		});
+		
+		btnMeta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getMetaData();
+			}
+		});
+		
 		
 	}
 	
-	private void getKeys() throws SQLException{
-		ResultSet r = controller.getKeys();
-		while(r.next()){
-			listis.add(r.getString(1));
+	private void getCustomerInfo(){
+		
+	}
+	
+	private void getMetaData(){
+		
+	}
+	
+	
+	private void getKeys() {
+		try{
+			ResultSet r = controller.getKeys();
+			while(r.next()){
+				listis.add(r.getString(1));
 
+			}
+		}catch(SQLException e){
+			
 		}
+		
+	}
+	
+	private void getIndex() {
+		
+	}
+	
+	private void getConstraints(){
+		
+	}
+	
+	private void getTables(){
+		
+	}
+	
+	private void getColumns(){
+		
+	}
+	
+	private void getMaxRow(){
+		
 	}
 	
 	
