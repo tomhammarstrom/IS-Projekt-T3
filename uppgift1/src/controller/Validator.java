@@ -35,7 +35,10 @@ public class Validator {
         }
 
         
-        
+        /**
+         * Resten är regex
+         * 
+         */
         
         
         private boolean validateOnlyLetters(String str) {
