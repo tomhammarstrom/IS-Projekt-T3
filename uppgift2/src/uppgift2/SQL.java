@@ -15,7 +15,7 @@ public class SQL {
 	}
 	
 	
-	private ResultSet getCustomerInfo() throws SQLException{
+	public ResultSet getCustomerInfo() throws SQLException{
 		Statement s = connect().createStatement();
 		return s.executeQuery("aaa");
 	}
@@ -24,35 +24,34 @@ public class SQL {
 		return connect().getMetaData();
 	}
 	
-	
-	
 	public ResultSet getKeys() throws SQLException{
 		Statement s = connect().createStatement();
 		return s.executeQuery("SELECT DISTINCT Constraint_Name AS [Constraint] FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE");
 	}
 	
-	private ResultSet getIndex() throws SQLException{
+	public ResultSet getIndex() throws SQLException{
 		Statement s = connect().createStatement();
 		return s.executeQuery("aaa");
 	}
 	
-	private ResultSet getConstraints() throws SQLException{
+	public ResultSet getConstraints() throws SQLException{
 		Statement s = connect().createStatement();
 		return s.executeQuery("aaa");
 	}
 	
-	private ResultSet getTables() throws SQLException{
+	public ResultSet getTables() throws SQLException{
 		Statement s = connect().createStatement();
 		return s.executeQuery("aaa");
 	}
 	
-	private ResultSet getColumns() throws SQLException{
+	public ResultSet getColumns() throws SQLException{
 		Statement s = connect().createStatement();
 		return s.executeQuery("aaa");
 	}
 	
-	private ResultSet getMaxRow(){
-		
+	public ResultSet getMaxRow() throws SQLException{
+		Statement s = connect().createStatement();
+		return s.executeQuery("aaa");
 	}
 	
 
