@@ -46,7 +46,7 @@ public class SQL {
 	
 	public ResultSet getColumns() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'CRONUS Sverige AB$Employee");
+		return s.executeQuery("select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'CRONUS Sverige AB$Employee'");
 	}
 	
 	public ResultSet getMaxRow() throws SQLException{
