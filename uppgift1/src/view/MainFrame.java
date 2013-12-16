@@ -156,13 +156,7 @@ public class MainFrame extends JFrame {
 			courseList.clearSelection();
 			isChanging = false;
 		}
-		if(studentList.getSelectedValue() != null){
-			try{
-		 		openStudent(studentRef.get(studentList.getSelectedIndex()));
-		 	}
-		 	catch(NullPointerException f){
-		 	}
-		}
+		openStudent(studentRef.get(studentList.getSelectedIndex()));
 		 	
 	    }
 	
@@ -173,13 +167,8 @@ public class MainFrame extends JFrame {
 			studentList.clearSelection();
 			isChanging = false;
 		}
-		if(courseList.getSelectedValue() != null){
-			try{
-				openCourse(courseRef.get(courseList.getSelectedIndex()));
-			}
-			catch(NullPointerException f){
-			}
-		}
+		openCourse(courseRef.get(courseList.getSelectedIndex()));
+		
 		
 	 }
 	
@@ -241,7 +230,9 @@ public class MainFrame extends JFrame {
 		try {
 			String best = con.highestFlow();
 			openCourse(best);
-			//setSelectedValue(best);
+			//isChanging = true;
+			setSelectedValue(best);
+			//isChanging = false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -254,12 +245,13 @@ public class MainFrame extends JFrame {
 		 int index = 0;
 		 int found = 0;
 		 for (String s : courseRef){
-			 if(s.equals(best)){
+			 if(s.equals(best.trim())){
 				 found = index;
 			 }
 			 index++;
 		 }
 		 
-		 courseList.setSelectedIndex(found);
+		courseList.setSelectedIndex(found);		
+		 
 	 }
 }
