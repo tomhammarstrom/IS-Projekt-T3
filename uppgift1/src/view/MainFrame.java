@@ -225,7 +225,7 @@ public class MainFrame extends JFrame {
 			catch(NullPointerException e){
 				
 			}
-		 studentPanel = new CoursePanel(con, id, this);
+		studentPanel = new CoursePanel(con, id, this);
 		repaint();
 		contentPane.add(studentPanel);
 	}
@@ -241,7 +241,7 @@ public class MainFrame extends JFrame {
 		try {
 			String best = con.highestFlow();
 			openCourse(best);
-			setSelectedValue(best);
+			//setSelectedValue(best);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

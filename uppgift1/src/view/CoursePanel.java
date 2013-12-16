@@ -57,6 +57,7 @@ public class CoursePanel extends JPanel {
 		this.con = con;
 		currentCourse = id;
 		this.mainFrame = mainFrame;
+		System.out.println(currentCourse);
 		
 		initComponents();
 		
