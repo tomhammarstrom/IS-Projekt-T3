@@ -183,6 +183,7 @@ public class MainFrame extends JFrame {
 		
 	 }
 	
+	//tar bort "blåmarkering" från listorna, finns pga bug där man inte kunde återvälja den "valde" efter tab-byte
 	private void clearAllSelections(){
 		if(!isChanging){
 			isChanging = true;
@@ -235,6 +236,7 @@ public class MainFrame extends JFrame {
 		 repaint();
 	 }
 	 
+	 //öppnar kurs med högst genomströmning
 	 private void showHighestFlow(){
 		try {
 			String best = con.highestFlow();
@@ -247,6 +249,7 @@ public class MainFrame extends JFrame {
 		 
 	 }
 	 
+	 //markerar kursen med högst genomströmning i listan, görs för extra tydlighet
 	 private void setSelectedValue(String best){
 		 int index = 0;
 		 int found = 0;
