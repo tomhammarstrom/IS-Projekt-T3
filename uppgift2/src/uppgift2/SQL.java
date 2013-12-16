@@ -17,7 +17,7 @@ public class SQL {
 	
 	public ResultSet getCustomerInfo() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("aaa");
+		return s.executeQuery("aaa");  //att fixa
 	}
 	
 	public DatabaseMetaData getMetaData () throws SQLException{
@@ -31,27 +31,27 @@ public class SQL {
 	
 	public ResultSet getIndex() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("aaa");
+		return s.executeQuery("select * from sys.indexes where name like 'CRONUS%'");
 	}
 	
 	public ResultSet getConstraints() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("aaa");
+		return s.executeQuery("SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS");
 	}
 	
 	public ResultSet getTables() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("aaa");
+		return s.executeQuery("select * from INFORMATION_SCHEMA.TABLES");
 	}
 	
 	public ResultSet getColumns() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("aaa");
+		return s.executeQuery("select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'CRONUS Sverige AB$Employee");
 	}
 	
 	public ResultSet getMaxRow() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("aaa");
+		return s.executeQuery("select top 1 TableName from (SELECT OBJECT_NAME(OBJECT_ID) TableName, st.row_count as antal FROM sys.dm_db_partition_stats st WHERE index_id < 2) x where TableName like 'CRONUS%' group by TableName, antal order by antal desc");
 	}
 	
 
