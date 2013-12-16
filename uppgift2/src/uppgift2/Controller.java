@@ -9,12 +9,37 @@ public class Controller {
 		sql = new SQL();
 	}
 	
+	public ResultSet getCustomerInfo() throws SQLException{
+		return sql.getCustomerInfo();
+	}
+	
+	public DatabaseMetaData getMetaData () throws SQLException{
+		return sql.getMetaData();
+	}
+	
 	public ResultSet getKeys() throws SQLException{
 		return sql.getKeys();
 	}
 	
-	public DatabaseMetaData getMetaData() throws SQLException{
-		return sql.getMetaData();
+	public ResultSet getIndex() throws SQLException{
+		return sql.getIndex();
 	}
-
+	
+	public ResultSet getConstraints() throws SQLException{
+		return sql.getConstraints();
+	}
+	
+	public ResultSet getTables() throws SQLException{
+		return sql.getTables();
+	}
+	
+	public ResultSet getColumns() throws SQLException{
+		return sql.getColumns();
+	}
+	
+	public ResultSet getMaxRow() throws SQLException{
+		return sql.getMaxRow();
+	}
+	
+		
 }
