@@ -184,7 +184,7 @@ public class MainFrame extends JFrame {
 	 }
 	
 	//tar bort "blåmarkering" från listorna, finns pga bug där man inte kunde återvälja den "valde" efter tab-byte
-	private void clearAllSelections(){
+	public void clearAllSelections(){
 		if(!isChanging){
 			isChanging = true;
 			studentList.clearSelection();

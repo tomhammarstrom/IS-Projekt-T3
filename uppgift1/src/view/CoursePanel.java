@@ -281,7 +281,7 @@ public class CoursePanel extends JPanel {
 			}
 			
 		}
-		
+		mainFrame.clearAllSelections();
 		
 	}
 }
