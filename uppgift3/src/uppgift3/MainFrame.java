@@ -35,6 +35,10 @@ public class MainFrame extends JFrame {
 		initComponents();
 	}
 	
+	private void fillExcelList(){
+		excelList.add("");
+	}
+	
 	
 	private void initComponents(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
