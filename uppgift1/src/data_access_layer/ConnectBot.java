@@ -10,6 +10,7 @@ public class ConnectBot{
 	// konstruktor
     public ConnectBot(){
 			registerDriver();
+			errorMessage = "NO ERROR";
     }
     
     /**
@@ -32,7 +33,7 @@ public class ConnectBot{
         try {
 			DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
 		} catch (SQLException e) {
-			System.out.println("Problem med att ladda driver");
+			errorMessage = "Problem med att ladda driver";
 			e.printStackTrace();
 		}
     }
@@ -43,7 +44,7 @@ public class ConnectBot{
         try {
 			con =  DriverManager.getConnection("JDBC:ODBC:isprojekt_cool");
 		} catch (SQLException e) {
-			System.out.println("Problem med att skapa en connection");
+			errorMessage = "Problem med att skapa en connection";
 			e.printStackTrace();
 		}
         return con;
@@ -78,6 +79,7 @@ public class ConnectBot{
     	if(intent.equals("add")){
     		if(getStudent(civic).next()){
     			affectedRows = 0;
+    			errorMessage = "student finns redan";
     		}
     		else{
     			PreparedStatement s = connect().prepareStatement("insert into student values(?,?,?)");
@@ -148,7 +150,7 @@ public class ConnectBot{
 
        	if(intent.equals("add")){
        		if(getCourse(id).next()){
-       			System.out.println("kurs finns redan");
+       			errorMessage = "kurs finns redan";
        			affectedRows = 0;
        		}
        		else{
