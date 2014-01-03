@@ -4,11 +4,21 @@ import java.sql.*;
     
 public class ConnectBot{
 	private Connection con;
+	private String errorMessage;
     
 	
 	// konstruktor
     public ConnectBot(){
 			registerDriver();
+    }
+    
+    /**
+     * Error
+     * 
+     */
+    
+    public String getCurrentErrorMessage(){
+    	return errorMessage;
     }
     
     

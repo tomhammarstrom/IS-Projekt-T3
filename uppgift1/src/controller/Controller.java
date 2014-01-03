@@ -15,6 +15,16 @@ public class Controller {
     }
     
     /**
+     * Error
+     * 
+     */
+    
+    public String getCurrentErrorMessage(){
+    	return cb.getCurrentErrorMessage();
+    }
+    
+    
+    /**
      * Studentfunktioner
      * 
      */
