@@ -268,7 +268,7 @@ public class StudentPanel extends JPanel{
 
 			}
 			else{
-				JOptionPane.showMessageDialog(null, "Studenten finns redan");
+				JOptionPane.showMessageDialog(null, con.getCurrentErrorMessage());
 			}
 				}
 		else{
@@ -350,7 +350,7 @@ public class StudentPanel extends JPanel{
 				e.printStackTrace();
 			}
 			if (success == 0){
-				JOptionPane.showMessageDialog(null, "Så himla inte ok, hörru");
+				JOptionPane.showMessageDialog(null, con.getCurrentErrorMessage());
 			}
 		}
 	
