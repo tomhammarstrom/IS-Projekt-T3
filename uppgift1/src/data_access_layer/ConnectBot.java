@@ -177,7 +177,7 @@ public class ConnectBot{
            return affectedRows;
     }
     
-    // tar bort en kur
+    // tar bort en kurs
     public int removeCourse(String id) throws SQLException {
         PreparedStatement s = connect().prepareStatement("delete from course where id = ?");
         s.setString(1,id);
