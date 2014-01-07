@@ -1,48 +1,66 @@
 package l2p;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
-import javax.swing.JList;
 import java.awt.List;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
 
+	/**
+	 * Deklaration av 1 panel, 1 knapp och 1 lista
+	 */
 	private JPanel anslagstavlan;
-	private JButton btnKnappiz = new JButton("Knappiz");
-	private List list = new List();
+	private JButton knappiz = new JButton("Knappiz");
+	private List listan = new List();
 
 	/**
-	 * Launch the application.
+	 * Main-metod, finns för att köra programmet
 	 */
 	public static void main(String[] args) {
 		new MainFrame().setVisible(true);
 	}
+	
 
 	/**
-	 * Create the frame.
+	 * Konstruktor, körs när framen instansieras (från main-metoden)
+	 * 
 	 */
 	public MainFrame() {
 		initComponents();
 	}
 	
-	
+	/**
+	 * Metoden som "ritar ut" grafiska komponenter
+	 */
 	private void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 688, 427);
+		
 		anslagstavlan = new JPanel();
 		anslagstavlan.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(anslagstavlan);
 		anslagstavlan.setLayout(null);
-		btnKnappiz.setBounds(82, 151, 97, 25);
+		setContentPane(anslagstavlan);
 		
-		anslagstavlan.add(btnKnappiz);
-		list.setBounds(294, 58, 318, 245);
+		knappiz.setBounds(82, 151, 97, 25);
+		listan.setBounds(294, 58, 318, 245);
 		
-		anslagstavlan.add(list);
+		anslagstavlan.add(knappiz);
+		anslagstavlan.add(listan);
+		
+		// listener för knappiz
+		knappiz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				testMetod();
+				// testMetod, körs när man trycker på knappen, se nedan
+			}
+		});
+	}
+	
+	private void testMetod(){
+		
 	}
 }
