@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import java.awt.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import java.sql.*;
 
 @SuppressWarnings("serial")
@@ -73,6 +72,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * Metod för att hämta namnen på alla studenter, körs när man trycker på knappen
 	 */
+	@SuppressWarnings("restriction")
 	private void testMetod() throws SQLException{
 		// Att "prata" med SQL görs i 4 steg, steg 1 (vilket bara behöver göras 1 gång) är att registrera en drivrutin
 		DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());

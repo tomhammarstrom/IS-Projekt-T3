@@ -5,6 +5,7 @@ import java.sql.*;
 public class SQL {
 	private Connection con;
 	
+	@SuppressWarnings("restriction")
 	public SQL() throws SQLException{
 		DriverManager.registerDriver(new sun.jdbc.odbc.JdbcOdbcDriver());
 	}

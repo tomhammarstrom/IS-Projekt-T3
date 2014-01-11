@@ -222,98 +222,75 @@ public class ConnectBot {
 	 * 
 	 */
 
+	// påbörjar ny kurs
+	public int startCourse(String civic, String id) throws SQLException {
+
+		if(hasFinished(civic, id) && hasStarted(civic, id) && maxPoints(civic,id)){
+			PreparedStatement s = con.prepareStatement("insert into studies values(?,?)");
+			s.setString(1, civic);
+			s.setString(2, id);
+			return s.executeUpdate();
+		}
+		return 0;
+	}
+
+	// koll om student redan läser kurs
+	private boolean hasStarted(String civic, String id) throws SQLException {
+		PreparedStatement s = connect().prepareStatement(
+				"select * from studies where pnr = ?");
+		s.setString(1, civic);
+		ResultSet activeCourses = s.executeQuery();
+
+		while (activeCourses.next()) {
+			String comp = activeCourses.getString(2);
+
+			if (comp.trim().equals(id.trim())) {
+				errorMessage = "Student läser redan kurs";
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// koll om student har avslutat kurs
+	private boolean hasFinished(String civic, String id) throws SQLException{
+		ResultSet finishedCourses = getFinishedCoursesForStudent(civic);
+
+		while (finishedCourses.next()) {
+			String comp = finishedCourses.getString(2).trim();
+			id = id.trim();
+			if (comp.equals(id)) {
+				errorMessage = "Student har redan avslutat kurs";
+				return false;
+			}
+		}
+		return true;
+	}
+
 	// kontrollerar så studenten läser (kommer läsa) mindre än eller lika med
 	// 45p
-	private boolean maxPoints(String civic, int points) throws SQLException {
-		boolean ok = true;
+	private boolean maxPoints(String civic, String id) throws SQLException {
 		PreparedStatement s = connect()
 				.prepareStatement(
 						"select Sum(point) from course where id in (select id from studies where pnr = ?)");
 		s.setString(1, civic);
 		ResultSet r = s.executeQuery();
-		while (r.next()) {
-			int amount = r.getInt(1) + points;
-			if (amount >= 45) {
-				ok = false;
-				errorMessage = "Student läser för många poäng (" + amount
-						+ "). Max = 45p";
-			} else {
-				ok = true;
-			}
-		}
-		return ok;
-	}
-
-	// påbörjar ny kurs, kontrollerar (1) att studenten inte redan avslutat
-	// kursen, (2) att studenten inte redan läser den och (3) att studenten max
-	// läser 45p
-	public int startCourse(String civic, String id) throws SQLException {
-
-		// koll om student har avslutat kurs
-		ResultSet hasFinished = getFinishedCoursesForStudent(civic);
-
-		while (hasFinished.next()) {
-			String comp = hasFinished.getString(2).trim();
-			id = id.trim();
-			if (comp.equals(id)) {
-				errorMessage = "Student har redan avslutat kurs";
-				return 0;
-			}
-		}
-
-		// koll om student redan läser kurs
-		PreparedStatement s = connect().prepareStatement(
-				"select * from studies where pnr = ?");
-		s.setString(1, civic);
-		ResultSet isActive = s.executeQuery();
-
-		while (isActive.next()) {
-			String comp = isActive.getString(2);
-
-			if (comp.equals(id)) {
-				errorMessage = "Student läser redan kurs";
-				return 0;
-			}
-		}
-
-		// checks klara
-		int temp = 0;
+		
+		int newPoints = 0;
 		ResultSet courseInfo = getCourse(id);
-		int points = 0;
 		while (courseInfo.next()) {
-			points = courseInfo.getInt(3);
+			newPoints = courseInfo.getInt(3);
 		}
-
-		if (maxPoints(civic, points)) {
-			Connection con = connect();
-			s = con.prepareStatement("select * from studied where id = ? and pnr = ?");
-			s.setString(1, civic);
-			s.setString(2, id);
-
-			if (s.executeQuery().next()) {
-				errorMessage  = "kurs är redan avslutat";
-				temp = 0;
-			}
-
-			else {
-				s = con.prepareStatement("select * from studies where id = ? and pnr = ?");
-				s.setString(1, civic);
-				s.setString(2, id);
-
-				if (s.executeQuery().next()) {
-					errorMessage = "student har redan påbörjat kurs";
-					temp = 0;
-				} else {
-					s = con.prepareStatement("insert into studies values(?,?)");
-					s.setString(1, civic);
-					s.setString(2, id);
-
-					temp = s.executeUpdate();
-				}
-			}
+		
+		while (r.next()) {
+			int amount = r.getInt(1) + newPoints;
+			if (amount >= 45) {
+				errorMessage = "Student läser för många poäng (" + amount + "). Max = 45p";
+				return false;
+			} 
 		}
-
-		return temp;
+		
+		return true;
 	}
 
 	// avslutar en kurs med betyg
