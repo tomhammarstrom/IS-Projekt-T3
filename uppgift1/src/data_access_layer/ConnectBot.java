@@ -225,7 +225,7 @@ public class ConnectBot {
 	// påbörjar ny kurs
 	public int startCourse(String civic, String id) throws SQLException {
 
-		if(hasFinished(civic, id) && hasStarted(civic, id) && maxPoints(civic,id)){
+		if(hasFinished(civic, id) && hasStarted(civic, id) && maxPoints(civic, id)){
 			PreparedStatement s = con.prepareStatement("insert into studies values(?,?)");
 			s.setString(1, civic);
 			s.setString(2, id);
