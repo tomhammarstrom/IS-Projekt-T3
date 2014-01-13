@@ -109,12 +109,14 @@ public class MeinFrame extends JFrame {
 		btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				listis.removeAll();
-				getCustomerInfo();
+				customerInfo();
+				
 			}
 		});
 		
 		btnMeta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				listis.removeAll();
 				getMetaData();
 			}
 		});
@@ -122,21 +124,10 @@ public class MeinFrame extends JFrame {
 		
 	}
 	
-	private void fillList(ResultSet r){
-		try {
-			while(r.next()){
-				listis.add(r.getString(1));
+	private void customerInfo(){
+		
+	}
 
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void getCustomerInfo(){
-		// att göra
-	}
-	
 	private void getMetaData(){
 		try {
 			DatabaseMetaData r = controller.getMetaData();
@@ -150,7 +141,9 @@ public class MeinFrame extends JFrame {
 	private void getKeys() {
 		try {
 			ResultSet r = controller.getKeys();
-			fillList(r);
+			while(r.next()){
+				listis.add(r.getString(1));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -160,7 +153,10 @@ public class MeinFrame extends JFrame {
 	private void getIndex() {
 		try {
 			ResultSet r = controller.getIndex();
-			fillList(r);
+			while(r.next()){
+				listis.add(r.getString(1) + " " + r.getString(2) + r.getString(3));
+
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -169,7 +165,10 @@ public class MeinFrame extends JFrame {
 	private void getConstraints(){
 		try {
 			ResultSet r = controller.getConstraints();
-			fillList(r);
+			while(r.next()){
+				listis.add(r.getString(1));
+
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -178,7 +177,10 @@ public class MeinFrame extends JFrame {
 	private void getTables(){
 		try {
 			ResultSet r = controller.getTables();
-			fillList(r);
+			while(r.next()){
+				listis.add(r.getString(1));
+
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -187,7 +189,10 @@ public class MeinFrame extends JFrame {
 	private void getColumns(){
 		try {
 			ResultSet r = controller.getColumns();
-			fillList(r);
+			while(r.next()){
+				listis.add(r.getString(1));
+
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -196,7 +201,10 @@ public class MeinFrame extends JFrame {
 	private void getMaxRow(){
 		try {
 			ResultSet r = controller.getMaxRow();
-			fillList(r);
+			while(r.next()){
+				listis.add(r.getString(1));
+
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
