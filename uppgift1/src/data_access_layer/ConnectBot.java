@@ -42,6 +42,7 @@ public class ConnectBot {
 		try {
 			con = DriverManager.getConnection("JDBC:ODBC:isprojekt_cool");
 		} catch (SQLException e) {
+			System.out.println("?");
 			errorMessage = "Problem med att skapa en connection";
 			e.printStackTrace();
 		}

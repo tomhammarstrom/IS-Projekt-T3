@@ -55,6 +55,11 @@ public class SQL {
 		return s.executeQuery("select top 1 TableName from (SELECT OBJECT_NAME(OBJECT_ID) TableName, st.row_count as antal FROM sys.dm_db_partition_stats st WHERE index_id < 2) x where TableName like 'CRONUS%' group by TableName, antal order by antal desc");
 	}
 	
+	public ResultSet getEmployee() throws SQLException{
+		Statement s = connect().createStatement();
+		return null;
+	}
+	
 
 
 
