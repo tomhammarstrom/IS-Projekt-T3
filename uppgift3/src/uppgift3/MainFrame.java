@@ -12,6 +12,7 @@ import java.awt.Button;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
+	private FileManager fm;
 
 	private JPanel contentPane;
 
@@ -32,13 +33,10 @@ public class MainFrame extends JFrame {
 
 
 	public MainFrame() {
+		fm = new FileManager();
 		initComponents();
+		
 	}
-	
-	private void fillExcelList(){
-		excelList.add("");
-	}
-	
 	
 	private void initComponents(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,5 +72,31 @@ public class MainFrame extends JFrame {
 		contentPane.add(accessBtn);
 		contentPane.add(sqlBtn);
 		contentPane.add(formBtn);
+		
+		fillList(excelList);
+		fillList(accessList);
+		fillList(sqlList);
+		
+		fillFormList();
 	}
+	
+	private void fillList(List list){
+		list.add("1) 100 Nok");
+		list.add("2) Mest SEK");
+		list.add("3) Fotograferna AB");
+		list.add("4) Sjuka anställda");
+		list.add("5) Släktingar");
+		list.add("6) Andreas Berglund");
+		list.add("7) Bankkonto");
+	}
+	
+	private void fillFormList(){
+		formList.add("Excel - Customer");
+		formList.add("Excel - Employee");
+		formList.add("Word - Customer");
+		formList.add("Word - Employee");
+	}
+	
+	
+	
 }
