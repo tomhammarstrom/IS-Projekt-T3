@@ -60,40 +60,27 @@ public class SQL {
 	 * 
 	 */
 	
-	public ResultSet getEmployee() throws SQLException{
+	public ResultSet getEmployeeData() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("select * from employee");
+		return s.executeQuery("SELECT [No_],[First Name],[Last Name],[Address],[Phone No_]FROM [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee]");
 	}
 	
-	public ResultSet getEmployeeAbsence() throws SQLException{
+	public ResultSet getEmployeeAbsenceData() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("select * from employee");
+		return s.executeQuery("SELECT [Entry No_],[Employee No_],[Cause of Absence Code],[Description],[Quantity]FROM [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee Absence]");
 	}
 	
-	public ResultSet getEmployeePortalSetup() throws SQLException{
+
+	public ResultSet getEmployeeQualificationData() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("select * from employee");
+		return s.executeQuery("SELECT [Employee No_],[From Date],[To Date],[Type],[Description]FROM [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee Qualification]");
 	}
 	
-	public ResultSet getEmployeeQualification() throws SQLException{
+	public ResultSet getEmployeeRelativeData() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("select * from employee");
+		return s.executeQuery("SELECT [Employee No_],[Relative Code],[First Name],[Last Name],[Phone No_] FROM [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee Relative]");
 	}
 	
-	public ResultSet getEmployeeRelative() throws SQLException{
-		Statement s = connect().createStatement();
-		return s.executeQuery("select * from employee");
-	}
-	
-	public ResultSet getEmployeeStatisticGroup() throws SQLException{
-		Statement s = connect().createStatement();
-		return s.executeQuery("select * from employee");
-	}
-	
-	public ResultSet getEmployeeContract() throws SQLException{
-		Statement s = connect().createStatement();
-		return s.executeQuery("select * from employee");
-	}
 	
 
 

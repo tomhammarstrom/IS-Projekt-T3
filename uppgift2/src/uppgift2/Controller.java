@@ -41,5 +41,25 @@ public class Controller {
 		return sql.getMaxRow();
 	}
 	
+	
+	public ResultSet getEmployeeData() throws SQLException{
+		return sql.getEmployeeData();
+	}
+	
+	public ResultSet getEmployeeAbsenceData() throws SQLException{
+		return sql.getEmployeeAbsenceData();
+	}
+
+	
+	public ResultSet getEmployeeQualificationData() throws SQLException{
+		return getEmployeeQualificationData();
+	}
+	
+	public ResultSet getEmployeeRelativeData() throws SQLException{
+		return getEmployeeRelativeData();
+	}
+	
+	
+	
 		
 }
