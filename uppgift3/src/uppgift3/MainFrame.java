@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 
 import java.awt.Label;
 import java.awt.Button;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
@@ -73,6 +75,30 @@ public class MainFrame extends JFrame {
 		contentPane.add(sqlBtn);
 		contentPane.add(formBtn);
 		
+		formBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openForm();
+			}
+		});
+		
+		sqlBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openSQL();
+			}
+		});
+		
+		accessBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openAccess();
+			}
+		});
+		
+		excelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				openExcel();
+			}
+		});
+		
 		fillList(excelList);
 		fillList(accessList);
 		fillList(sqlList);
@@ -95,6 +121,22 @@ public class MainFrame extends JFrame {
 		formList.add("Excel - Employee");
 		formList.add("Word - Customer");
 		formList.add("Word - Employee");
+	}
+	
+	private void openAccess(){
+		
+	}
+	
+	private void openForm(){
+		
+	}
+	
+	private void openSQL(){
+		
+	}
+	
+	private void openExcel(){
+		
 	}
 	
 	
