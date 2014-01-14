@@ -124,19 +124,91 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void openAccess(){
+		if(accessList.getSelectedItem() != null){
+			int selectedIndex = accessList.getSelectedIndex();
+			
+			switch(selectedIndex){
+			case 0: fm.openAccess1();
+					break;
+			case 1: fm.openAccess2();
+					break;
+			case 2: fm.openAccess3();
+					break;
+			case 3: fm.openAccess4();
+					break;
+			case 4: fm.openAccess5();
+					break;
+			case 5: fm.openAccess6();
+					break;
+			case 6: fm.openAccess7();
+					break;
+			}
+		}
 		
 	}
 	
 	private void openForm(){
-		
+		if(formList.getSelectedItem() != null){
+			int selectedIndex = formList.getSelectedIndex();
+			
+			switch(selectedIndex){
+			case 0: fm.openForm1();
+					break;
+			case 1: fm.openForm2();
+					break;
+			case 2: fm.openForm3();
+					break;
+			case 3: fm.openForm4();
+					break;
+
+			}
+		}
 	}
 	
 	private void openSQL(){
-		
+		if(sqlList.getSelectedItem() != null){
+			int selectedIndex = sqlList.getSelectedIndex();
+			
+			switch(selectedIndex){
+			case 0: fm.openSql1();
+					break;
+			case 1: fm.openSql2();
+					break;
+			case 2: fm.openSql3();
+					break;
+			case 3: fm.openSql4();
+					break;
+			case 4: fm.openSql5();
+					break;
+			case 5: fm.openSql6();
+					break;
+			case 6: fm.openSql7();
+					break;
+			}
+		}
 	}
 	
 	private void openExcel(){
-		
+		if(excelList.getSelectedItem() != null){
+			int selectedIndex = excelList.getSelectedIndex();
+			
+			switch(selectedIndex){
+			case 0: fm.openExcel1();
+					break;
+			case 1: fm.openExcel2();
+					break;
+			case 2: fm.openExcel3();
+					break;
+			case 3: fm.openExcel4();
+					break;
+			case 4: fm.openExcel5();
+					break;
+			case 5: fm.openExcel6();
+					break;
+			case 6: fm.openExcel7();
+					break;
+			}
+		}
 	}
 	
 	
