@@ -33,17 +33,37 @@ public class SQL {
 	
 	public ResultSet getTables() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("select * from INFORMATION_SCHEMA.TABLES");
+		return s.executeQuery("select *from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'CRONUS Sverige AB$Employee'");
+		
+		/**
+		  ELLER:
+		  
+		  use [Demo Database NAV (5-0)]
+			select name from  sys.tables
+
+		 */
 	}
+	
 	
 	public ResultSet getColumns() throws SQLException{
 		Statement s = connect().createStatement();
 		return s.executeQuery("select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'CRONUS Sverige AB$Employee'");
+		
+		/**
+		 * ELLER:
+		 * select c.name from sys.columns c
+inner join sys.tables t on c.object_id = t.object_id
+where t.name = 'CRONUS Sverige AB$Employee'
+order by t.name
+		 * 
+		 * 
+		 */
 	}
 	
 	public ResultSet getMaxRow() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("select top 1 TableName from (SELECT OBJECT_NAME(OBJECT_ID) TableName, st.row_count as antal FROM sys.dm_db_partition_stats st WHERE index_id < 2) x where TableName like 'CRONUS%' group by TableName, antal order by antal desc");
+		return s.executeQuery("select top 1 * from (SELECT OBJECT_NAME(OBJECT_ID) TableName, st.row_count as antal FROM sys.dm_db_partition_stats st WHERE index_id < 2) x where TableName like 'CRONUS%' group by TableName, antal order by antal desc");
+
 	}
 	
 	/**

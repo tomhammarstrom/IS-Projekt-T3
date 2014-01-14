@@ -22,11 +22,8 @@ public class MainFrame extends JFrame {
 	private JPanel contentPane;
 
 	private JComboBox<String> x1ComboBox = new JComboBox<String>();
-	private JComboBox<String> x2ComboBox = new JComboBox<String>();
 
-	private JLabel x1lbl = new JLabel("Uppgift 1?");
-	private JLabel x2lbl = new JLabel("Uppgift2!");
-
+	private DefaultTableModel tableModel;
 	private JTable table = new JTable();
 	private JScrollPane scrollPane = new JScrollPane();
 
@@ -44,16 +41,10 @@ public class MainFrame extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 	
-		x1ComboBox.setBounds(160, 31, 163, 27);
-		x2ComboBox.setBounds(622, 31, 200, 27);
-		x2lbl.setBounds(504, 36, 86, 16);
-		x1lbl.setBounds(23, 36, 93, 16);
-		scrollPane.setBounds(23, 103, 950, 303);
+		x1ComboBox.setBounds(334, 32, 256, 27);
+		scrollPane.setBounds(23, 72, 950, 334);
 
 		contentPane.add(x1ComboBox);
-		contentPane.add(x2ComboBox);
-		contentPane.add(x1lbl);
-		contentPane.add(x2lbl);
 		contentPane.add(scrollPane);
 		scrollPane.setViewportView(table);
 		
@@ -77,18 +68,12 @@ public class MainFrame extends JFrame {
 		x1ComboBox.addItem("Employee Absence");
 		x1ComboBox.addItem("Employee Qualification");
 		x1ComboBox.addItem("Employee Relative");
-		
-		x2ComboBox.addItem("Nycklar");
-		x2ComboBox.addItem("Indexes");
-		x2ComboBox.addItem("Table Constraints");
-		x2ComboBox.addItem("Tabeller 1");
-		x2ComboBox.addItem("Tabeller 2");
-		x2ComboBox.addItem("Kolumner i employee 1");
-		x2ComboBox.addItem("Kolumner i employee 1");
-		x2ComboBox.addItem("Tabell med flest rader");
-		
-		
-		
+		x1ComboBox.addItem("Nycklar");
+		x1ComboBox.addItem("Indexes");
+		x1ComboBox.addItem("Table_Constraints");
+		x1ComboBox.addItem("Tabeller");
+		x1ComboBox.addItem("Employee-kolumner");
+		x1ComboBox.addItem("Flest rader");
 	}
 	
 	private void x1Event() throws SQLException{
@@ -101,6 +86,18 @@ public class MainFrame extends JFrame {
 		case 2: showEmployeeQualifications();
 				break;
 		case 3: showEmployeeRelative();
+				break;
+		case 4: showKeys();
+				break;
+		case 5: showIndexes();
+				break;
+		case 6: showConstraints();
+				break;
+		case 7: showTables();
+				break;
+		case 8: showEmployee();
+				break;
+		case 9: showMostRows();
 				break;
 		}
 	}
@@ -125,10 +122,40 @@ public class MainFrame extends JFrame {
 		buildModel(r);
 	}
 	
-
+	private void showKeys() throws SQLException{
+		ResultSet r = con.getKeys();
+		buildModel(r);
+	}
+	
+	private void showIndexes() throws SQLException{
+		ResultSet r = con.getIndex();
+		buildModel(r);
+	}
+	
+	private void showConstraints() throws SQLException{
+		ResultSet r = con.getConstraints();
+		buildModel(r);
+	}
+	
+	private void showTables() throws SQLException{
+		ResultSet r = con.getTables();
+		buildModel(r);
+	}
+	
+	
+	private void showEmployee() throws SQLException{
+		ResultSet r = con.getColumns();
+		buildModel(r);
+	}
+	
 
 	
-	DefaultTableModel tableModel;
+	private void showMostRows() throws SQLException{
+		ResultSet r = con.getMaxRow();
+		buildModel(r);
+	}
+
+
 	
 	private void buildModel(ResultSet r) throws SQLException{
 		tableModel = new DefaultTableModel(data(r), columnNames(r));
