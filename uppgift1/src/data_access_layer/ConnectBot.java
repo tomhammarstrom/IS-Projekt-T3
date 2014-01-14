@@ -56,8 +56,7 @@ public class ConnectBot {
 
 	// hämtar 1 student
 	public ResultSet getStudent(String civic) throws SQLException {
-		PreparedStatement ps = connect().prepareStatement(
-				"select * from student where pnr = ?");
+		PreparedStatement ps = connect().prepareStatement("select * from student where pnr = ?");
 		ps.setString(1, civic);
 
 		return ps.executeQuery();
@@ -79,7 +78,8 @@ public class ConnectBot {
 			if (getStudent(civic).next()) {
 				affectedRows = 0;
 				errorMessage = "student finns redan";
-			} else {
+			} 
+			else {
 				PreparedStatement s = connect().prepareStatement(
 						"insert into student values(?,?,?)");
 				s.setString(1, civic);

@@ -194,6 +194,8 @@ public class MainFrame extends JFrame {
 		 openStudent(null);
 		 clearAllSelections();
 	 }
+	
+	
 	private void addCourse(){
 		 openCourse(null);
 		 clearAllSelections();
