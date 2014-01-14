@@ -6,25 +6,27 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 	private Controller con;
 
 	private JPanel contentPane;
 
-	private JComboBox<String> comboBox = new JComboBox<String>();
-	private JComboBox<String> comboBox_1 = new JComboBox<String>();
+	private JComboBox<String> x1ComboBox = new JComboBox<String>();
+	private JComboBox<String> x2ComboBox = new JComboBox<String>();
 
-	private JLabel lblUppgift = new JLabel("Uppgift 1?");
-	private JLabel lblUppgift_1 = new JLabel("Uppgift2");
+	private JLabel x1lbl = new JLabel("Uppgift 1?");
+	private JLabel x2lbl = new JLabel("Uppgift2!");
 
-	private DefaultListModel<String> model = new DefaultListModel<String>();
+	private JTable table = new JTable();
 	private JScrollPane scrollPane = new JScrollPane();
 
 	public MainFrame(Controller con) throws SQLException {
@@ -35,39 +37,80 @@ public class MainFrame extends JFrame {
 	private void initComponents() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1014, 480);
-
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		comboBox.setBounds(160, 31, 163, 27);
-
-		contentPane.add(comboBox);
-		comboBox_1.setBounds(622, 31, 200, 27);
-
-		contentPane.add(comboBox_1);
-		lblUppgift.setBounds(23, 36, 93, 16);
-
-		contentPane.add(lblUppgift);
-		lblUppgift_1.setBounds(504, 36, 86, 16);
-
-		contentPane.add(lblUppgift_1);
-		
-
-
+		setContentPane(contentPane);
+	
+		x1ComboBox.setBounds(160, 31, 163, 27);
+		x2ComboBox.setBounds(622, 31, 200, 27);
+		x2lbl.setBounds(504, 36, 86, 16);
+		x1lbl.setBounds(23, 36, 93, 16);
 		scrollPane.setBounds(23, 103, 950, 303);
 
+		contentPane.add(x1ComboBox);
+		contentPane.add(x2ComboBox);
+		contentPane.add(x1lbl);
+		contentPane.add(x2lbl);
 		contentPane.add(scrollPane);
-
-		JTable table = new JTable(data(), columnNames());
 		scrollPane.setViewportView(table);
 		
-		getEmployeeData();
-
+		x1ComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					x1Event();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		comboBoxes();
 	}
 	
-	private Vector<Vector<Object>> data() throws SQLException{
-		ResultSet r = con.getEmployeeData();
+	private void comboBoxes(){
+		x1ComboBox.addItem("");
+		x1ComboBox.addItem("Employee");
+		x1ComboBox.addItem("Employee Absence");
+		x1ComboBox.addItem("Employee Qualification");
+		x1ComboBox.addItem("Employee Relative");
+		
+		x2ComboBox.addItem("");
+		x2ComboBox.addItem("Nycklar");
+		x2ComboBox.addItem("Indexes");
+		x2ComboBox.addItem("Table Constraints");
+		x2ComboBox.addItem("Tabeller 1");
+		x2ComboBox.addItem("Tabeller 2");
+		x2ComboBox.addItem("Kolumner i employee 1");
+		x2ComboBox.addItem("Kolumner i employee 1");
+		x2ComboBox.addItem("Tabell med flest rader");
+		
+	}
+	
+	private void x1Event() throws SQLException{
+		ResultSet r = null;
+		
+	        switch (x1ComboBox.getSelectedIndex()) {
+	            case 1:  r = con.getEmployeeData();
+	                     break;
+	            case 2:  r = con.getEmployeeAbsenceData();
+	                     break;
+	            case 3:  r = con.getEmployeeQualificationData();
+	            		 break;
+	            case 4:  r = con.getEmployeeRelativeData();
+                		 break;
+                default: 
+                		 break;
+	        }
+	        
+	}
+	
+	
+	
+	
+	
+	private Vector<Vector<Object>> data(ResultSet r) throws SQLException{
 		ResultSetMetaData metaData = r.getMetaData();
 		int columnCount = metaData.getColumnCount();
 		
@@ -82,9 +125,7 @@ public class MainFrame extends JFrame {
 	    return data;
 	}
 	
-	private Vector<String> columnNames() throws SQLException{
-		ResultSet r = con.getEmployeeData();
-
+	private Vector<String> columnNames(ResultSet r) throws SQLException{
 		ResultSetMetaData metaData = r.getMetaData();
 
 		Vector<String> columnNames = new Vector<String>();
@@ -96,8 +137,5 @@ public class MainFrame extends JFrame {
 		return columnNames;
 	}
 
-	private void getEmployeeData() throws SQLException {
-		
 	
-	}
 }

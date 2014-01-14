@@ -15,16 +15,7 @@ public class SQL {
 		return con;
 	}
 	
-	
-	public ResultSet getCustomerInfo() throws SQLException{
-		Statement s = connect().createStatement();
-		return s.executeQuery("aaa");  //att fixa
-	}
-	
-	public DatabaseMetaData getMetaData () throws SQLException{
-		return connect().getMetaData();
-	}
-	
+
 	public ResultSet getKeys() throws SQLException{
 		Statement s = connect().createStatement();
 		return s.executeQuery("SELECT DISTINCT Constraint_Name AS [Constraint] FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE");

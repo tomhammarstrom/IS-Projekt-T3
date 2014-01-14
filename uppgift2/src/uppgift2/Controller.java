@@ -9,14 +9,6 @@ public class Controller {
 		sql = new SQL();
 	}
 	
-	public ResultSet getCustomerInfo() throws SQLException{
-		return sql.getCustomerInfo();
-	}
-	
-	public DatabaseMetaData getMetaData () throws SQLException{
-		return sql.getMetaData();
-	}
-	
 	public ResultSet getKeys() throws SQLException{
 		return sql.getKeys();
 	}
