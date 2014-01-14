@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
 
 	private DefaultTableModel tableModel;
 	private JTable table = new JTable();
-	private JScrollPane scrollPane = new JScrollPane();
+	private JScrollPane scrollPane;
 
 	public MainFrame(Controller con) throws SQLException {
 		this.con = con;
@@ -42,11 +42,16 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 	
 		x1ComboBox.setBounds(334, 32, 256, 27);
-		scrollPane.setBounds(23, 72, 950, 334);
+
 
 		contentPane.add(x1ComboBox);
+
+		
+		scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		//scrollPane.setViewportView(table);
+		scrollPane.setBounds(23, 72, 950, 334);
 		contentPane.add(scrollPane);
-		scrollPane.setViewportView(table);
 		
 		x1ComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -163,15 +168,15 @@ public class MainFrame extends JFrame {
 		table.setModel(tableModel);
 	}
 	
-	private Vector<Vector<Object>> data(ResultSet r) throws SQLException{
+	private Vector<Vector<String>> data(ResultSet r) throws SQLException{
 		ResultSetMetaData metaData = r.getMetaData();
 		int columnCount = metaData.getColumnCount();
 		
-	    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+	    Vector<Vector<String>> data = new Vector<Vector<String>>();
 	    while (r.next()) {
-	        Vector<Object> vector = new Vector<Object>();
+	        Vector<String> vector = new Vector<String>();
 	        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-	            vector.add(r.getObject(columnIndex));
+	            vector.add(r.getString(columnIndex));
 	        }
 	        data.add(vector);
 	    }
