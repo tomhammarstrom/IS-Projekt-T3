@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -61,22 +62,22 @@ public class MainFrame extends JFrame {
 				try {
 					x1Event();
 				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
 		
 		comboBoxes();
+		
 	}
 	
-	private void comboBoxes(){
-		x1ComboBox.addItem("");
+	private void comboBoxes() throws SQLException{
 		x1ComboBox.addItem("Employee");
 		x1ComboBox.addItem("Employee Absence");
 		x1ComboBox.addItem("Employee Qualification");
 		x1ComboBox.addItem("Employee Relative");
 		
-		x2ComboBox.addItem("");
 		x2ComboBox.addItem("Nycklar");
 		x2ComboBox.addItem("Indexes");
 		x2ComboBox.addItem("Table Constraints");
@@ -86,29 +87,54 @@ public class MainFrame extends JFrame {
 		x2ComboBox.addItem("Kolumner i employee 1");
 		x2ComboBox.addItem("Tabell med flest rader");
 		
+		
+		
 	}
 	
 	private void x1Event() throws SQLException{
-		ResultSet r = null;
-		
-	        switch (x1ComboBox.getSelectedIndex()) {
-	            case 1:  r = con.getEmployeeData();
-	                     break;
-	            case 2:  r = con.getEmployeeAbsenceData();
-	                     break;
-	            case 3:  r = con.getEmployeeQualificationData();
-	            		 break;
-	            case 4:  r = con.getEmployeeRelativeData();
-                		 break;
-                default: 
-                		 break;
-	        }
-	        
+		int selectedIndex = x1ComboBox.getSelectedIndex();
+		switch (selectedIndex){
+		case 0: showEmployeeData();
+				break;
+		case 1: showEmployeeAbsence();
+				break;
+		case 2: showEmployeeQualifications();
+				break;
+		case 3: showEmployeeRelative();
+				break;
+		}
 	}
 	
+	private void showEmployeeData() throws SQLException{
+		ResultSet r = con.getEmployeeData();
+		buildModel(r);
+	}
 	
+	private void showEmployeeAbsence() throws SQLException{
+		ResultSet r = con.getEmployeeAbsenceData();
+		buildModel(r);
+	}
 	
+	private void showEmployeeQualifications() throws SQLException{
+		ResultSet r = con.getEmployeeQualificationData();
+		buildModel(r);
+	}
 	
+	private void showEmployeeRelative() throws SQLException{
+		ResultSet r = con.getEmployeeRelativeData();
+		buildModel(r);
+	}
+	
+
+
+	
+	DefaultTableModel tableModel;
+	
+	private void buildModel(ResultSet r) throws SQLException{
+		tableModel = new DefaultTableModel(data(r), columnNames(r));
+		table.removeAll();
+		table.setModel(tableModel);
+	}
 	
 	private Vector<Vector<Object>> data(ResultSet r) throws SQLException{
 		ResultSetMetaData metaData = r.getMetaData();

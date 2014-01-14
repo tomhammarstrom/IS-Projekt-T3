@@ -44,11 +44,11 @@ public class Controller {
 
 	
 	public ResultSet getEmployeeQualificationData() throws SQLException{
-		return getEmployeeQualificationData();
+		return sql.getEmployeeQualificationData();
 	}
 	
 	public ResultSet getEmployeeRelativeData() throws SQLException{
-		return getEmployeeRelativeData();
+		return sql.getEmployeeRelativeData();
 	}
 	
 	
