@@ -1,7 +1,0 @@
-XLODBC
-1
-DSN=cronus;Description=fuckall;UID=Me;Trusted_Connection=Yes;APP=Microsoft Office 2013;WSID=EBBA;DATABASE=Demo Database NAV (5-0)
-SELECT "CRONUS Sverige AB$Customer Bank Account"."Customer No_", "CRONUS Sverige AB$Customer Bank Account".Name, "CRONUS Sverige AB$Customer Bank Account"."Bank Account No_"  FROM "Demo Database NAV (5-0)".dbo."CRONUS Sverige AB$Customer Bank Account" "CRONUS Sverige AB$Customer Bank Account"  WHERE ("CRONUS Sverige AB$Customer Bank Account"."Customer No_"='10000')
-
-
-Customer No_	Name	Bank Account No_

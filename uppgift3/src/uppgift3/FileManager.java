@@ -16,25 +16,25 @@ public class FileManager {
 	 * Excel
 	 */
 	public void openExcel1(){
-		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\XXX" });
+		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\excel1.dqy" });
 	}
 	public void openExcel2(){
-		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\XXX" });
+		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\excel2.dqy" });
 	}
 	public void openExcel3(){
-		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\XXX" });
+		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\excel3.dqy" });
 	}
 	public void openExcel4(){
-		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\XXX" });
+		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\excel4.dqy" });
 	}
 	public void openExcel5(){
-		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\XXX" });
+		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\excel5.dqy" });
 	}
 	public void openExcel6(){
-		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\XXX" });
+		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\excel6.dqy" });
 	}
 	public void openExcel7(){
-		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\XXX" });
+		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\excel7.dqy" });
 	}
 
 	
@@ -94,16 +94,16 @@ public class FileManager {
 	 * Forms
 	 */
 	public void openForm1(){
-		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\XXX" });
+		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\form1.xlsx" });
 	}
 	public void openForm2(){
-		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\XXX" });
+		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\form2.xlsx" });
 	}
 	public void openForm3(){
-		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\XXX" });
+		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\form3.xlsx" });
 	}
 	public void openForm4(){
-		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\XXX" });
+		openFile(new String[] { "cmd.exe", "/c", "C:\\Users\\submarines\\git\\isprojekt\\uppgift3\\Filer\\form4.xlsx" });
 	}
 
 	

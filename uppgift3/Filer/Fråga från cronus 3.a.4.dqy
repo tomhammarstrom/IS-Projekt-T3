@@ -1,7 +1,0 @@
-XLODBC
-1
-DSN=cronus;Description=fuckall;UID=Me;Trusted_Connection=Yes;APP=Microsoft Office 2013;WSID=EBBA;DATABASE=Demo Database NAV (5-0)
-SELECT DISTINCT "CRONUS Sverige AB$Employee Absence"."Employee No_", "CRONUS Sverige AB$Employee Absence"."Cause of Absence Code", "CRONUS Sverige AB$Employee"."First Name", "CRONUS Sverige AB$Employee"."Last Name"  FROM "Demo Database NAV (5-0)".dbo."CRONUS Sverige AB$Employee" "CRONUS Sverige AB$Employee", "Demo Database NAV (5-0)".dbo."CRONUS Sverige AB$Employee Absence" "CRONUS Sverige AB$Employee Absence"  WHERE "CRONUS Sverige AB$Employee Absence"."Employee No_" = "CRONUS Sverige AB$Employee".No_ AND (("CRONUS Sverige AB$Employee Absence"."Cause of Absence Code"='SJUK'))
-
-
-Employee No_	Cause of Absence Code	First Name	Last Name

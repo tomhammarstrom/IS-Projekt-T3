@@ -1,7 +1,0 @@
-XLODBC
-1
-DSN=cronus;Description=fuckall;UID=Me;Trusted_Connection=Yes;APP=Microsoft Office 2013;WSID=EBBA;DATABASE=Demo Database NAV (5-0)
-SELECT "CRONUS Sverige AB$Employee".No_, "CRONUS Sverige AB$Employee"."First Name", "CRONUS Sverige AB$Employee"."Last Name", "CRONUS Sverige AB$Employee Relative"."Relative Code", "CRONUS Sverige AB$Employee Relative"."First Name", "CRONUS Sverige AB$Employee Relative"."Last Name"  FROM "Demo Database NAV (5-0)".dbo."CRONUS Sverige AB$Employee" "CRONUS Sverige AB$Employee", "Demo Database NAV (5-0)".dbo."CRONUS Sverige AB$Employee Relative" "CRONUS Sverige AB$Employee Relative"  WHERE "CRONUS Sverige AB$Employee Relative"."Employee No_" = "CRONUS Sverige AB$Employee".No_
-
-
-No_	First Name	Last Name	Relative Code	First Name	Last Name
