@@ -121,6 +121,8 @@ public class MainFrame extends JFrame {
 		formList.add("Excel - Employee");
 		formList.add("Word - Customer");
 		formList.add("Word - Employee");
+		formList.add("Access - Customer");
+		formList.add("Access - Employee");
 	}
 	
 	private void openAccess(){
@@ -159,6 +161,10 @@ public class MainFrame extends JFrame {
 			case 2: fm.openForm3();
 					break;
 			case 3: fm.openForm4();
+					break;
+			case 4: fm.openForm5();
+					break;
+			case 5: fm.openForm6();
 					break;
 
 			}
