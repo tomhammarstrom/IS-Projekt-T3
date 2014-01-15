@@ -273,7 +273,7 @@ public class DAL {
 	private boolean maxPoints(String civic, String id) throws SQLException {
 		PreparedStatement s = connect()
 				.prepareStatement(
-						"select Sum(point) from course where id in (select id from studies where pnr = ?)");
+						"select sum(point) from course where id in (select id from studies where pnr = ?)");
 		s.setString(1, civic);
 		ResultSet r = s.executeQuery();
 		
