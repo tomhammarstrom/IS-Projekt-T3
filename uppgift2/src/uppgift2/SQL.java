@@ -18,7 +18,7 @@ public class SQL {
 
 	public ResultSet getKeys() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("SELECT DISTINCT Constraint_Name AS [Constraint] FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE");
+		return s.executeQuery("select distinct Constraint_Name as [Constraint] from INFORMATION_SCHEMA.KEY_COLUMN_USAGE");
 	}
 	
 	public ResultSet getIndex() throws SQLException{
@@ -28,7 +28,7 @@ public class SQL {
 	
 	public ResultSet getConstraints() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS");
+		return s.executeQuery("select * from INFORMATION_SCHEMA.TABLE_CONSTRAINTS");
 	}
 	
 	public ResultSet getTables() throws SQLException{
@@ -62,7 +62,7 @@ order by t.name
 	
 	public ResultSet getMaxRow() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("select top 1 * from (SELECT OBJECT_NAME(OBJECT_ID) TableName, st.row_count as antal FROM sys.dm_db_partition_stats st WHERE index_id < 2) x where TableName like 'CRONUS%' group by TableName, antal order by antal desc");
+		return s.executeQuery("select top 1 * from (SELECT OBJECT_NAME(OBJECT_ID) TableName, st.row_count as antal from sys.dm_db_partition_stats st where index_id < 2) x where TableName like 'CRONUS%' group by TableName, antal order by antal desc");
 
 	}
 	
@@ -73,23 +73,23 @@ order by t.name
 	
 	public ResultSet getEmployeeData() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("SELECT [No_],[First Name],[Last Name],[Address],[Phone No_]FROM [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee]");
+		return s.executeQuery("select [No_],[First Name],[Last Name],[Address],[Phone No_]FROM [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee]");
 	}
 	
 	public ResultSet getEmployeeAbsenceData() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("SELECT [Entry No_],[Employee No_],[Cause of Absence Code],[Description],[Quantity]FROM [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee Absence]");
+		return s.executeQuery("select [Entry No_],[Employee No_],[Cause of Absence Code],[Description],[Quantity] from [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee Absence]");
 	}
 	
 
 	public ResultSet getEmployeeQualificationData() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("SELECT [Employee No_],[From Date],[To Date],[Type],[Description]FROM [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee Qualification]");
+		return s.executeQuery("select [Employee No_],[From Date],[To Date],[Type],[Description] from [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee Qualification]");
 	}
 	
 	public ResultSet getEmployeeRelativeData() throws SQLException{
 		Statement s = connect().createStatement();
-		return s.executeQuery("SELECT [Employee No_],[Relative Code],[First Name],[Last Name],[Phone No_] FROM [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee Relative]");
+		return s.executeQuery("select [Employee No_],[Relative Code],[First Name],[Last Name],[Phone No_] from [Demo Database NAV (5-0)].[dbo].[CRONUS Sverige AB$Employee Relative]");
 	}
 	
 	
