@@ -1,0 +1,1 @@
+SELECT "CRONUS Sverige AB$Customer Bank Account"."Customer No_", "CRONUS Sverige AB$Customer Bank Account".Name, "CRONUS Sverige AB$Customer Bank Account"."Bank Account No_"  FROM "Demo Database NAV (5-0)".dbo."CRONUS Sverige AB$Customer Bank Account" "CRONUS Sverige AB$Customer Bank Account"  WHERE ("CRONUS Sverige AB$Customer Bank Account"."Customer No_"='10000')
