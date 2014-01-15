@@ -1,0 +1,7 @@
+XLODBC
+1
+DSN=cronus;Description=fuckall;UID=Me;Trusted_Connection=Yes;APP=Microsoft Office 2013;WSID=EBBA;DATABASE=Demo Database NAV (5-0)
+SELECT top 1 "CRONUS Sverige AB$Currency Exchange Rate"."Currency Code", "CRONUS Sverige AB$Currency Exchange Rate"."Relational Exch_ Rate Amount"  FROM "Demo Database NAV (5-0)".dbo."CRONUS Sverige AB$Currency Exchange Rate" "CRONUS Sverige AB$Currency Exchange Rate"  GROUP BY "CRONUS Sverige AB$Currency Exchange Rate"."Currency Code", "CRONUS Sverige AB$Currency Exchange Rate"."Relational Exch_ Rate Amount"  ORDER BY "CRONUS Sverige AB$Currency Exchange Rate"."Relational Exch_ Rate Amount" DESC
+
+
+Currency Code	Relational Exch_ Rate Amount
