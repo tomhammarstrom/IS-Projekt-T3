@@ -2,15 +2,15 @@ package controller;
 
 import java.sql.*;
 
-import data_access_layer.ConnectBot;
+import data_access_layer.DAL;
 
 public class Controller {
-    private ConnectBot cb;
+    private DAL cb;
     private Validator v;
     
     
     public Controller() throws SQLException {
-        cb = new ConnectBot();
+        cb = new DAL();
         v = new Validator();
     }
     

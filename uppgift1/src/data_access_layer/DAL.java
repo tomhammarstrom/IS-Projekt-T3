@@ -2,12 +2,12 @@ package data_access_layer;
 
 import java.sql.*;
 
-public class ConnectBot {
+public class DAL {
 	private Connection con;
 	private String errorMessage;
 
 	// konstruktor
-	public ConnectBot() {
+	public DAL() {
 		registerDriver();
 		errorMessage = "NO ERROR";
 	}
