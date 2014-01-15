@@ -66,7 +66,7 @@ public class MainFrame extends JFrame {
 		});
 		
 		comboBoxes();
-		lblNewLabel.setBounds(466, 35, 56, 16);
+		lblNewLabel.setBounds(466, 35, 308, 16);
 		
 		
 		contentPane.add(lblNewLabel);
