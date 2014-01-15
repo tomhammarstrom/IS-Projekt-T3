@@ -13,6 +13,7 @@ import javax.swing.JTable;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
@@ -25,6 +26,7 @@ public class MainFrame extends JFrame {
 	private DefaultTableModel tableModel;
 	private JTable table = new JTable();
 	private JScrollPane scrollPane;
+	private final JLabel lblNewLabel = new JLabel("Metadata = kolumn-namnen");
 
 	public MainFrame(Controller con) throws SQLException {
 		this.con = con;
@@ -40,7 +42,7 @@ public class MainFrame extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 	
-		x1ComboBox.setBounds(334, 32, 256, 27);
+		x1ComboBox.setBounds(66, 30, 256, 27);
 
 
 		contentPane.add(x1ComboBox);
@@ -64,7 +66,10 @@ public class MainFrame extends JFrame {
 		});
 		
 		comboBoxes();
+		lblNewLabel.setBounds(466, 35, 56, 16);
 		
+		
+		contentPane.add(lblNewLabel);
 	}
 	
 	private void comboBoxes() throws SQLException{
@@ -193,6 +198,4 @@ public class MainFrame extends JFrame {
 		}
 		return columnNames;
 	}
-
-	
 }
